@@ -17,10 +17,10 @@ function App() {
   const [isLogged, setIsLogged] = useState(false)
   const [isAsideOpen, setIsAsideOpen] = useState(false)
 
-  const switchAside = (e) => {
+  const switchAside = () => {
     setIsAsideOpen(!isAsideOpen)
   }
-  const closeAside = (e) => {
+  const closeAside = () => {
     setIsAsideOpen(false)
   }
 
