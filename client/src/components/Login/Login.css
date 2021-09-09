@@ -39,7 +39,9 @@
 	display: flex;
 	flex-direction: column;
 }
-
+.login-group {
+	position: relative;
+}
 .login-input {
 	border: none;
 	padding: 5px 0;
@@ -50,7 +52,15 @@
 	margin-bottom: 33px;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
-
+.login-error {
+	color: red;
+    position: absolute;
+    left: 0%;
+    top: 50%;
+}
+.login-input-error {
+	border-bottom: 1px solid red;
+}
 .login-btn {
 	border: none;
 	background: #00D55A;

@@ -8,13 +8,14 @@ import Browse from "./components/Browse/Browse"
 import Login from "./components/Login/Login"
 import Register from './components/Register/Register';
 import LandingPage from './components/LandingPage/LandingPage';
+import CreateSong from './components/CreateSong/CreateSong';
 
 import { Switch, Route } from "react-router-dom"
 import { useState } from 'react';
 
 
 function App() {
-  const [isLogged, setIsLogged] = useState(false)
+  const [isLogged, setIsLogged] = useState(true)
   const [isAsideOpen, setIsAsideOpen] = useState(false)
 
   const switchAside = () => {
@@ -36,6 +37,7 @@ function App() {
                 <Route path="/" exact component={Home} />
                 <Route path="/library/:collection" component={Browse} />
                 <Route path="/search/:category" component={Browse} />
+                <Route path="/create/song" component={CreateSong} />
               </Switch>
             </main>
           </div>

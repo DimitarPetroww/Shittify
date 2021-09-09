@@ -40,6 +40,9 @@
 	display: flex;
 	flex-direction: column;
 }
+.register-group {
+	position: relative;
+}
 
 .register-input {
 	border: none;
@@ -50,6 +53,15 @@
 	background: transparent;
 	margin-bottom: 33px;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.register-error {
+	color: red;
+    position: absolute;
+    left: 0%;
+    top: 50%;
+}
+.register-input-error {
+	border-bottom: 1px solid red;
 }
 
 .register-btn {

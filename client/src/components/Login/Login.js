@@ -8,8 +8,14 @@ const Login = () => {
                 <div className="login-card">
                     <h2 className="login-title">Login info</h2>
                     <form className="login-form">
-                        <input type="text" placeholder="Email" className="login-input" />
-                        <input type="password" placeholder="Password" className="login-input" />
+                        <div className="login-group">
+                            <input type="text" placeholder="Email" className="login-input login-input-error" />
+                            <small className="login-error">Email is required</small>
+                        </div>
+                        <div className="login-group">
+                            <input type="password" placeholder="Password" className="login-input" />
+                            <small className="login-error">Password is required</small>
+                        </div>
                         <input type="submit" value="Login" className="login-btn" />
                     </form>
                 </div>

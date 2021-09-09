@@ -8,10 +8,22 @@ const Register = () => {
                 <div className="register-card">
                     <h2 className="register-title">Register info</h2>
                     <form className="register-form">
-                        <input type="text" placeholder="Email" className="register-input" />
-                        <input type="text" placeholder="Name" className="register-input" />
-                        <input type="password" placeholder="Password" className="register-input" />
-                        <input type="password" placeholder="Repeat Password" className="register-input" />
+                        <div className="register-group">
+                            <input type="text" placeholder="Email" className="register-input register-input-error" />
+                            <small className="register-error">Email is required</small>
+                        </div>
+                        <div className="register-group">
+                            <input type="text" placeholder="Name" className="register-input" />
+                            <small className="register-error">Name is required</small>
+                        </div>
+                        <div className="register-group">
+                            <input type="password" placeholder="Password" className="register-input" />
+                            <small className="register-error">Password is required</small>
+                        </div>
+                        <div className="register-group">
+                            <input type="password" placeholder="Repeat Password" className="register-input" />
+                            <small className="register-error">Repeat Password is required</small>
+                        </div>
                         <input type="submit" value="Register" className="register-btn" />
                     </form>
                 </div>

@@ -6,6 +6,7 @@
     width: 200px;
     max-width: 300px;
     z-index: 9999;
+    animation: slide-botom 0.3s ease-in-out both;
 }
 .profile-menu-pop ul {
     padding: 0;
@@ -35,5 +36,13 @@
 @media (max-width: 900px) {
     .profile-menu-pop {
         right: 0;
+    }
+}
+@keyframes slide-botom {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
     }
 }
