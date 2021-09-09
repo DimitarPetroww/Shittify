@@ -1,0 +1,43 @@
+.auth {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 40%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-right: 10px;
+}
+.auth a {
+    text-decoration: none;
+    font-size: 18px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+.auth-signup a {
+    border-radius: 33px;
+    background: black;
+    color: white;
+    margin-right: 10px;
+}
+
+.auth-login a{
+    border-radius: 33px;
+    background: white;
+    color: black;
+}
+.auth-signup, .auth-login {
+    flex-basis: 50%;
+    text-align: center;
+    height: 60%;
+}
+.auth a:hover {
+    transform: scale(1.03);
+} 
+.auth .auth-signup .active-signup {
+    color: #1DB954;
+}
+.auth .auth-login .active-login {
+    background: #1DB954;
+}

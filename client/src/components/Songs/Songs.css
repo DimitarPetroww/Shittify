@@ -1,0 +1,41 @@
+.songs-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+}
+
+.songs-header-title {
+    margin: 30px 0px;
+    color: white;
+}
+
+.songs-header>a {
+    font-size: 11px;
+    margin-right: 10px;
+}
+
+.songs-header>a {
+    text-decoration: none;
+    color: #9B9B9B;
+}
+
+.songs-header a:hover {
+    text-decoration: underline;
+}
+
+.songs-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+@media (max-width: 599px) {
+    .songs-container {
+        flex-direction: column;
+    }
+    .songs-header-title {
+        margin-top: 10px;
+    }
+}

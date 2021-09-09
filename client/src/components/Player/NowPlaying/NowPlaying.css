@@ -1,0 +1,45 @@
+.player-now-playing img {
+    width: 60px;
+    height: 60px;
+}
+
+.player-now-playing {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.player-now-playing-info {
+    margin: 0 15px;
+}
+
+.player-now-playing-info-title {
+    color: white;
+    margin: 0;
+}
+
+.player-now-playing-info-author {
+    color: #9B9B9B;
+    margin: 0;
+}
+
+.player-now-playing i {
+    color: white;
+    font-size: 15px;
+}
+
+#liked {
+    color: #1DB954;
+}
+
+.player-now-playing i:hover {
+    cursor: pointer;
+}
+@media (max-width: 599px) {
+    .player-now-playing img {
+        display: none;
+    }
+    .player-now-playing-info {
+        margin-right: 1px;
+    }
+}

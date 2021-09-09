@@ -1,0 +1,14 @@
+.player {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: space-between;
+    padding: 20px;
+    box-sizing: border-box;
+}
+@media (max-width: 599px) {
+    .player {
+        padding: 0;
+        justify-content: flex-start;
+    }
+}

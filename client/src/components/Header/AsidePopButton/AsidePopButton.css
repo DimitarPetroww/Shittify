@@ -1,0 +1,14 @@
+.aside-pop-btn {
+    margin-left: 10px;
+    display: none;
+}
+
+.aside-pop-btn svg {
+    fill: white;
+}
+
+@media (max-width: 599px) {
+    .aside-pop-btn {
+        display: block;
+    }
+}

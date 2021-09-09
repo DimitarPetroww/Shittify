@@ -1,0 +1,55 @@
+.landing-container {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 92vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1495305379050-64540d6ee95d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.landing-container .head {
+    position: relative;
+    font-size: 65px;
+    color: #fff;
+    margin: 0 0 55px 0;
+}
+
+.landing-container .head span {
+    color: #1DB954;
+}
+
+.landing-container .btns {
+    height: 7%;
+    width: 100%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.landing-container .btns a {
+    font-size: 20px;
+    width: 300px;
+    height: 100%;
+    background: white;
+    text-decoration: none;
+    color: black;
+    border-radius: 33px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.landing-container .btns a:nth-child(2) {
+    margin-left: 20px;
+}
+
+.landing-container .btns a:hover {
+    background: #1DB954;
+    transform: scale(1.03);
+}

@@ -1,0 +1,39 @@
+.profile-menu-pop {
+    position: absolute;
+    top: 60px;
+    right: 60px;
+    background-color: #282828;
+    width: 200px;
+    max-width: 300px;
+    z-index: 9999;
+}
+.profile-menu-pop ul {
+    padding: 0;
+    margin: 5px 0px;
+}
+.profile-menu-pop-link {
+    list-style: none;
+    padding: 0px 10px;
+}
+.profile-menu-pop-link a{
+    text-decoration: none;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+}
+.profile-menu-pop-link:hover {
+    background-color: #3E3E3E;
+}
+@media (max-width: 599px) {
+    .profile-menu-pop {
+        right: 10px;
+    }
+}
+@media (max-width: 900px) {
+    .profile-menu-pop {
+        right: 0;
+    }
+}

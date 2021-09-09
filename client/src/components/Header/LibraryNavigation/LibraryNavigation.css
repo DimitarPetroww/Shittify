@@ -1,0 +1,15 @@
+.library-navigation {
+    height: 80%;
+    flex-grow: 1;
+}
+.library-navigation-list {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+@media (max-width: 599px) {
+    .library-navigation {
+        margin-left: 10px;
+    }
+}

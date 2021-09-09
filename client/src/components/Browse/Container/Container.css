@@ -1,0 +1,34 @@
+.container {
+    padding: 16px;
+    background-color: #181818;
+    border-radius: 5px;
+    margin-top: 20px;
+    position: relative;
+}
+
+.container:hover {
+    background-color: #282828;
+}
+
+.container-content-title {
+    color: white;
+    margin-bottom: 0;
+    font-weight: bold;
+}
+
+.container-content-author {
+    color: #9B9B9B;
+    margin: 0;
+    font-weight: bold;
+}
+
+.container-img img {
+    width: 100%;
+    height: 157px;
+}
+.container:hover .play-button-container {
+    display: block;
+}
+.container .play-button-container {
+    left: 75%;
+}

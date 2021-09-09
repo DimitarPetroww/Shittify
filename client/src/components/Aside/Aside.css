@@ -1,0 +1,87 @@
+/* aside */
+
+.aside {
+    display: flex;
+    flex-direction: column;
+    background-color: #000;
+    width: 13%;
+    height: 85vh;
+    color: #757575;
+}
+
+.aside-nav {
+    margin-top: 20px;
+}
+
+.aside-nav-list {
+    padding: 0;
+    margin: 0;
+}
+
+.aside-nav-list-link:nth-child(4) {
+    margin-top: 30px;
+}
+
+.aside-nav-list-link a {
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    color: #757575;
+    border-radius: 5px;
+}
+
+.aside-nav-list-link svg {
+    margin: 0 15px;
+}
+
+.aside-nav-list-link span {
+    position: relative;
+    top: -5px;
+}
+
+.aside-nav-list-link a:hover {
+    color: white;
+}
+
+.aside-nav-list-link {
+    list-style: none;
+    padding: 0 8px;
+}
+
+.aside-nav-list-border {
+    background-color: #282828;
+    border: none;
+    height: 1px;
+    margin: 8px 10px 10px 10px;
+    min-height: 1px;
+}
+
+.playlist-title {
+    font-size: 13px;
+}
+
+#all-playlists {
+    text-decoration: underline;
+    font-size: 12px;
+}
+
+.aside-nav-list-link .active {
+    background-color: #282828;
+    color: white !important;
+}
+
+.active a, .active svg {
+    color: white;
+}
+
+@media (max-width: 599px) {
+    .aside {
+        display: none;
+    }
+    .open {
+        display: flex;
+        position: absolute;
+        z-index: 9999;
+        width: 60%;
+    }
+}

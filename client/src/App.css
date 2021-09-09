@@ -1,0 +1,13 @@
+.app {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.main-content {
+  width: 87%;
+}
+@media (max-width: 599px) {
+  .main-content {
+    width: 100%;
+  }
+}

@@ -1,0 +1,140 @@
+.player-controls {
+    width: 30%;
+}
+
+.player-controls-controller {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.player-controls-controller li {
+    list-style: none;
+}
+
+.player-backward, .player-forward {
+    color: #9E9E9E;
+}
+
+.player-backward:hover, .player-forward:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.player-start, .player-stop {
+    margin: 0 10px;
+}
+
+.player-start-button, .player-stop-button {
+    color: white;
+    border: none;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.player-start-button:hover, .player-stop-button:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+.player-start-button i, .player-stop-button i {
+    color: black;
+}
+
+.player-controls-progress {
+    display: flex;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.player-controls-progress p {
+    font-size: 10px;
+    margin: 0;
+}
+
+.progress-bar {
+    position: relative;
+    width: 100%;
+    height: 10px;
+    background-color: #535353;
+    border-radius: 1.5em;
+    color: white;
+    margin: 0 10px;
+}
+
+.progress-bar::before {
+    content: "";
+    display: flex;
+    align-items: center;
+    width: calc(var(--width, 0) * 1%);
+    max-width: 97%;
+    background-color: #9E9E9E;
+    border-radius: 1em;
+    padding: 5px;
+}
+
+.progress-bar:hover::before {
+    background-color: #1DB954;
+    cursor: pointer;
+}
+
+.player-audio {
+    display: flex;
+    width: 11%;
+    align-items: center;
+    flex-direction: row;
+}
+
+.player-audio i {
+    color: #9E9E9E;
+    font-size: 15px;
+}
+
+.player-audio i:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.audio-bar {
+    position: relative;
+    width: 100%;
+    height: 5px;
+    background-color: #535353;
+    border-radius: 1.5em;
+    color: white;
+    margin-left: 10px;
+}
+
+.audio-bar::before {
+    content: "";
+    display: flex;
+    align-items: center;
+    width: calc(var(--width, 0) * 1%);
+    max-width: 96%;
+    background-color: #9E9E9E;
+    border-radius: 1em;
+    padding: 2px;
+}
+
+.audio-bar:hover::before {
+    background-color: #1DB954;
+    cursor: pointer;
+}
+@media (max-width: 599px) {
+    .player-audio {
+        flex-grow: 1;
+        margin-right: 10px;
+    }
+    .player-controls {
+        flex-grow: 1;
+    }
+} 

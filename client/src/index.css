@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url("https://use.fontawesome.com/releases/v5.15.4/css/all.css");
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: #121212;
+}
+
+html {
+  font-family: 'Montserrat', sans-serif;
+  scroll-behavior: smooth;
+  text-decoration: none;
+}
