@@ -43,7 +43,7 @@ const Aside = ({ isOpen, click }) => {
                         </NavLink>
                     </li>
                     <li className="aside-nav-list-link">
-                        <NavLink to="/asdadasda">
+                        <NavLink to="/create/playlist">
                             <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd"><path d="M20 15h4.071v2h-4.071v4.071h-2v-4.071h-4.071v-2h4.071v-4.071h2v4.071zm-8 6h-12v-2h12v2zm0-4.024h-12v-2h12v2zm0-3.976h-12v-2h12v2zm12-4h-24v-2h24v2zm0-4h-24v-2h24v2z" fill="currentColor" /></svg>
                             <span>Create Playlist</span>
                         </NavLink>

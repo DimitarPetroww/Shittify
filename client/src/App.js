@@ -8,7 +8,7 @@ import Browse from "./components/Browse/Browse"
 import Login from "./components/Login/Login"
 import Register from './components/Register/Register';
 import LandingPage from './components/LandingPage/LandingPage';
-import CreateSong from './components/CreateSong/CreateSong';
+import Create from './components/Create/Create';
 
 import { Switch, Route } from "react-router-dom"
 import { useState } from 'react';
@@ -37,7 +37,7 @@ function App() {
                 <Route path="/" exact component={Home} />
                 <Route path="/library/:collection" component={Browse} />
                 <Route path="/search/:category" component={Browse} />
-                <Route path="/create/song" component={CreateSong} />
+                <Route path="/create/:category" component={Create} />
               </Switch>
             </main>
           </div>

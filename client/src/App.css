@@ -3,11 +3,29 @@
   flex-direction: row;
   align-items: flex-start;
 }
+
 .main-content {
   width: 87%;
 }
+
 @media (max-width: 599px) {
   .main-content {
     width: 100%;
   }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #121212;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #5A5A5A;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #898989;
 }

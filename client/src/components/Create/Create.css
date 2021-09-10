@@ -1,0 +1,125 @@
+.create-wrapper {
+    background: #134e5e;
+    background: linear-gradient(to right, #134e5e, #71b280);
+    height: 77vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-card {
+    display: flex;
+    flex-direction: column;
+    background: #000;
+    width: 80%;
+    box-shadow: 0px 8px 20px 0px rgb(0 0 0 / 15%);
+    border-radius: 10px;
+    padding: 57px 65px;
+    padding-bottom: 65px;
+}
+
+.create-title {
+    font-size: 24px;
+    color: #fff;
+    font-weight: 400;
+    margin-bottom: 36px;
+    text-align: center;
+}
+
+.create-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-group {
+    position: relative;
+}
+
+.create-input {
+    border: none;
+    padding: 5px 0;
+    font-size: 16px;
+    color: #ccc;
+    outline: none;
+    background: transparent;
+    margin-bottom: 33px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
+}
+.select {
+    margin-bottom: 20px;
+}
+
+.create-input-file {
+    display: none;
+}
+
+.file-label {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+    background: linear-gradient(147deg, #202020 0%, #434343 74%);
+    border-radius: 33px;
+    height: 50px;
+    margin-bottom: 30px;
+    color: white;
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.file-icon {
+    position: absolute;
+    left: 3%;
+}
+
+.create-error {
+    color: red;
+    position: absolute;
+    left: 0%;
+    top: 50%;
+}
+.select .create-error {
+    top: 100%;
+}
+
+.create-input-error {
+    border-bottom: 1px solid red;
+}
+
+.file-error-label {
+    color: red;
+}
+
+.create-btn {
+    border: none;
+    background: #00D55A;
+    color: white;
+    border-radius: 33px;
+    line-height: 40px;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 0 33px;
+}
+#search .optionContainer li:hover {
+    background-color: #00D55A;
+    color: black;
+    font-size: 18px;
+}
+
+@media (max-width: 599px) {
+    .create-title {
+        margin-bottom: 16px;
+    }
+    .create-card {
+        width: 90%;
+        height: fit-content;
+        padding: 27px 35px;
+        padding-bottom: 35px;
+    }
+}

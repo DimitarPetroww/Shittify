@@ -5,19 +5,3 @@
     height: 77vh;
     overflow-y: scroll;
 }
-
-.wrapper::-webkit-scrollbar {
-    width: 10px;
-}
-
-.wrapper::-webkit-scrollbar-track {
-    background-color: #121212;
-}
-
-.wrapper::-webkit-scrollbar-thumb {
-    background-color: #5A5A5A;
-}
-
-.wrapper::-webkit-scrollbar-thumb:hover {
-    background-color: #898989;
-}
