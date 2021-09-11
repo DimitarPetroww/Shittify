@@ -57,7 +57,14 @@ const CreatePlaylist = () => {
                                 avoidHighlightFirstOption
                                 groupBy="cat"
                             />
-                              <small className="create-error">Playlist should have atleast 1 song</small>
+                            <small className="create-error">Playlist should have atleast 1 song</small>
+                        </div>
+                        <div className="create-group">
+                            <input type="file" className="create-input-file" id="playlist" />
+                            <label htmlFor="playlist" className="file-label">
+                                <i className="fas fa-file-audio file-icon"></i>
+                                Playlist Image (under 100mb)
+                            </label>
                         </div>
                         <input type="submit" value="Create Playlist" className="create-btn" />
                     </form>
