@@ -1,5 +1,4 @@
 import "./Aside.css"
-import MyPlaylistLink from "./MyPlaylistLink/MyPlaylistLink";
 import { NavLink } from "react-router-dom"
 
 
@@ -11,6 +10,7 @@ const Aside = ({ isOpen, click }) => {
     return (
         <aside className={classes.join(" ")}>
             <nav className="aside-nav">
+                <hr className="aside-nav-list-border" />
                 <ul className="aside-nav-list" onClick={click}>
                     <li className="aside-nav-list-link">
                         <NavLink to="/" exact>
@@ -49,11 +49,6 @@ const Aside = ({ isOpen, click }) => {
                         </NavLink>
                     </li>
                     <hr className="aside-nav-list-border" />
-                    <MyPlaylistLink />
-                    <MyPlaylistLink />
-                    <MyPlaylistLink />
-                    <MyPlaylistLink />
-                    <MyPlaylistLink />
                 </ul>
             </nav>
         </aside>

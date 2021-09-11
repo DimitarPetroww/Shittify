@@ -12,6 +12,7 @@ import Create from './components/Create/Create';
 
 import { Switch, Route } from "react-router-dom"
 import { useState } from 'react';
+import Profile from './components/Profile/Profile';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
                 <Route path="/library/:collection" component={Browse} />
                 <Route path="/search/:category" component={Browse} />
                 <Route path="/create/:category" component={Create} />
+                <Route path="/profile" component={Profile} />
               </Switch>
             </main>
           </div>

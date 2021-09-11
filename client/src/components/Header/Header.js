@@ -12,6 +12,11 @@ import AsidePopButton from "./AsidePopButton/AsidePopButton"
 const Header = (props) => {
     const [isLogged, setIsLogged] = useState(true)
     const [isProfileClicked, setProfileClicked] = useState(false)
+
+    const showPopMenu = () => {
+        setProfileClicked(!isProfileClicked)
+    }
+
     if (isLogged) {
         return (
             <header className="header">
@@ -20,10 +25,8 @@ const Header = (props) => {
                     <LibraryNavigation />
                 </Route>
                 <Route path="/search" render={(props) => <SearchNavigation {...props} />}></Route>
-                <ProfileMenu click={(e) => {
-                    setProfileClicked(!isProfileClicked)
-                }} isClicked={isProfileClicked} />
-                {isProfileClicked ? <MenuPopOut /> : ""}
+                <ProfileMenu click={showPopMenu} isClicked={isProfileClicked} />
+                {isProfileClicked ? <MenuPopOut click={showPopMenu} /> : ""}
             </header>
         )
     }
