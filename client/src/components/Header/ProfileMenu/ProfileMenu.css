@@ -17,15 +17,16 @@
 
 .profile-menu-icon {
     margin: 0;
-    width: fit-content;
-    height: fit-content;
+    width: 25px;
+    height: 25px;
     background-color: #333333;
     border-radius: 50%;
 }
-
-.profile-menu-icon svg {
-    position: relative;
-    top: 3px;
+.profile-menu-icon img {
+    object-fit: cover;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
 }
 
 .profile-menu-name {

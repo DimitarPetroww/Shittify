@@ -59,7 +59,7 @@ const CreatePlaylist = () => {
                             />
                               <small className="create-error">Playlist should have atleast 1 song</small>
                         </div>
-                        <input type="submit" value="Create" className="create-btn" />
+                        <input type="submit" value="Create Playlist" className="create-btn" />
                     </form>
                 </div>
             </section>

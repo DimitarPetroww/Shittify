@@ -26,7 +26,7 @@ const CreateSong = () => {
                             Song Audio (under 100mb)
                         </label>
                     </div>
-                    <input type="submit" value="Create" className="create-btn" />
+                    <input type="submit" value="Create Song" className="create-btn" />
                 </form>
             </div>
         </section>

@@ -1,7 +1,7 @@
 .profile-wrapper {
     color: white;
     height: 77vh;
-    background: #474747;
+    background: #1B1B1B;
 }
 
 .profile-container {
@@ -14,6 +14,7 @@
 
 .profile-picture-container {
     background: #282828;
+    box-shadow: 0px 0px 17px -1px #000;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -26,6 +27,20 @@
     height: 180px;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+}
+
+.picture {
+    display: none;
+}
+
+.choose-img {
+    display: none;
+}
+
+.choose-img span {
+    margin-top: 15px;
+    text-decoration: underline;
 }
 
 .profile-picture img {
@@ -47,17 +62,56 @@
     font-weight: bold;
     text-transform: none;
     font-weight: 900;
+    display: inline-block;
+}
+
+.edit-btn {
+    margin-left: 30px;
+    color: #C1C1C1;
+    cursor: pointer;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.profile-picture-container:hover .no-picture .profile-icon, .profile-picture-container:hover .profile-picture .profile-icon {
+    display: none;
+}
+
+.profile-picture-container:hover .profile-picture .choose-img {
+    background-position: center;
+    background-size: cover;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), var(--image);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+}
+.profile-picture-container:hover .choose-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.edit-btn:hover {
+    border-bottom: 1px solid #C1C1C1;
+    color: white;
+    font-size: 17px;
 }
 
 .profile-heading {
     margin-bottom: 10px;
     font-weight: lighter;
 }
-.profile-playlists-count {
+
+.profile-playlists-count, .profile-songs-count {
+    display: inline;
     color: #C1C1C1;
     font-size: 15px;
 }
-.profile-playlists-count::after {
+
+.profile-playlists-count::after, .profile-songs-count::after {
     content: "•";
     margin: 0 4px;
 }
