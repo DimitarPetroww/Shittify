@@ -11,7 +11,7 @@ const Playlists = () => {
                 <h2 className="playlists-header-title">
                     Most Liked Playlists
                 </h2>
-                <NavLink to="/search">Check All</NavLink>
+                <NavLink to="/search/playlists">Check All</NavLink>
             </div>
             <div className="playlists-container">
                 <Playlist />

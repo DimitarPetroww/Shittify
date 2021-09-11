@@ -1,0 +1,127 @@
+.edit-modal-wrapper {
+    display: none;
+    position: fixed;
+    z-index: 99999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white
+}
+
+.edit-modal-content {
+    width: 50%;
+    background: #282828;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.edit-modal-text {
+    position: relative;
+}
+
+.edit-modal-text .close-modal {
+    position: absolute;
+    top: 0;
+    right: 0;
+    fill: white;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.edit-modal-text .close-modal:hover {
+    border-radius: 50%;
+    background: #3E3E3E;
+}
+
+.edit-modal-heading {
+    margin-top: 0;
+    font-size: 30px;
+    text-align: center;
+}
+
+.edit-modal-form-container {
+    height: 80%;
+    display: flex;
+    align-items: center;
+}
+
+.edit-modal-form {
+    height: 40px;
+    width: 100%;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+}
+
+.edit-modal-form input[type="text"] {
+    width: 45%;
+    outline: none;
+    border: none;
+    background: #3E3E3E;
+    color: white;
+    font-size: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px -1px #1f1e1e;
+}
+
+.edit-modal-form .name-error-input[type="text"] {
+    border: 1px solid rgb(180, 52, 52);
+}
+
+.edit-modal-form input[type="text"]:not(.name-error-input):focus {
+    border: 1px solid #796f6f;
+}
+
+.edit-modal-form input[type="submit"] {
+    box-shadow: 0px 0px 10px -1px #000000;
+    background: white;
+    color: black;
+    border-radius: 33px;
+    border: none;
+    cursor: pointer;
+    width: 45%;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.edit-modal-form .error-span {
+    animation: opacity .2s;
+    position: absolute;
+    z-index: 10;
+    top: -11.5px;
+    left: 10px;
+    font-size: 10px;
+    color: rgb(180, 52, 52);
+}
+
+.opened {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 599px) {
+    .edit-modal-content {
+        width: 90%;
+    }
+}
+
+@keyframes opacity {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}

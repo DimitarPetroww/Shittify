@@ -1,14 +1,17 @@
 .profile-wrapper {
     color: white;
     height: 77vh;
-    background: #1B1B1B;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1614680376593-902f74cf0d41?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=667&q=80');
+    background-size: cover;
 }
 
 .profile-container {
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
-    height: 50%;
+    align-items: center;
+    height: 100%;
     margin-left: 30px;
 }
 
@@ -88,6 +91,7 @@
     width: 100%;
     border-radius: 50%;
 }
+
 .profile-picture-container:hover .choose-img {
     display: flex;
     flex-direction: column;
@@ -106,12 +110,32 @@
 }
 
 .profile-playlists-count, .profile-songs-count {
-    display: inline;
+    text-decoration: none;
+    cursor: pointer;
     color: #C1C1C1;
     font-size: 15px;
 }
 
+.profile-playlists-count:hover, .profile-songs-count:hover {
+    text-decoration: underline;
+}
+
 .profile-playlists-count::after, .profile-songs-count::after {
+    display: inline-block;
+    text-decoration: none;
     content: "•";
     margin: 0 4px;
+}
+
+@media (max-width: 599px) {
+    .profile-container {
+        flex-direction: column;
+        margin: 0;
+    }
+    .profile-picture-container {
+        margin-top: 20px;
+    }
+    .profile-name {
+        font-size: 30px;
+    }
 }
