@@ -44,7 +44,7 @@ const Profile = () => {
                     </article>
                 </div>
             </section>
-            <EditModal isOpen={isModal} close={() => {setIsModal(false)}}/>
+            <EditModal isOpen={isModal} close={() => { setIsModal(false) }} />
         </>
     )
 }
