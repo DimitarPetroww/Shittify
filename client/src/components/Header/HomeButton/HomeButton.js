@@ -1,7 +1,7 @@
 import "./HomeButton.css"
 
-import { ReactComponent as Sad } from "./sad_face.svg"
-import { ReactComponent as Happy } from "./happy_face.svg"
+import { ReactComponent as Sad } from "../../../svg/sad_face.svg"
+import { ReactComponent as Happy } from "../../../svg/happy_face.svg"
 import { NavLink, Route, Switch } from "react-router-dom"
 
 const HomeButton = () => {

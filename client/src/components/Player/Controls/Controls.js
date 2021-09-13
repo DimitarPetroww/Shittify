@@ -1,10 +1,10 @@
 import "./Controls.css"
-import { ReactComponent as Volume } from "./svg/volume.svg"
-import { ReactComponent as Mute } from "./svg/mute.svg"
-import { ReactComponent as Forward } from "./svg/forward.svg"
-import { ReactComponent as Backward } from "./svg/backward.svg"
-import { ReactComponent as Stop } from "./svg/stop.svg"
-import { ReactComponent as Play } from "./svg/play.svg"
+import { ReactComponent as Volume } from "../../../svg/volume.svg"
+import { ReactComponent as Mute } from "../../../svg/mute.svg"
+import { ReactComponent as Forward } from "../../../svg/forward.svg"
+import { ReactComponent as Backward } from "../../../svg/backward.svg"
+import { ReactComponent as Stop } from "../../../svg/stop.svg"
+import { ReactComponent as Play } from "../../..//svg/play.svg"
 
 const Controls = ({
     isMuted,

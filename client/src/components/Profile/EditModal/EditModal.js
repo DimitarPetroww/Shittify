@@ -1,4 +1,5 @@
 import "./EditModal.css"
+import { ReactComponent as Close } from "../../../svg/close.svg"
 
 const EditModal = ({ close }) => {
     return (
@@ -7,7 +8,7 @@ const EditModal = ({ close }) => {
                 <div className="edit-modal-text">
                     <h1 className="edit-modal-heading">Edit Profile</h1>
                     <span className="close-modal" onClick={close}>
-                        <svg role="img" height="16" width="16" viewBox="0 0 16 16"><path d="M14.354 2.353l-.708-.707L8 7.293 2.353 1.646l-.707.707L7.293 8l-5.647 5.646.707.708L8 8.707l5.646 5.647.708-.708L8.707 8z"></path></svg>
+                        <Close />
                     </span>
                 </div>
                 <div className="edit-modal-form-container">

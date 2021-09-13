@@ -1,6 +1,6 @@
 import "./NowPlaying.css"
-import { ReactComponent as Like } from "./svg/like.svg";
-import { ReactComponent as Liked } from "./svg/liked.svg";
+import { ReactComponent as Like } from "../../../svg/like.svg";
+import { ReactComponent as Liked } from "../../../svg/liked.svg";
 
 const NowPlaying = ({ song }) => {
     return (
