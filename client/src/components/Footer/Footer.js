@@ -33,6 +33,10 @@ const Footer = () => {
     const [currentSongIndex, setCurrentSongIndex] = useState(0);
     const [nextSongIndex, setNextSongIndex] = useState(0);
 
+    // useEffect(() => {
+    //     fetch("http://localhost:4000/songs").then(r=> r.json()).then(setSongs)
+    // }, [])
+
     useEffect(() => {
         setNextSongIndex(() => {
             if (currentSongIndex + 1 > songs.length - 1) {
@@ -45,11 +49,11 @@ const Footer = () => {
 
     return (
         <footer className="footer">
-            <Player
+            {songs.length > 0 ? <Player
                 currentSongIndex={currentSongIndex}
                 setCurrentSongIndex={setCurrentSongIndex}
                 nextSongIndex={nextSongIndex}
-                songs={songs} />
+                songs={songs} /> : <h1>No songs still..</h1>}
         </footer>
     );
 }

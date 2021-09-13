@@ -14,7 +14,6 @@ const Player = ({ currentSongIndex, setCurrentSongIndex, songs }) => {
     const [lastVolume, setLastVolume] = useState(0)
     const [isMuted, setIsMuted] = useState(false)
 
-
     const calculateTime = (secs) => {
         const minutes = Math.floor(secs / 60)
         const seconds = Math.floor(secs % 60)
@@ -24,17 +23,14 @@ const Player = ({ currentSongIndex, setCurrentSongIndex, songs }) => {
             seconds < 10 ? `0${seconds}` : seconds,
         ].join(":")
     }
-    // useEffect(() => {
-    //     console.log(duration);
-    // }, [duration])
     useEffect(() => {
-        if(audio?.current?.readyState == 4) {
+        if (audio?.current?.readyState == 4) {
             const secs = Math.floor(audio.current.duration)
             setDuration(secs)
             progress.current.max = secs
         }
     }, [audio?.current?.readyState])
-    
+
     useEffect(() => {
         if (isPlaying) {
             audio.current.play()
@@ -44,7 +40,6 @@ const Player = ({ currentSongIndex, setCurrentSongIndex, songs }) => {
             cancelAnimationFrame(animation.current)
         }
     })
-
 
     const changeRange = () => {
         audio.current.currentTime = progress.current.value
@@ -114,7 +109,8 @@ const Player = ({ currentSongIndex, setCurrentSongIndex, songs }) => {
                 isPlaying={isPlaying}
                 setIsPlaying={setIsPlaying}
                 forwardSong={forwardSong}
-                backwardSong={backwardSong} />
+                backwardSong={backwardSong} 
+            />
         </section>
     );
 }
