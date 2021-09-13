@@ -138,3 +138,50 @@
     border-bottom: 1px solid rgba(255,255,255,.1);
     color: #C1C1C1;
 }
+@media (max-width: 750px) {
+    .song-info {
+        flex-direction: column;
+        margin: 0;
+    }
+    .song-picture-container {
+        margin-top: 20px;
+        width: 150px;
+        height: 150px;
+    }
+    .song-picture {
+        width: 100%;
+        height:  100%;
+    }
+    .song-picture img {
+        width: 100%;
+        height:  100%;
+    }
+    .song-name {
+        font-size: 25px;
+    }
+    .song-data {
+        margin-left: 20px;
+        align-items: center;
+    }
+    .song-data div {
+        text-align: center;
+        width: fit-content;
+    }
+    .song-heading {
+        display: none;
+    }
+    .song-edit-btn, .song-delete-btn {
+        margin-left: 10px;
+    }
+    .grid {
+        grid-template-columns: 1fr 70% 1fr 1fr;
+    }
+    .play-btn{
+        width: 30px;
+        height: 30px;
+    }
+    .like-btn svg {
+        width: 25px;
+        height: 25px;
+    }
+}

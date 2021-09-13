@@ -44,3 +44,11 @@
     display: none;
     cursor: pointer;
 }
+@media (max-width: 599px) {
+    .song-text p:nth-child(1) {
+        font-size: 12px;
+    }
+    .song-text p:nth-child(2) {
+        font-size: 10px;
+    }
+}

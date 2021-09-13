@@ -1,4 +1,4 @@
-.edit-modal-wrapper {
+.edit-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,18 +13,18 @@
     animation: opacity .5s;
 }
 
-.edit-modal-content {
+.edit-content {
     width: 50%;
     background: #282828;
     border-radius: 10px;
     padding: 20px;
 }
 
-.edit-modal-text {
+.edit-text {
     position: relative;
 }
 
-.edit-modal-text .close-modal {
+.edit-text .close {
     position: absolute;
     top: 0;
     right: 0;
@@ -37,24 +37,24 @@
     cursor: pointer;
 }
 
-.edit-modal-text .close-modal:hover {
+.edit-text .close:hover {
     border-radius: 50%;
     background: #3E3E3E;
 }
 
-.edit-modal-heading {
+.edit-heading {
     margin-top: 0;
     font-size: 30px;
     text-align: center;
 }
 
-.edit-modal-form-container {
+.edit-form-container {
     height: 80%;
     display: flex;
     align-items: center;
 }
 
-.edit-modal-form {
+.edit-form {
     height: 40px;
     width: 100%;
     display: flex;
@@ -62,7 +62,7 @@
     justify-content: space-between;
 }
 
-.edit-modal-form input[type="text"] {
+.edit-form input[type="text"] {
     width: 45%;
     outline: none;
     border: none;
@@ -74,15 +74,15 @@
     box-shadow: 0px 0px 10px -1px #1f1e1e;
 }
 
-.edit-modal-form .name-error-input[type="text"] {
+.edit-form .edit-error-input[type="text"] {
     border: 1px solid rgb(180, 52, 52);
 }
 
-.edit-modal-form input[type="text"]:not(.name-error-input):focus {
+.edit-form input[type="text"]:not(.edit-error-input):focus {
     border: 1px solid #796f6f;
 }
 
-.edit-modal-form input[type="submit"] {
+.edit-form input[type="submit"] {
     box-shadow: 0px 0px 10px -1px #000000;
     background: white;
     color: black;
@@ -95,7 +95,7 @@
     letter-spacing: 2px;
 }
 
-.edit-modal-form .error-span {
+.edit-form .edit-error {
     animation: opacity .2s;
     position: absolute;
     z-index: 10;
@@ -106,7 +106,7 @@
 }
 
 @media (max-width: 599px) {
-    .edit-modal-content {
+    .edit-content {
         width: 90%;
     }
 }

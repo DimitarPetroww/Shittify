@@ -1,12 +1,8 @@
 import "./EditModal.css"
 
-const EditModal = ({ isOpen, close }) => {
-    const classes = ["edit-modal-wrapper"]
-    if (isOpen) {
-        classes.push("opened")
-    }
+const EditModal = ({ close }) => {
     return (
-        <section className={classes.join(" ")}>
+        <section className="edit-modal-wrapper">
             <div className="edit-modal-content">
                 <div className="edit-modal-text">
                     <h1 className="edit-modal-heading">Edit Profile</h1>
