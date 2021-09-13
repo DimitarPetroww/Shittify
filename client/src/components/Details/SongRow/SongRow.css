@@ -1,0 +1,46 @@
+.tbody {
+    margin: 20px 0;
+}
+.tbody > * {
+    margin: 15px 0;
+    border-radius: 5px;
+    padding: 10px 0;
+}
+.tbody > *:hover .song-index{
+    display: none;
+}
+.tbody > *:hover {
+    background-color: #2A2A2A;
+}
+.tbody > *:hover .play{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tbody > *:hover .delete {
+    display: flex;
+    justify-content: center;
+    color: #C1C1C1;
+}
+.index, title, time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.song-text p{
+    margin: 0;
+}
+.song-text p:nth-child(1) {
+    font-size: 16px;
+}
+.song-text p:nth-child(2) {
+    font-size: 14px;
+    color: #C1C1C1;
+}
+.song-index, .song-time {
+    color: #C1C1C1;
+}
+.play, .delete{
+    display: none;
+    cursor: pointer;
+}

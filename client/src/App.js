@@ -10,6 +10,7 @@ import Register from './components/Register/Register';
 import LandingPage from './components/LandingPage/LandingPage';
 import Create from './components/Create/Create';
 import Profile from './components/Profile/Profile';
+import Details from './components/Details/Details';
 
 import { Switch, Route } from "react-router-dom"
 import { useState } from 'react';
@@ -40,6 +41,7 @@ function App() {
                 <Route path="/search/:category" component={Browse} />
                 <Route path="/create/:category" component={Create} />
                 <Route path="/profile" component={Profile} />
+                <Route path="/details/:id" component={Details}/>
               </Switch>
             </main>
           </div>

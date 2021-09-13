@@ -1,0 +1,140 @@
+.details-wrapper {
+    height: 77vh;
+    color: white;
+    overflow-y: scroll;
+}
+
+.details-wrapper input[type="file"] {
+    display: none;
+}
+
+.song-info {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    height: 50%;
+    margin-left: 50px;
+}
+
+.song-picture-container {
+    box-shadow: 0px 0px 17px -1px #000;
+}
+
+.song-picture {
+    display: flex;
+    width: 250px;
+    height: 250px;
+    justify-content: center;
+    align-items: center;
+}
+
+.song-picture img {
+    width: 250px;
+    height: 250px;
+}
+.song-picture svg {
+    width: 45px;
+    height: 45px;
+}
+
+.edit-img {
+    display: none;
+}
+
+.edit-img span {
+    margin-top: 15px;
+    text-decoration: underline;
+}
+.song-picture-container:hover .song-picture .can-change {
+    display: none;
+}
+
+.song-picture-container:hover .song-picture .edit-img {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), var(--image);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+}
+
+.song-data {
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.song-name {
+    margin: 0;
+    font-size: 60px;
+    line-height: 72px;
+    text-transform: none;
+    display: inline-block;
+}
+.song-author {
+    color: #C1C1C1;
+    font-size: 15px;
+}
+.song-author::after {
+    display: inline-block;
+    text-decoration: none;
+    content: "•";
+    margin: 0 4px;
+}
+.song-edit-btn,  .song-delete-btn{
+    margin-left: 30px;
+    color: #C1C1C1;
+    cursor: pointer;
+    font-size: 15px;
+    text-decoration: none;
+}
+.song-edit-btn:hover,  .song-delete-btn:hover {
+    border-bottom: 1px solid #C1C1C1;
+    color: white;
+    font-size: 16px;
+}
+.content-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 30px;
+}
+.play-btn {
+    color: white;
+    background-color: #1DB954;
+    border: none;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.like-btn {
+    color: #C1C1C1;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.play-btn:hover {
+    transform: scale(1.03);
+}
+.like-btn:hover {
+    color: white;
+}
+.content-main {
+    padding: 0 30px;
+}
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 90% 1fr 1fr;
+}
+.thead {
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    color: #C1C1C1;
+}
