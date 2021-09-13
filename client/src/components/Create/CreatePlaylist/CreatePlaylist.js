@@ -1,6 +1,8 @@
 import { Multiselect } from "multiselect-react-dropdown";
 import { useState } from "react";
 
+import {ReactComponent as ImageFile} from "../../../svg/image_file.svg"
+
 const CreatePlaylist = () => {
     const [options, setOptions] = useState([
         { key: "Option 1", cat: "Group 1" },
@@ -62,7 +64,7 @@ const CreatePlaylist = () => {
                         <div className="create-group">
                             <input type="file" className="create-input-file" id="playlist" />
                             <label htmlFor="playlist" className="file-label">
-                                <i className="fas fa-file-audio file-icon"></i>
+                                <ImageFile className="file-icon"/>
                                 Playlist Image (under 100mb)
                             </label>
                         </div>

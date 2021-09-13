@@ -1,10 +1,12 @@
 import "./Details.css"
 
-import { ReactComponent as Time } from "./time.svg"
-import { ReactComponent as Play } from "./play.svg"
-import { ReactComponent as Heart } from "./heart.svg"
-import { ReactComponent as Cross } from "./cross.svg"
-import { ReactComponent as Pen } from "./pen.svg"
+import { ReactComponent as Like } from "../../svg/like.svg"
+import { ReactComponent as Liked } from "../../svg/liked.svg"
+import { ReactComponent as Time } from "../../svg/time.svg"
+import { ReactComponent as Play } from "../../svg/play.svg"
+import { ReactComponent as Cross } from "../../svg/cross.svg"
+import { ReactComponent as Pen } from "../../svg/pen.svg"
+import { ReactComponent as EditLink } from "../../svg/edit.svg"
 import { useState } from "react"
 import SongRow from "./SongRow/SongRow"
 import Edit from "./Edit/Edit"
@@ -36,7 +38,7 @@ const Details = () => {
                             {isOwner
                                 ?
                                 <>
-                                    <span className="song-edit-btn" onClick={() => setIsEdit(!isEdit)}><Pen /></span>
+                                    <span className="song-edit-btn" onClick={() => setIsEdit(!isEdit)}><EditLink /></span>
                                     <span className="song-delete-btn" onClick={() => setIsDelete(!isEdit)}><Cross /></span>
                                 </>
                                 : ""}
@@ -47,7 +49,8 @@ const Details = () => {
                 <div className="details-content">
                     <article className="content-header">
                         <button className="play-btn"><Play /></button>
-                        <button className="like-btn"><Heart /></button>
+                        <button className="like-btn"><Like /></button>
+                        {/* <button className="unlike-btn"><Liked /></button> */}
                     </article>
                     <article className="content-main">
                         <div className="grid thead">

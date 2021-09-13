@@ -1,3 +1,6 @@
+import { ReactComponent as AudioFile } from "../../../svg/audio_file.svg"
+import { ReactComponent as ImageFile } from "../../../svg/image_file.svg"
+
 const CreateSong = () => {
     return (
         <section className="create-wrapper">
@@ -15,14 +18,14 @@ const CreateSong = () => {
                     <div className="create-group">
                         <input type="file" className="create-input-file" id="image" />
                         <label htmlFor="image" className="file-label">
-                            <i className="fas fa-file-image file-icon"></i>
+                            <ImageFile className="file-icon" />
                             Song Image (under 100mb)
                         </label>
                     </div>
                     <div className="create-group">
                         <input type="file" className="create-input-file" id="audio" />
                         <label htmlFor="audio" className="file-label file-error-label">
-                            <i className="fas fa-file-audio file-icon"></i>
+                            <AudioFile className="file-icon" />
                             Song Audio (under 100mb)
                         </label>
                     </div>

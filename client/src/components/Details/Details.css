@@ -123,14 +123,32 @@
     margin-right: 20px;
     cursor: pointer;
 }
+.play-btn svg {
+    fill: white;
+}
 
-.like-btn {
+.unlike-btn {
     color: #C1C1C1;
     background-color: transparent;
     border: none;
     cursor: pointer;
 }
-
+.like-btn, .unlike-btn  {
+    color: #C1C1C1;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.like-btn svg {
+    width: 32px;
+    height: 32px;
+    fill: #C1C1C1
+}
+.unlike-btn svg {
+    width: 32px;
+    height: 32px;
+    fill: #1DB954;
+}
 .play-btn:hover {
     transform: scale(1.03);
 }

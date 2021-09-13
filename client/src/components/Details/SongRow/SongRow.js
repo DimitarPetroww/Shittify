@@ -1,10 +1,11 @@
-import { ReactComponent as Can } from "./can.svg"
+import { ReactComponent as Can } from "../../../svg/can.svg"
+import { ReactComponent as Play } from "../../../svg/play.svg"
 import "./SongRow.css"
 const SongRow = () => {
     return (
         <div className="grid">
             <div className="index song-index">5</div>
-            <div className="play"><svg height="20" role="img" width="20" viewBox="0 0 24 24" aria-hidden="true"><polygon points="21.57 12 5.98 3 5.98 21 21.57 12" fill="currentColor"></polygon></svg></div>
+            <div className="play"><Play /></div>
             <div className="title song-text">
                 <p>Aромат на барут</p>
                 <p>Pamela X Fyre</p>
