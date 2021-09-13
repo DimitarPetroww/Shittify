@@ -23,18 +23,15 @@
     margin: 0;
 }
 
-.player-now-playing i {
-    color: white;
-    font-size: 15px;
-}
-
-#liked {
-    color: #1DB954;
-}
-
-.player-now-playing i:hover {
+.player-now-playing svg {
+    fill: #9B9B9B;
     cursor: pointer;
 }
+
+.liked svg {
+    fill: #1DB954;
+}
+
 @media (max-width: 599px) {
     .player-now-playing img {
         display: none;

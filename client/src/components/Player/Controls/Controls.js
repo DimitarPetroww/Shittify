@@ -1,4 +1,10 @@
 import "./Controls.css"
+import { ReactComponent as Volume } from "./svg/volume.svg"
+import { ReactComponent as Mute } from "./svg/mute.svg"
+import { ReactComponent as Forward } from "./svg/forward.svg"
+import { ReactComponent as Backward } from "./svg/backward.svg"
+import { ReactComponent as Stop } from "./svg/stop.svg"
+import { ReactComponent as Play } from "./svg/play.svg"
 
 const Controls = ({
     isMuted,
@@ -20,21 +26,21 @@ const Controls = ({
             <article className="player-controls">
                 <ul className="player-controls-controller">
                     <li className="player-backward" onClick={backwardSong}>
-                        <i className="fas fa-step-backward"></i>
+                       <Backward />
                     </li>
                     {isPlaying
                         ? <li className="player-stop" onClick={() => setIsPlaying(false)}>
                             <button className="player-stop-button">
-                                <i className="fas fa-pause"></i>
+                                <Stop />
                             </button>
                         </li>
                         : <li className="player-start" onClick={() => setIsPlaying(true)}>
                             <button className="player-start-button">
-                                <i className="fas fa-play"></i>
+                               <Play />
                             </button>
                         </li>}
                     <li className="player-forward" onClick={forwardSong}>
-                        <i className="fas fa-step-forward"></i>
+                       <Forward />
                     </li>
                 </ul>
                 <div className="player-controls-progress">
@@ -44,7 +50,7 @@ const Controls = ({
                 </div>
             </article>
             <article className="player-audio">
-                {isMuted ? <i className="fas fa-volume-mute" onClick={unmute}></i> : <i className="fas fa-volume-up" onClick={mute}></i>}
+                {isMuted ? <div onClick={unmute}><Mute /></div> : <div onClick={mute}><Volume /></div>}
 
                 <input className="audio-bar" type="range" defaultValue="100" ref={volume} onChange={onVolumeChange} />
             </article>

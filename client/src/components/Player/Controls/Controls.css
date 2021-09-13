@@ -16,12 +16,12 @@
     list-style: none;
 }
 
-.player-backward, .player-forward {
-    color: #9E9E9E;
+.player-backward svg, .player-forward svg {
+    fill: #9E9E9E;
 }
 
-.player-backward:hover, .player-forward:hover {
-    color: white;
+.player-backward:hover svg, .player-forward:hover svg {
+    fill: white;
     cursor: pointer;
 }
 
@@ -39,10 +39,6 @@
     align-items: center;
     justify-content: space-around;
     cursor: pointer;
-}
-
-.player-start-button i, .player-stop-button i {
-    color: black;
 }
 
 .player-controls-progress {
@@ -129,14 +125,13 @@
     flex-direction: row;
 }
 
-.player-audio i {
-    color: #9E9E9E;
-    font-size: 15px;
+.player-audio svg {
+    fill: #9E9E9E;
+    cursor: pointer;
 }
 
-.player-audio i:hover {
-    color: white;
-    cursor: pointer;
+.player-audio svg:hover {
+    fill: white;
 }
 
 .audio-bar {

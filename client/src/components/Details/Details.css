@@ -13,7 +13,7 @@
     justify-content: start;
     align-items: center;
     height: 50%;
-    margin-left: 50px;
+    padding-left: 50px;
 }
 
 .song-picture-container {
@@ -32,6 +32,7 @@
     width: 250px;
     height: 250px;
 }
+
 .song-picture svg {
     width: 45px;
     height: 45px;
@@ -45,6 +46,7 @@
     margin-top: 15px;
     text-decoration: underline;
 }
+
 .song-picture-container:hover .song-picture .can-change {
     display: none;
 }
@@ -75,33 +77,39 @@
     text-transform: none;
     display: inline-block;
 }
+
 .song-author {
     color: #C1C1C1;
     font-size: 15px;
 }
+
 .song-author::after {
     display: inline-block;
     text-decoration: none;
     content: "•";
     margin: 0 4px;
 }
-.song-edit-btn,  .song-delete-btn{
+
+.song-edit-btn, .song-delete-btn {
     margin-left: 30px;
     color: #C1C1C1;
     cursor: pointer;
     font-size: 15px;
     text-decoration: none;
 }
-.song-edit-btn:hover,  .song-delete-btn:hover {
+
+.song-edit-btn:hover, .song-delete-btn:hover {
     border-bottom: 1px solid #C1C1C1;
     color: white;
     font-size: 16px;
 }
+
 .content-header {
     display: flex;
     align-items: center;
     padding: 10px 30px;
 }
+
 .play-btn {
     color: white;
     background-color: #1DB954;
@@ -115,29 +123,36 @@
     margin-right: 20px;
     cursor: pointer;
 }
+
 .like-btn {
     color: #C1C1C1;
     background-color: transparent;
     border: none;
     cursor: pointer;
 }
+
 .play-btn:hover {
     transform: scale(1.03);
 }
+
 .like-btn:hover {
     color: white;
 }
+
 .content-main {
     padding: 0 30px;
 }
+
 .grid {
     display: grid;
     grid-template-columns: 1fr 90% 1fr 1fr;
 }
+
 .thead {
-    border-bottom: 1px solid rgba(255,255,255,.1);
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
     color: #C1C1C1;
 }
+
 @media (max-width: 750px) {
     .song-info {
         flex-direction: column;
@@ -150,11 +165,11 @@
     }
     .song-picture {
         width: 100%;
-        height:  100%;
+        height: 100%;
     }
     .song-picture img {
         width: 100%;
-        height:  100%;
+        height: 100%;
     }
     .song-name {
         font-size: 25px;
@@ -176,7 +191,7 @@
     .grid {
         grid-template-columns: 1fr 70% 1fr 1fr;
     }
-    .play-btn{
+    .play-btn {
         width: 30px;
         height: 30px;
     }

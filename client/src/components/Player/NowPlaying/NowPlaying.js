@@ -1,4 +1,6 @@
 import "./NowPlaying.css"
+import { ReactComponent as Like } from "./svg/like.svg";
+import { ReactComponent as Liked } from "./svg/liked.svg";
 
 const NowPlaying = ({ song }) => {
     return (
@@ -8,8 +10,8 @@ const NowPlaying = ({ song }) => {
                 <h4 className="player-now-playing-info-title">{song.name}</h4>
                 <p className="player-now-playing-info-author">{song.artist}</p>
             </div>
-            <i className="far fa-heart"></i>
-            {/* <i class="fas fa-heart" id="liked"></i> */}
+            <div><Like /></div>
+            {/* <div className="liked"><Liked /></div> */}
         </article>
     );
 }
