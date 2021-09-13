@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { NavLink } from "react-router-dom"
 import { ReactComponent as Pen } from "../../svg/pen.svg"
+import { ReactComponent as Edit } from "../../svg/edit.svg"
 import { ReactComponent as ProfileIcon } from "../../svg/profile.svg"
 import EditModal from "./EditModal/EditModal"
 import "./Profile.css"
@@ -37,7 +38,7 @@ const Profile = () => {
                         <h4 className="profile-heading">Profile</h4>
                         <div>
                             <h1 className="profile-name">Dimitar.Petroww</h1>
-                            <span className="edit-btn" onClick={switchModal}><i className="fas fa-pencil-alt"></i></span>
+                            <span className="edit-btn" onClick={switchModal}><Edit /></span>
                         </div>
                         <div>
                             <NavLink className="profile-playlists-count" to="/library/my-playlists">9 Playlists</NavLink>
