@@ -166,9 +166,38 @@
     grid-template-columns: 1fr 90% 1fr 1fr;
 }
 
-.thead {
+.thead, .tbody {
     border-bottom: 1px solid rgba(255, 255, 255, .1);
     color: #C1C1C1;
+}
+.add-songs {
+    padding: 0 30px;
+}
+.add-search-header {
+    position: relative;
+    margin-bottom: 20px;
+}
+.add-search-header input {
+    background-color: rgba(255,255,255,.1);
+    border: 0;
+    border-radius: 4px;
+    outline: none;
+    color: rgba(255,255,255,.7);
+    font-weight: bold;
+    height: 40px;
+    opacity: 1;
+    padding: 8px 10px 8px 32px;
+    width: 25%;
+}
+.add-search-icon {
+    fill: rgba(255,255,255,.7);
+    position: absolute;
+    top: 10px;
+    left: 8px;
+}
+.add-search-header input::placeholder {
+    color: rgba(255,255,255,.7);
+    font-weight: bold;
 }
 
 @media (max-width: 750px) {

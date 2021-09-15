@@ -6,11 +6,13 @@ import { ReactComponent as Time } from "../../svg/time.svg"
 import { ReactComponent as Play } from "../../svg/play.svg"
 import { ReactComponent as Cross } from "../../svg/cross.svg"
 import { ReactComponent as Pen } from "../../svg/pen.svg"
+import { ReactComponent as Search } from "../../svg/bold_search.svg"
 import { ReactComponent as EditLink } from "../../svg/edit.svg"
 import { useState } from "react"
 import SongRow from "./SongRow/SongRow"
 import Edit from "./Edit/Edit"
 import Delete from "./Delete/Delete"
+import SearchSongItem from "./SearchSongItem/SearchSongItem"
 
 const Details = () => {
     const [isOwner] = useState(true)
@@ -74,6 +76,27 @@ const Details = () => {
                         </div>
                     </article>
                 </div>
+                {isOwner ?
+                    <article className="add-songs">
+                        <div className="add-header">
+                            <h1>Lets find something for your playlist</h1>
+                            <div className="add-search-header">
+                                <Search className="add-search-icon" />
+                                <input type="text" placeholder="Search for songs..." />
+                            </div>
+                        </div>
+                        <div className="add-main">
+                            <SearchSongItem />
+                            <SearchSongItem />
+                            <SearchSongItem />
+                            <SearchSongItem />
+                            <SearchSongItem />
+                            <SearchSongItem />
+                            <SearchSongItem />
+                            <SearchSongItem />
+                        </div>
+                    </article>
+                    : ""}
             </section>
             {isEdit ? <Edit close={() => setIsEdit(false)} /> : ""}
             {isDelete ? <Delete close={() => setIsDelete(false)} /> : ""}

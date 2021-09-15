@@ -14,15 +14,6 @@ const Player = ({ currentSongIndex, setCurrentSongIndex, songs }) => {
     const [lastVolume, setLastVolume] = useState(0)
     const [isMuted, setIsMuted] = useState(false)
 
-    const calculateTime = (secs) => {
-        const minutes = Math.floor(secs / 60)
-        const seconds = Math.floor(secs % 60)
-
-        return [
-            minutes,
-            seconds < 10 ? `0${seconds}` : seconds,
-        ].join(":")
-    }
     useEffect(() => {
         if (audio?.current?.readyState == 4) {
             const secs = Math.floor(audio.current.duration)
@@ -41,6 +32,16 @@ const Player = ({ currentSongIndex, setCurrentSongIndex, songs }) => {
         }
     })
 
+    const calculateTime = (secs) => {
+        const minutes = Math.floor(secs / 60)
+        const seconds = Math.floor(secs % 60)
+
+        return [
+            minutes,
+            seconds < 10 ? `0${seconds}` : seconds,
+        ].join(":")
+    }
+    
     const changeRange = () => {
         audio.current.currentTime = progress.current.value
         changeCurrentTime()

@@ -27,8 +27,17 @@
     align-items: center;
     justify-content: center;
 }
+.song-text {
+    display: flex;
+    align-items: center;
+}
 .song-text p{
     margin: 0;
+}
+.song-text img{
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
 }
 .song-text p:nth-child(1) {
     font-size: 16px;
