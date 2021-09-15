@@ -23,44 +23,6 @@ const CreatePlaylist = () => {
                             <input type="text" placeholder="Playlist Name" className="create-input create-input-error" />
                             <small className="create-error">Playlist Name is required</small>
                         </div>
-                        <div className="create-group select">
-                            <Multiselect
-                                id="search"
-                                style={{
-                                    chips: {
-                                        backgroundColor: "#000000",
-                                        background: "linear-gradient(147deg, #202020 0%, #434343 74%)"
-                                    },
-                                    searchBox: {
-                                        border: "none",
-                                        borderBottom: "2px solid rgba(255, 255, 255, 0.2)",
-                                    },
-                                    optionContainer: {
-                                        backgroundColor: "#000000",
-                                        background: "linear-gradient(147deg, #202020 0%, #434343 74%)",
-                                        border: "none",
-                                        color: "white",
-
-                                    },
-                                    inputField: {
-                                        color: "white",
-                                    },
-                                    groupHeading: {
-                                        fontSize: "20px",
-                                        borderBottom: "1px solid rgba(255, 255, 255, 0.2)",
-                                        margin: "0 10px",
-                                        color: "#00D55A"
-                                    }
-                                }}
-                                emptyRecordMsg="No Songs"
-                                placeholder="Add Songs..."
-                                options={options}
-                                displayValue="key"
-                                avoidHighlightFirstOption
-                                groupBy="cat"
-                            />
-                            <small className="create-error">Playlist should have atleast 1 song</small>
-                        </div>
                         <div className="create-group">
                             <input type="file" className="create-input-file" id="playlist" />
                             <label htmlFor="playlist" className="file-label">
