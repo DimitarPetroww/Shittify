@@ -42,7 +42,7 @@ function App() {
                 <Route path="/search/:category" component={Browse} />
                 <Route path="/create/:category" component={Create} />
                 <Route path="/profile" component={Profile} />
-                <Route path="/details/:id">
+                <Route path="/details/:category/:id">
                   <Details isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
                 </Route>
               </Switch>

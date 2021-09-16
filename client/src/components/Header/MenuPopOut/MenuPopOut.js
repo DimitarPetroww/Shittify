@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, Link } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import "./MenuPopOut.css"
 import { ReactComponent as Logout } from "../../../svg/logout.svg";
@@ -19,13 +19,13 @@ const MenuPopOut = ({ click }) => {
                     </NavLink>
                 </li>
                 <li className="profile-menu-pop-link">
-                    <a href="#" onClick={(e) => {
+                    <Link to="#" onClick={(e) => {
                         e.preventDefault()
                         dispatch(logout())
                     }}>
                         <span>Logout</span>
                         <Logout />
-                    </a>
+                    </Link>
                 </li>
             </ul>
         </div>

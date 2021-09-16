@@ -11,7 +11,7 @@ const Song = () => {
                 <h3 className="song-content-title">Пиян 2005</h3>
                 <p className="song-content-author">Борис Дали</p>
             </div>
-            <PlayButton />
+            <PlayButton category="song"/>
         </article>
     );
 }

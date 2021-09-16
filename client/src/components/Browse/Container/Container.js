@@ -1,6 +1,6 @@
 import "./Container.css"
 import PlayButton from "../../PlayButton/PlayButton";
-const Container = () => {
+const Container = ({category}) => {
     return (
         <article className="container">
             <div className="container-img">
@@ -10,7 +10,7 @@ const Container = () => {
                 <h3 className="container-content-title">Пиян 2005</h3>
                 <p className="container-content-author">Борис Дали</p>
             </div>
-            <PlayButton />
+            <PlayButton category={category}/>
         </article>
     );
 }

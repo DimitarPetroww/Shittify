@@ -125,7 +125,7 @@
     margin: 0 4px;
 }
 
-@media (max-width: 599px) {
+@media (max-width: 900px) {
     .profile-container {
         flex-direction: column;
         margin: 0;

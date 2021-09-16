@@ -2,7 +2,7 @@ import Player from "../Player/Player"
 import "./Footer.css"
 
 import { useDispatch, useSelector } from "react-redux";
-import { setIndex, setSongs } from "../../actions";
+import { setIndex } from "../../actions";
 
 const Footer = ({isPlaying, setIsPlaying}) => {
     const dispatch = useDispatch()
