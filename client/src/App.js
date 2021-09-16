@@ -13,12 +13,11 @@ import Profile from './components/Profile/Profile';
 import Details from './components/Details/Details';
 import { Switch, Route } from "react-router-dom"
 import { useState } from 'react';
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
 
 
 function App() {
   const isLogged = useSelector(state => state.auth)
-  // const [isLogged, setIsLogged] = useState(false)
   const [isAsideOpen, setIsAsideOpen] = useState(false)
 
   const switchAside = () => {

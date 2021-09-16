@@ -63,24 +63,18 @@ const Player = ({ currentSongIndex, setCurrentSongIndex, songs }) => {
     }
 
     const forwardSong = () => {
-        setCurrentSongIndex(() => {
-            let index = currentSongIndex
-            index++
-            if (index > songs.length - 1) {
-                index = 0
-            }
-            return index
-        })
+        if(currentSongIndex + 1 > songs.length - 1) {
+            setCurrentSongIndex(0)
+        }else {
+            setCurrentSongIndex(currentSongIndex + 1)
+        }
     }
     const backwardSong = () => {
-        setCurrentSongIndex(() => {
-            let index = currentSongIndex
-            index--
-            if (index < 0) {
-                index = songs.length - 1
-            }
-            return index
-        })
+        if(currentSongIndex - 1 < 0) {
+            setCurrentSongIndex(songs.length - 1)
+        }else {
+            setCurrentSongIndex(currentSongIndex - 1)
+        }
     }
     const whilePlaying = () => {
         progress.current.value = audio.current.currentTime;
