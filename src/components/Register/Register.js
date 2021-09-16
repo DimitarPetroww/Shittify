@@ -1,13 +1,17 @@
 import "./Register.css"
 
 const Register = () => {
+    const submitHandler = (e) => {
+        e.preventDefault()
+    }
+
     return (
         <div className="register-background">
             <section className="register-wrapper">
                 <img className="register-img" src="https://images.unsplash.com/photo-1519066473994-a7506988851d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=371&q=80" />
                 <div className="register-card">
                     <h2 className="register-title">Register info</h2>
-                    <form className="register-form">
+                    <form className="register-form" onSubmit={submitHandler}>
                         <div className="register-group">
                             <input type="text" placeholder="Email" className="register-input register-input-error" />
                             <small className="register-error">Email is required</small>

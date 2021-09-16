@@ -10,7 +10,7 @@ import HomeButton from "./HomeButton/HomeButton";
 import AsidePopButton from "./AsidePopButton/AsidePopButton"
 
 const Header = (props) => {
-    const [isLogged, setIsLogged] = useState(true)
+    const [isLogged, setIsLogged] = useState(false)
     const [isProfileClicked, setProfileClicked] = useState(false)
 
     const showPopMenu = () => {

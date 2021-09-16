@@ -17,7 +17,7 @@ import { useState } from 'react';
 
 
 function App() {
-  const [isLogged, setIsLogged] = useState(true)
+  const [isLogged, setIsLogged] = useState(false)
   const [isAsideOpen, setIsAsideOpen] = useState(false)
 
   const switchAside = () => {
