@@ -1,8 +1,4 @@
 import "./Details.css"
-import { useDispatch } from "react-redux"
-import { useState } from "react"
-import { setSongs } from "../../actions"
-
 import { ReactComponent as Like } from "../../svg/like.svg"
 import { ReactComponent as Liked } from "../../svg/liked.svg"
 import { ReactComponent as Time } from "../../svg/time.svg"
@@ -11,6 +7,11 @@ import { ReactComponent as Cross } from "../../svg/cross.svg"
 import { ReactComponent as Pen } from "../../svg/pen.svg"
 import { ReactComponent as Search } from "../../svg/bold_search.svg"
 import { ReactComponent as EditLink } from "../../svg/edit.svg"
+
+import { useDispatch } from "react-redux"
+import { useState } from "react"
+import { setSongs } from "../../actions"
+
 import SongRow from "./SongRow/SongRow"
 import Edit from "./Edit/Edit"
 import Delete from "./Delete/Delete"
