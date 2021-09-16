@@ -18,6 +18,7 @@ import { useSelector } from "react-redux"
 
 function App() {
   const isLogged = useSelector(state => state.auth)
+  const [isPlaying, setIsPlaying] = useState(false)
   const [isAsideOpen, setIsAsideOpen] = useState(false)
 
   const switchAside = () => {
@@ -41,12 +42,14 @@ function App() {
                 <Route path="/search/:category" component={Browse} />
                 <Route path="/create/:category" component={Create} />
                 <Route path="/profile" component={Profile} />
-                <Route path="/details/:id" component={Details} />
+                <Route path="/details/:id">
+                  <Details isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+                </Route>
               </Switch>
             </main>
           </div>
         </div>
-        <Footer />
+        <Footer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
       </>
     )
   }

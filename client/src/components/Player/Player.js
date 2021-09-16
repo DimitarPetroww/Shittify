@@ -3,16 +3,16 @@ import NowPlaying from "./NowPlaying/NowPlaying"
 import Controls from "./Controls/Controls"
 import { useEffect, useRef, useState } from "react"
 
-const Player = ({ currentSongIndex, setCurrentSongIndex, songs }) => {
+const Player = ({ currentSongIndex, setCurrentSongIndex, songs, isPlaying, setIsPlaying }) => {
     const audio = useRef()
     const progress = useRef()
     const volume = useRef()
     const animation = useRef()
-    const [isPlaying, setIsPlaying] = useState(false)
     const [duration, setDuration] = useState(0)
     const [currentTime, setCurrentTime] = useState(0)
     const [lastVolume, setLastVolume] = useState(0)
     const [isMuted, setIsMuted] = useState(false)
+
 
     useEffect(() => {
         if (audio?.current?.readyState == 4) {

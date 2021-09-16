@@ -16,7 +16,7 @@ import Edit from "./Edit/Edit"
 import Delete from "./Delete/Delete"
 import SearchSongItem from "./SearchSongItem/SearchSongItem"
 
-const Details = () => {
+const Details = ({ setIsPlaying }) => {
     const dispatch = useDispatch()
     const [isOwner] = useState(true)
     const [isEdit, setIsEdit] = useState(false)
@@ -49,6 +49,7 @@ const Details = () => {
                 src: "https://res.cloudinary.com/douwa5b0u/video/upload/v1631438231/HotFlix/Black_Cotton_oudw2u.mp3"
             }
         ]))
+        setIsPlaying(true)
     }
 
     return (
