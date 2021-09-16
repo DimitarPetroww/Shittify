@@ -11,13 +11,14 @@ import LandingPage from './components/LandingPage/LandingPage';
 import Create from './components/Create/Create';
 import Profile from './components/Profile/Profile';
 import Details from './components/Details/Details';
-
 import { Switch, Route } from "react-router-dom"
 import { useState } from 'react';
+import { useSelector, useDispatch } from "react-redux"
 
 
 function App() {
-  const [isLogged, setIsLogged] = useState(false)
+  const isLogged = useSelector(state => state.auth)
+  // const [isLogged, setIsLogged] = useState(false)
   const [isAsideOpen, setIsAsideOpen] = useState(false)
 
   const switchAside = () => {
@@ -41,7 +42,7 @@ function App() {
                 <Route path="/search/:category" component={Browse} />
                 <Route path="/create/:category" component={Create} />
                 <Route path="/profile" component={Profile} />
-                <Route path="/details/:id" component={Details}/>
+                <Route path="/details/:id" component={Details} />
               </Switch>
             </main>
           </div>

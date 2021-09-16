@@ -1,6 +1,7 @@
 import "./Header.css"
 import { useState } from "react"
 import { Route } from "react-router"
+import { useSelector } from "react-redux"
 import MenuPopOut from "./MenuPopOut/MenuPopOut"
 import ProfileMenu from "./ProfileMenu/ProfileMenu"
 import LibraryNavigation from "./LibraryNavigation/LibraryNavigation"
@@ -10,7 +11,7 @@ import HomeButton from "./HomeButton/HomeButton";
 import AsidePopButton from "./AsidePopButton/AsidePopButton"
 
 const Header = (props) => {
-    const [isLogged, setIsLogged] = useState(false)
+    const isLogged = useSelector(state => state.auth)
     const [isProfileClicked, setProfileClicked] = useState(false)
 
     const showPopMenu = () => {
