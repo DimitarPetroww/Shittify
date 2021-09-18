@@ -32,5 +32,33 @@ router.post("/register", async (req, res) => {
         res.json({ message: error.message })
     }
 })
+router.post("/login", async (req, res) => {
+    const data = {
+        email: req.body.email,
+        password: req.body.password,
+    }
+    if (Object.values(data).some(x => x == "")) {
+        res.status(400)
+        return res.json({ message: "All fields are required" })
+    }
+    try {
+        const user = await userService.findUserByEmail(data.email)
+        if (!user) {
+            throw new Error("Wrong email or password")
+        }
+        const isMatch = await bcrypt.compare(data.password, user.password)
+        if (!isMatch) {
+            throw new Error("Wrong email or password")
+        }
+        const temp = { email: user.email, _id: user._id, username: user.username }
+        const token = jwt.sign(temp, process.env.TOKEN_SECRET)
+
+        res.cookie(process.env.COOKIE_NAME, token, { httpOnly: true })
+        res.json(temp)
+    } catch (error) {
+        res.status(400)
+        return res.json({ message: error.message })
+    }
+})
 
 module.exports = router
