@@ -25,7 +25,6 @@ router.post("/register", async (req, res) => {
         const temp = { email: user.email, _id: user._id, username: user.username }
 
         const token = jwt.sign(temp, process.env.TOKEN_SECRET)
-        console.log(token);
         res.cookie(process.env.COOKIE_NAME, token, { httpOnly: true })
         res.json(temp)
     } catch (error) {
