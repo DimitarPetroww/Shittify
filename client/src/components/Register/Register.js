@@ -1,9 +1,10 @@
 import "./Register.css"
 import * as authService from "../../services/auth"
+import REGEX from "../shared/EmailRegex"
+
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { signIn } from "../../actions"
-const REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
 const Register = ({ history }) => {
     const dispatch = useDispatch()
@@ -21,7 +22,6 @@ const Register = ({ history }) => {
     })
 
     const handleChange = (e) => {
-        e.preventDefault();
         const { name, value } = e.target;
         switch (name) {
             case "email":

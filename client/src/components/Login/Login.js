@@ -1,10 +1,29 @@
+import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { login } from "../../actions"
+import { signIn } from "../../actions"
 import "./Login.css"
+import REGEX from "../shared/EmailRegex"
 
 const Login = ({ history }) => {
-
     const dispatch = useDispatch()
+    const [fields, setFields] = useState({
+        email: "",
+        password: "",
+    })
+    const [errors, setErrors] = useState({
+        email: false,
+        password: false,
+    })
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        if (name === "email") {
+            setErrors(state => ({ ...state, [name]: !REGEX.test(value) }))
+        } else {
+            setErrors(state => ({ ...state, [name]: value === "" }))
+        }
+        setFields(state => ({ ...state, [name]: value }))
+    }
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -21,12 +40,12 @@ const Login = ({ history }) => {
                     <h2 className="login-title">Login info</h2>
                     <form className="login-form" onSubmit={submitHandler}>
                         <div className="login-group">
-                            <input type="text" placeholder="Email" className="login-input login-input-error" />
-                            <small className="login-error">Email is required</small>
+                            <input type="text" placeholder="Email" className={`login-input ${errors.email ? "login-input-error" : ""}`} value={fields.email} onChange={handleChange} name="email"/>
+                            {errors.email ? <small className="login-error">Email is in incorrect format</small> : ""}
                         </div>
                         <div className="login-group">
-                            <input type="password" placeholder="Password" className="login-input" />
-                            <small className="login-error">Password is required</small>
+                            <input type="password" placeholder="Password" className={`login-input ${errors.email ? "login-input-error" : ""}`} value={fields.password} onChange={handleChange} name="password"/>
+                            {errors.password ? <small className="login-error">Password is required</small> : ""}
                         </div>
                         <input type="submit" value="Login" className="login-btn" />
                     </form>
