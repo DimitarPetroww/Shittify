@@ -6,8 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom"
 import { Provider } from "react-redux"
 import { PersistGate } from "redux-persist/integration/react"
-
 import { store, persistor } from "./store"
+
+console.log(process.env.REACT_APP_API_URL);
 
 ReactDOM.render(
   <React.StrictMode>
