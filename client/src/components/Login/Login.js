@@ -8,8 +8,8 @@ const Login = ({ history }) => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(login())
-        history.push("/")
+        // dispatch(login())
+        // history.push("/")
     }
 
 

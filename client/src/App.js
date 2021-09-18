@@ -17,7 +17,7 @@ import { useSelector } from "react-redux"
 
 
 function App() {
-  const isLogged = useSelector(state => state.auth)
+  const user = useSelector(state => state.auth)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isAsideOpen, setIsAsideOpen] = useState(false)
 
@@ -28,7 +28,7 @@ function App() {
     setIsAsideOpen(false)
   }
 
-  if (isLogged) {
+  if (user) {
     return (
       <>
         <div className="app">

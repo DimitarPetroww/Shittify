@@ -11,14 +11,14 @@ import HomeButton from "./HomeButton/HomeButton";
 import AsidePopButton from "./AsidePopButton/AsidePopButton"
 
 const Header = (props) => {
-    const isLogged = useSelector(state => state.auth)
+    const user = useSelector(state => state.auth)
     const [isProfileClicked, setProfileClicked] = useState(false)
 
     const showPopMenu = () => {
         setProfileClicked(!isProfileClicked)
     }
 
-    if (isLogged) {
+    if (user) {
         return (
             <header className="header">
                 <AsidePopButton click={props.click} />
@@ -26,7 +26,7 @@ const Header = (props) => {
                     <LibraryNavigation />
                 </Route>
                 <Route path="/search" render={(props) => <SearchNavigation {...props} />}></Route>
-                <ProfileMenu click={showPopMenu} isClicked={isProfileClicked} />
+                <ProfileMenu click={showPopMenu} isClicked={isProfileClicked} username={user.username}/>
                 {isProfileClicked ? <MenuPopOut click={showPopMenu} /> : ""}
             </header>
         )

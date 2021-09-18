@@ -1,12 +1,50 @@
 import "./Register.css"
 import * as authService from "../../services/auth"
+import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { signIn } from "../../actions"
+const REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
-const Register = () => {
+const Register = ({ history }) => {
+    const dispatch = useDispatch()
+    const [fields, setFields] = useState({
+        email: "",
+        username: "",
+        password: "",
+        repeatPassword: ""
+    })
+    const [errors, setErrors] = useState({
+        email: false,
+        username: false,
+        password: false,
+        repeatPassword: false
+    })
+
+    const handleChange = (e) => {
+        e.preventDefault();
+        const { name, value } = e.target;
+        switch (name) {
+            case "email":
+                setErrors(state => ({ ...state, [name]: !REGEX.test(value) }))
+                break;
+            case "repeatPassword":
+                setErrors(state => ({ ...state, [name]: value !== fields.password }))
+                break;
+            default:
+                setErrors(state => ({ ...state, [name]: value === "" }))
+        }
+        setFields(state => ({ ...state, [name]: value }))
+    }
+
+
     const submitHandler = (e) => {
         e.preventDefault()
-        authService.register({email: "123", username: "asd", password: "asd", repeatPassword: "asd"})
-        .then(data=> console.log(data))
-        .catch(e => console.log(e.message))
+        authService.register(fields)
+            .then(data => {
+                dispatch(signIn(data))
+                history.push("/")
+            })
+            .catch(e => console.log(e.message))
     }
 
     return (
@@ -17,20 +55,21 @@ const Register = () => {
                     <h2 className="register-title">Register info</h2>
                     <form className="register-form" onSubmit={submitHandler}>
                         <div className="register-group">
-                            <input type="text" placeholder="Email" className="register-input register-input-error" name="email" />
-                            <small className="register-error">Email is required</small>
+                            <input type="text" placeholder="Email" className={`register-input ${errors.email ? "register-input-error" : ""}`} name="email" value={fields.email} onChange={handleChange} />
+                            {errors.email ? <small className="register-error">Email is incorrect format</small> : ""}
+
                         </div>
                         <div className="register-group">
-                            <input type="text" placeholder="Name" className="register-input" name="username" />
-                            <small className="register-error">Name is required</small>
+                            <input type="text" placeholder="Username" className={`register-input ${errors.username ? "register-input-error" : ""}`} name="username" value={fields.username} onChange={handleChange} />
+                            {errors.username ? <small className="register-error">Username is required</small> : ""}
                         </div>
                         <div className="register-group">
-                            <input type="password" placeholder="Password" className="register-input" name="password" />
-                            <small className="register-error">Password is required</small>
+                            <input type="password" placeholder="Password" className={`register-input ${errors.password ? "register-input-error" : ""}`} name="password" value={fields.password} onChange={handleChange} />
+                            {errors.password ? <small className="register-error">Password is required</small> : ""}
                         </div>
                         <div className="register-group">
-                            <input type="password" placeholder="Repeat Password" className="register-input" name="repeatPassword" />
-                            <small className="register-error">Repeat Password is required</small>
+                            <input type="password" placeholder="Repeat Password" className={`register-input ${errors.repeatPassword ? "register-input-error" : ""}`} name="repeatPassword" value={fields.repeatPassword} onChange={handleChange} />
+                            {errors.repeatPassword ? <small className="register-error">Passwords must match</small> : ""}
                         </div>
                         <input type="submit" value="Register" className="register-btn" />
                     </form>

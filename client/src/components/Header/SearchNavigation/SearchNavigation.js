@@ -1,9 +1,9 @@
 import "./SearchNavigation.css"
 import Link from "../Link/Link"
 import { ReactComponent as Search } from "../../../svg/search.svg";
+let timeout;
 
 const SearchNavigation = ({ location, history }) => {
-    let timeout;
     return (
         <>
             <div className="search-container">
