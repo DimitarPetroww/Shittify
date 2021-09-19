@@ -1,9 +1,9 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { signIn } from "../../actions"
+import { loader, signIn } from "../../actions"
 import * as userService from "../../services/user"
 import "./Login.css"
-import REGEX from "../shared/EmailRegex"
+import REGEX from "../../utils/EmailRegex"
 
 const Login = ({ history }) => {
     const dispatch = useDispatch()
@@ -28,12 +28,17 @@ const Login = ({ history }) => {
 
     const submitHandler = (e) => {
         e.preventDefault()
+        dispatch(loader())
         userService.login(fields)
         .then(data => {
             dispatch(signIn(data))
+            dispatch(loader())
             history.push("/")
         })
-        .catch(e => console.log("message:", e.message))
+        .catch(e => {
+            console.log("message:", e.message)
+            dispatch(loader())
+        })
     }
 
 

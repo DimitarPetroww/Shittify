@@ -3,6 +3,7 @@ import { combineReducers } from "redux"
 import { persistReducer } from "redux-persist"
 import storage from "redux-persist/lib/storage"
 import songsReducer from "./songs"
+import loadReducer from "./load"
 
 const persistConfig = {
     key: "root",
@@ -10,6 +11,6 @@ const persistConfig = {
     whitelist: ["auth"]
 }
 
-const allReducers = combineReducers({ auth: authReducer, songs: songsReducer })
+const allReducers = combineReducers({ auth: authReducer, songs: songsReducer, load: loadReducer })
 
 export default persistReducer(persistConfig, allReducers)

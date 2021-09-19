@@ -4,7 +4,7 @@ import { ReactComponent as Close } from "../../../svg/close.svg"
 import * as userService from "../../../services/user"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { rename } from "../../../actions"
+import { loader, rename } from "../../../actions"
 
 const EditModal = ({ close, username }) => {
     const dispatch = useDispatch()
@@ -14,12 +14,17 @@ const EditModal = ({ close, username }) => {
         e.preventDefault()
         const { value } = e.target.username
         if (value === "") return setErrorClass("name-error-input")
+        dispatch(loader())
         userService.rename(value)
         .then(username => {
             dispatch(rename(username))
+            dispatch(loader())
             close()
         })
-        .catch(e => console.log(e.message))
+        .catch(e => {
+            console.log(e.message)
+            dispatch(loader())
+        })
     }
 
     return (

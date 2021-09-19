@@ -1,10 +1,10 @@
 import "./Register.css"
 import * as userService from "../../services/user"
-import REGEX from "../shared/EmailRegex"
+import REGEX from "../../utils/EmailRegex"
 
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { signIn } from "../../actions"
+import { loader, signIn } from "../../actions"
 
 const Register = ({ history }) => {
     const dispatch = useDispatch()
@@ -39,12 +39,15 @@ const Register = ({ history }) => {
 
     const submitHandler = (e) => {
         e.preventDefault()
+        dispatch(loader())
         userService.register(fields)
-            .then(data => {  
+            .then(data => {
                 dispatch(signIn(data))
+                dispatch(loader())
                 history.push("/")
             })
             .catch(e => {
+                dispatch(loader())
                 console.log("message:", e.message);
             })
     }

@@ -14,11 +14,14 @@ import Details from './components/Details/Details';
 import { Switch, Route } from "react-router-dom"
 import { useState } from 'react';
 import { useSelector } from "react-redux"
+import Loader from './components/shared/Loader/Loader';
+import Alert from './components/shared/Alert/Alert';
 
 
 function App() {
   const user = useSelector(state => state.auth)
   const songs = useSelector(state => state.songs.songs)
+  const isLoading = useSelector(state => state.load)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isAsideOpen, setIsAsideOpen] = useState(false)
 
@@ -36,6 +39,7 @@ function App() {
           <Aside isOpen={isAsideOpen} click={closeAside} />
           <div className="main-content">
             <Header click={switchAside} />
+            <Alert />
             <main className="main-content-container" onClick={closeAside}>
               <Switch>
                 <Route path="/" exact component={Home} />
@@ -51,6 +55,7 @@ function App() {
           </div>
         </div>
         {songs.length > 0 ? < Footer isPlaying={isPlaying} setIsPlaying={setIsPlaying} /> : ""}
+        {isLoading ? <Loader /> : ""}
       </>
     )
   }

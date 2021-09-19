@@ -6,7 +6,7 @@ import EditModal from "./EditModal/EditModal"
 import "./Profile.css"
 
 import * as userService from "../../services/user"
-import { updateProfilePic } from "../../actions"
+import { loader, updateProfilePic } from "../../actions"
 import ProfilePicture from "./ProfilePicture/ProfilePicture"
 
 const Profile = () => {
@@ -15,15 +15,19 @@ const Profile = () => {
     const [isModal, setIsModal] = useState(false)
 
     const uploadPicture = (e) => {
+        dispatch(loader())
         const file = e.target.files[0]
         const formData = new FormData()
         formData.append("file", file)
-
+        
         userService.upload(formData)
             .then(data => {
+                dispatch(loader())
                 dispatch(updateProfilePic(data.photoUrl))
             })
-            .catch(e => console.log(e.message))
+            .catch(e => {
+                dispatch(loader())
+            })
     }
 
     const switchModal = () => {

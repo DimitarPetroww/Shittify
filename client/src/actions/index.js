@@ -44,3 +44,8 @@ export const addSong = (song) => {
         payload: song
     }
 }
+export const loader = () => {
+    return {
+        type: "LOAD"
+    }
+}
