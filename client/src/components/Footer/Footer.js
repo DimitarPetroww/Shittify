@@ -4,7 +4,7 @@ import "./Footer.css"
 import { useDispatch, useSelector } from "react-redux";
 import { setIndex } from "../../actions";
 
-const Footer = ({isPlaying, setIsPlaying}) => {
+const Footer = ({ isPlaying, setIsPlaying }) => {
     const dispatch = useDispatch()
     const songs = useSelector(state => state.songs.songs)
     const currentSongIndex = useSelector(state => state.songs.currentSongIndex)
@@ -12,13 +12,14 @@ const Footer = ({isPlaying, setIsPlaying}) => {
 
     return (
         <footer className="footer">
-            {songs.length > 0 ? <Player
+            <Player
                 currentSongIndex={currentSongIndex}
                 setCurrentSongIndex={(index) => dispatch(setIndex(index))}
                 nextSongIndex={nextSongIndex}
                 songs={songs}
                 isPlaying={isPlaying}
-                setIsPlaying={setIsPlaying} /> : <h1>No songs still..</h1>}
+                setIsPlaying={setIsPlaying} 
+            />
         </footer>
     );
 }

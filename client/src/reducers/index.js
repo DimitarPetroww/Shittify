@@ -7,7 +7,7 @@ import songsReducer from "./songs"
 const persistConfig = {
     key: "root",
     storage,
-    whitelist: ["auth", "songs"]
+    whitelist: ["auth"]
 }
 
 const allReducers = combineReducers({ auth: authReducer, songs: songsReducer })

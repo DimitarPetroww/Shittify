@@ -18,6 +18,7 @@ import { useSelector } from "react-redux"
 
 function App() {
   const user = useSelector(state => state.auth)
+  const { songs } = useSelector(state => state.songs)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isAsideOpen, setIsAsideOpen] = useState(false)
 
@@ -49,7 +50,7 @@ function App() {
             </main>
           </div>
         </div>
-        <Footer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+        {songs.length > 0 ? < Footer isPlaying={isPlaying} setIsPlaying={setIsPlaying} /> : ""}
       </>
     )
   }
