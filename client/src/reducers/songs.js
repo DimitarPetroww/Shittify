@@ -4,6 +4,8 @@ const songsReducer = (state = {songs: [], currentSongIndex: 0, nextSongIndex: 1}
             return {...state, songs: [...state.songs, action.payload] }
         case "SET_SONGS":
             return {...state, songs: action.payload}
+        case "CLEAR_SONGS":
+            return {songs: [], currentSongIndex: 0, nextSongIndex: 1};
         case "SET_CURRENT_INDEX":
             return {...state, currentSongIndex: action.payload, nextSongIndex: action.payload + 1}
         default: 

@@ -77,9 +77,11 @@ const Player = ({ currentSongIndex, setCurrentSongIndex, songs, isPlaying, setIs
         }
     }
     const whilePlaying = () => {
-        progress.current.value = audio.current.currentTime;
-        changeCurrentTime()
-        animation.current = requestAnimationFrame(whilePlaying)
+        if(progress.current && audio.current && animation.current) {
+            progress.current.value = audio.current.currentTime;
+            changeCurrentTime()
+            animation.current = requestAnimationFrame(whilePlaying)
+        }
     }
     const changeCurrentTime = () => {
         progress.current.style.setProperty("--width", `${progress.current.value / duration * 100}%`)

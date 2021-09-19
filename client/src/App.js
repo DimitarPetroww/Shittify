@@ -18,7 +18,7 @@ import { useSelector } from "react-redux"
 
 function App() {
   const user = useSelector(state => state.auth)
-  const { songs } = useSelector(state => state.songs)
+  const songs = useSelector(state => state.songs.songs)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isAsideOpen, setIsAsideOpen] = useState(false)
 

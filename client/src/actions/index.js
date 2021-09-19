@@ -27,6 +27,11 @@ export const setSongs = (songs) => {
         payload: songs
     }
 }
+export const clearSongs = () => {
+    return {
+        type: "CLEAR_SONGS"
+    }
+}
 export const setIndex = (index) => {
     return {
         type: "SET_CURRENT_INDEX",

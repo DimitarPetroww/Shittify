@@ -4,7 +4,7 @@ import "./MenuPopOut.css"
 import { ReactComponent as Logout } from "../../../svg/logout.svg";
 import { ReactComponent as ProfileLink } from "../../../svg/profile_link.svg";
 
-import { logout } from "../../../actions/index"
+import { logout, clearSongs } from "../../../actions/index"
 
 const MenuPopOut = ({ click }) => {
     const dispatch = useDispatch()
@@ -23,6 +23,7 @@ const MenuPopOut = ({ click }) => {
                     <Link to="#" onClick={(e) => {
                         e.preventDefault()
                         dispatch(logout())
+                        dispatch(clearSongs())
                         history.push("/")
                     }}>
                         <span>Logout</span>
