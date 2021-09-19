@@ -16,8 +16,8 @@ const Player = ({ currentSongIndex, setCurrentSongIndex, songs, isPlaying, setIs
 
     useEffect(() => {
         if (isPlaying) {
-            const secs = Math.floor(audio.current.duration)
-            setDuration(secs || 0)
+            const secs = Math.floor(audio.current.duration) || 0
+            setDuration(secs)
             progress.current.max = secs
         }
     }, [audio?.current?.readyState])
@@ -41,7 +41,7 @@ const Player = ({ currentSongIndex, setCurrentSongIndex, songs, isPlaying, setIs
             seconds < 10 ? `0${seconds}` : seconds,
         ].join(":")
     }
-    
+
     const changeRange = () => {
         audio.current.currentTime = progress.current.value
         changeCurrentTime()
@@ -63,21 +63,21 @@ const Player = ({ currentSongIndex, setCurrentSongIndex, songs, isPlaying, setIs
     }
 
     const forwardSong = () => {
-        if(currentSongIndex + 1 > songs.length - 1) {
+        if (currentSongIndex + 1 > songs.length - 1) {
             setCurrentSongIndex(0)
-        }else {
+        } else {
             setCurrentSongIndex(currentSongIndex + 1)
         }
     }
     const backwardSong = () => {
-        if(currentSongIndex - 1 < 0) {
+        if (currentSongIndex - 1 < 0) {
             setCurrentSongIndex(songs.length - 1)
-        }else {
+        } else {
             setCurrentSongIndex(currentSongIndex - 1)
         }
     }
     const whilePlaying = () => {
-        if(progress.current && audio.current && animation.current) {
+        if (progress.current && audio.current && animation.current) {
             progress.current.value = audio.current.currentTime;
             changeCurrentTime()
             animation.current = requestAnimationFrame(whilePlaying)
@@ -106,7 +106,7 @@ const Player = ({ currentSongIndex, setCurrentSongIndex, songs, isPlaying, setIs
                 isPlaying={isPlaying}
                 setIsPlaying={setIsPlaying}
                 forwardSong={forwardSong}
-                backwardSong={backwardSong} 
+                backwardSong={backwardSong}
             />
         </section>
     );
