@@ -22,6 +22,7 @@ const MenuPopOut = ({ click }) => {
                     <Link to="#" onClick={(e) => {
                         e.preventDefault()
                         dispatch(logout())
+                        
                     }}>
                         <span>Logout</span>
                         <Logout />

@@ -1,5 +1,5 @@
 import "./Register.css"
-import * as authService from "../../services/auth"
+import * as userService from "../../services/user"
 import REGEX from "../shared/EmailRegex"
 
 import { useState } from "react"
@@ -39,12 +39,14 @@ const Register = ({ history }) => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        authService.register(fields)
-            .then(data => {
+        userService.register(fields)
+            .then(data => {  
                 dispatch(signIn(data))
                 history.push("/")
             })
-            .catch(e => console.log(e.message))
+            .catch(e => {
+                console.log("message:", e.message);
+            })
     }
 
     return (

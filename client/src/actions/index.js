@@ -9,6 +9,12 @@ export const logout = () => {
         type: "SIGN_OUT"
     }
 }
+export const updateProfilePic = (photoUrl) => {
+    return {
+        type: "SET_PHOTO",
+        payload: photoUrl
+    }
+}
 export const setSongs = (songs) => {
     return {
         type: "SET_SONGS",

@@ -1,5 +1,5 @@
-const auth = require("../controllers/auth")
+const user = require("../controllers/user")
 
 module.exports = (app) => {
-    app.use("/api/auth", auth)
+    app.use("/api/user", user)
 };

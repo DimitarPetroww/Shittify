@@ -1,13 +1,31 @@
 import { useState } from "react"
 import { NavLink } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
 import { ReactComponent as Pen } from "../../svg/pen.svg"
 import { ReactComponent as Edit } from "../../svg/edit.svg"
 import { ReactComponent as ProfileIcon } from "../../svg/profile.svg"
 import EditModal from "./EditModal/EditModal"
 import "./Profile.css"
 
+import * as userService from "../../services/user"
+import { updateProfilePic } from "../../actions"
+
 const Profile = () => {
+    const user = useSelector(state => state.auth)
+    const dispatch = useDispatch()
     const [isModal, setIsModal] = useState(false)
+
+    const uploadPicture = (e) => {
+        const file = e.target.files[0]
+        const formData = new FormData()
+        formData.append("file", file)
+
+        userService.upload(formData)
+            .then(data => {
+                dispatch(updateProfilePic(data.photoUrl))
+            })
+            .catch(e => console.log(e.message))
+    }
 
     const switchModal = () => {
         setIsModal(!isModal)
@@ -18,26 +36,26 @@ const Profile = () => {
             <section className="profile-wrapper">
                 <div className="profile-container">
                     <article className="profile-picture-container">
-                        <label className="no-picture" htmlFor="picture">
-                            <ProfileIcon />
-                            <div className="choose-img">
-                                <Pen />
-                                <span>Choose an image</span>
-                            </div>
-                        </label>
-                        {/* <label className="profile-picture" htmlFor="picture">
-                            <img className="profile-icon" src="https://images.unsplash.com/photo-1511216113906-8f57bb83e776?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80" />
-                            <div className="choose-img" style={{ "--image": "url('https://images.unsplash.com/photo-1511216113906-8f57bb83e776?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80')" }}>
-                                <Pen />
-                                <span>Choose an image</span>
-                            </div>
-                        </label> */}
-                        <input type="file" id="picture" className="picture" />
+                        {user.photoUrl !== "" ?
+                            <label className="profile-picture" htmlFor="picture">
+                                <img className="profile-icon" src={user.photoUrl} />
+                                <div className="choose-img" style={{ "--image": `url(${user.photoUrl})` }}>
+                                    <Pen />
+                                    <span>Choose an image</span>
+                                </div>
+                            </label> : <label className="no-picture" htmlFor="picture">
+                                <ProfileIcon />
+                                <div className="choose-img">
+                                    <Pen />
+                                    <span>Choose an image</span>
+                                </div>
+                            </label>}
+                        <input type="file" id="picture" className="picture" onChange={uploadPicture} accept="image/*" />
                     </article>
                     <article className="profile-data">
                         <h4 className="profile-heading">Profile</h4>
                         <div>
-                            <h1 className="profile-name">Dimitar.Petroww</h1>
+                            <h1 className="profile-name">{user.username}</h1>
                             <span className="edit-btn" onClick={switchModal}><Edit /></span>
                         </div>
                         <div>

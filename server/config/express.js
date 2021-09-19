@@ -1,6 +1,7 @@
 const express = require('express');
 const cp = require("cookie-parser")
-const cors = require("cors")
+const cors = require("cors");
+const auth = require('../middlewares/auth');
 
 module.exports = (app) => {
     app.use(express.urlencoded({ extended: true }))
@@ -10,5 +11,5 @@ module.exports = (app) => {
         origin: process.env.origin,
         credentials: true,
     }))
-    // app.use(auth())
+    app.use(auth())
 };

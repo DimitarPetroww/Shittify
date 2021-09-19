@@ -26,7 +26,7 @@ const Header = (props) => {
                     <LibraryNavigation />
                 </Route>
                 <Route path="/search" render={(props) => <SearchNavigation {...props} />}></Route>
-                <ProfileMenu click={showPopMenu} isClicked={isProfileClicked} username={user.username}/>
+                <ProfileMenu click={showPopMenu} isClicked={isProfileClicked} username={user.username} photo={user.photoUrl}/>
                 {isProfileClicked ? <MenuPopOut click={showPopMenu} /> : ""}
             </header>
         )

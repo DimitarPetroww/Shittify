@@ -1,8 +1,12 @@
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
+const formidable = require("formidable")
 const router = require("express").Router()
 
-const authService = require("../services/auth")
+const userService = require("../services/user")
+const { parseForm } = require("../utils/parseForm")
+const { cloudinaryUpload } = require("../utils/cloudinaryUpload")
+
 
 router.post("/register", async (req, res) => {
     const data = {
@@ -21,8 +25,8 @@ router.post("/register", async (req, res) => {
     }
     try {
         const hashedPassword = await bcrypt.hash(data.password, Number(process.env.SALT_ROUNDS))
-        const user = await authService.createUser({ email: data.email, username: data.username, password: hashedPassword })
-        const temp = { email: user.email, _id: user._id, username: user.username }
+        const user = await userService.createUser({ email: data.email, username: data.username, password: hashedPassword, photoUrl: "" })
+        const temp = { email: user.email, _id: user._id, username: user.username, photoUrl: user.photoUrl }
 
         const token = jwt.sign(temp, process.env.TOKEN_SECRET)
         res.cookie(process.env.COOKIE_NAME, token, { httpOnly: true })
@@ -50,14 +54,26 @@ router.post("/login", async (req, res) => {
         if (!isMatch) {
             throw new Error("Wrong email or password")
         }
-        const temp = { email: user.email, _id: user._id, username: user.username }
+        const temp = { email: user.email, _id: user._id, username: user.username, photoUrl: user.photoUrl }
         const token = jwt.sign(temp, process.env.TOKEN_SECRET)
 
         res.cookie(process.env.COOKIE_NAME, token, { httpOnly: true })
         res.json(temp)
     } catch (error) {
         res.status(400)
-        return res.json({ message: error.message })
+        res.json({ message: error.message })
+    }
+})
+router.post("/upload", async (req, res) => {
+    const form = formidable()
+    try {
+        const [data, { file }] = await parseForm(req, form)
+        const fileUrl = await cloudinaryUpload(file.path)
+        const user = await userService.uploadPhoto(req.user._id, fileUrl)
+        res.json(user)
+    } catch (error) {
+        res.status(400)
+        res.json({ message: error.message })
     }
 })
 

@@ -4,6 +4,8 @@ const authReducer = (state = null, action) => {
             return action.payload
         case "SIGN_OUT":
             return null
+        case "SET_PHOTO":
+            return {...state, photoUrl: action.payload}
         default:
             return state
     }

@@ -10,6 +10,7 @@ dotenv.config({
 async function init() {
     try {
         await require("./config/db")()
+        require("./config/cloudinary")()
         require("./config/express")(app)
         require("./config/routes")(app)
         app.listen(process.env.PORT, () => console.log(`Server is listening on port ${process.env.PORT}...`));
