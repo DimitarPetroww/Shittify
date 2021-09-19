@@ -15,9 +15,9 @@ const Player = ({ currentSongIndex, setCurrentSongIndex, songs, isPlaying, setIs
 
 
     useEffect(() => {
-        if (audio?.current?.readyState === 4) {
+        if (isPlaying) {
             const secs = Math.floor(audio.current.duration)
-            setDuration(secs)
+            setDuration(secs || 0)
             progress.current.max = secs
         }
     }, [audio?.current?.readyState])
