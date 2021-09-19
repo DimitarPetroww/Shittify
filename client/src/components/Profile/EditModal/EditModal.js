@@ -1,7 +1,27 @@
 import "./EditModal.css"
 import { ReactComponent as Close } from "../../../svg/close.svg"
 
+import * as userService from "../../../services/user"
+import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { rename } from "../../../actions"
+
 const EditModal = ({ close, username }) => {
+    const dispatch = useDispatch()
+    const [errorClass, setErrorClass] = useState("")
+
+    const submitHandler = (e) => {
+        e.preventDefault()
+        const { value } = e.target.username
+        if (value === "") return setErrorClass("name-error-input")
+        userService.rename(value)
+        .then(username => {
+            dispatch(rename(username))
+            close()
+        })
+        .catch(e => console.log(e.message))
+    }
+
     return (
         <section className="edit-modal-wrapper">
             <div className="edit-modal-content">
@@ -12,12 +32,9 @@ const EditModal = ({ close, username }) => {
                     </span>
                 </div>
                 <div className="edit-modal-form-container">
-                    <form className="edit-modal-form" onSubmit={(e) => {
-                        e.preventDefault()
-                        close()
-                    }}>
-                        <input type="text" defaultValue={username} className="name-error-input" />
-                        <span className="error-span">Name</span>
+                    <form className="edit-modal-form" onSubmit={submitHandler}>
+                        <input type="text" defaultValue={username} className={errorClass} name="username" />
+                        {errorClass !== "" ? <span className="error-span">Name</span> : ""}
                         <input type="submit" value="Save" />
                     </form>
                 </div>

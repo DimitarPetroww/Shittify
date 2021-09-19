@@ -76,5 +76,19 @@ router.post("/upload", async (req, res) => {
         res.json({ message: error.message })
     }
 })
+router.post("/rename", async (req, res) => {
+    const username = req.body.username
+    if(username === "") {
+        res.status(400)
+        return res.json({ message: "Username is required" })
+    }
+    try {
+        const user = await userService.changeName(req.user._id, username)
+        res.json(user.username)
+    } catch (error) {
+        res.status(400)
+        res.json({ message: error.message })
+    }
+})
 
 module.exports = router

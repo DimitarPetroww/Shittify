@@ -6,6 +6,8 @@ const authReducer = (state = null, action) => {
             return null
         case "SET_PHOTO":
             return {...state, photoUrl: action.payload}
+        case "CHANGE_NAME":
+            return {...state, username: action.payload}
         default:
             return state
     }

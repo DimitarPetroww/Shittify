@@ -19,8 +19,15 @@ async function uploadPhoto(id, photoUrl) {
 
     return existing.save()
 }
+async function changeName(id, username) {
+    const existing = await User.findById(id)
+    existing.username = username
+
+    return existing.save()
+}
 module.exports = {
     createUser,
     findUserByEmail,
-    uploadPhoto
+    uploadPhoto,
+    changeName
 }

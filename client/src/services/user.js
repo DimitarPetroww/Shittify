@@ -25,8 +25,18 @@ const upload = (formData) => {
         body: formData
     })
 }
+const rename = (username) => {
+    return request(endpoints.rename, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username })
+    })
+}
 export {
     register,
     login,
-    upload
+    upload,
+    rename
 }
