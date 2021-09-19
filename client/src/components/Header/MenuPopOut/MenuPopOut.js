@@ -1,4 +1,4 @@
-import { NavLink, Link } from "react-router-dom"
+import { NavLink, Link, useHistory } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import "./MenuPopOut.css"
 import { ReactComponent as Logout } from "../../../svg/logout.svg";
@@ -8,6 +8,7 @@ import { logout } from "../../../actions/index"
 
 const MenuPopOut = ({ click }) => {
     const dispatch = useDispatch()
+    const history = useHistory()
 
     return (
         <div className="profile-menu-pop" onClick={click}>
@@ -22,7 +23,7 @@ const MenuPopOut = ({ click }) => {
                     <Link to="#" onClick={(e) => {
                         e.preventDefault()
                         dispatch(logout())
-                        
+                        history.push("/")
                     }}>
                         <span>Logout</span>
                         <Logout />

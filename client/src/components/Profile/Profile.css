@@ -14,44 +14,6 @@
     height: 100%;
     margin-left: 30px;
 }
-
-.profile-picture-container {
-    background: #282828;
-    box-shadow: 0px 0px 17px -1px #000;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.no-picture, .profile-picture {
-    display: flex;
-    width: 180px;
-    height: 180px;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-
-.picture {
-    display: none;
-}
-
-.choose-img {
-    display: none;
-}
-
-.choose-img span {
-    margin-top: 15px;
-    text-decoration: underline;
-}
-
-.profile-picture img {
-    border-radius: 50%;
-    width: 180px;
-    height: 180px;
-}
-
 .profile-data {
     margin-left: 50px;
     display: flex;
@@ -72,28 +34,6 @@
     cursor: pointer;
     font-size: 15px;
     text-decoration: none;
-}
-
-.profile-picture-container:hover .no-picture .profile-icon, .profile-picture-container:hover .profile-picture .profile-icon {
-    display: none;
-}
-
-.profile-picture-container:hover .profile-picture .choose-img {
-    background-position: center;
-    background-size: cover;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), var(--image);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
-}
-
-.profile-picture-container:hover .choose-img {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .edit-btn:hover {
@@ -129,9 +69,6 @@
     .profile-container {
         flex-direction: column;
         margin: 0;
-    }
-    .profile-picture-container {
-        margin-top: 20px;
     }
     .profile-name {
         font-size: 30px;

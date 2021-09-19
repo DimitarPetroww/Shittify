@@ -1,7 +1,7 @@
 import "./EditModal.css"
 import { ReactComponent as Close } from "../../../svg/close.svg"
 
-const EditModal = ({ close }) => {
+const EditModal = ({ close, username }) => {
     return (
         <section className="edit-modal-wrapper">
             <div className="edit-modal-content">
@@ -16,7 +16,7 @@ const EditModal = ({ close }) => {
                         e.preventDefault()
                         close()
                     }}>
-                        <input type="text" defaultValue="Dimitar.petroww" className="name-error-input" />
+                        <input type="text" defaultValue={username} className="name-error-input" />
                         <span className="error-span">Name</span>
                         <input type="submit" value="Save" />
                     </form>
