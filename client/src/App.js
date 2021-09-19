@@ -11,11 +11,11 @@ import LandingPage from './components/LandingPage/LandingPage';
 import Create from './components/Create/Create';
 import Profile from './components/Profile/Profile';
 import Details from './components/Details/Details';
+import Loader from './components/shared/Loader/Loader';
+
 import { Switch, Route } from "react-router-dom"
 import { useState } from 'react';
 import { useSelector } from "react-redux"
-import Loader from './components/shared/Loader/Loader';
-import Alert from './components/shared/Alert/Alert';
 
 
 function App() {
@@ -39,7 +39,6 @@ function App() {
           <Aside isOpen={isAsideOpen} click={closeAside} />
           <div className="main-content">
             <Header click={switchAside} />
-            <Alert />
             <main className="main-content-container" onClick={closeAside}>
               <Switch>
                 <Route path="/" exact component={Home} />
