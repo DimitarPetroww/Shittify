@@ -2,6 +2,7 @@ import { useState } from "react"
 import { NavLink } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { ReactComponent as Edit } from "../../svg/edit.svg"
+import { showAlert } from "../../actions"
 import EditModal from "./EditModal/EditModal"
 import "./Profile.css"
 
@@ -27,6 +28,7 @@ const Profile = () => {
             })
             .catch(e => {
                 dispatch(loader())
+                dispatch(showAlert(e.message))
             })
     }
 

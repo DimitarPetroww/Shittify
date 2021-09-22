@@ -4,7 +4,7 @@ import REGEX from "../../utils/EmailRegex"
 
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { loader, signIn } from "../../actions"
+import { loader, showAlert, signIn } from "../../actions"
 
 const Register = ({ history }) => {
     const dispatch = useDispatch()
@@ -48,7 +48,7 @@ const Register = ({ history }) => {
             })
             .catch(e => {
                 dispatch(loader())
-                console.log("message:", e.message);
+                dispatch(showAlert(e.message))
             })
     }
 

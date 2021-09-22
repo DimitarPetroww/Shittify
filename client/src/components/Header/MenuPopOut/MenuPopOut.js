@@ -3,13 +3,23 @@ import { useDispatch } from "react-redux"
 import "./MenuPopOut.css"
 import { ReactComponent as Logout } from "../../../svg/logout.svg";
 import { ReactComponent as ProfileLink } from "../../../svg/profile_link.svg";
-
-import { logout, clearSongs } from "../../../actions/index"
+import { logout as logoutUser } from "../../../services/user";
+import { logout, clearSongs, showAlert } from "../../../actions/index"
 
 const MenuPopOut = ({ click }) => {
     const dispatch = useDispatch()
     const history = useHistory()
-
+    const logoutHandler = (e) => {
+        e.preventDefault()
+        logoutUser().then(() => {
+            dispatch(logout())
+            dispatch(clearSongs())
+            history.push("/")
+        })
+        .catch(e=> {
+            showAlert(e.message)
+        })
+    }
     return (
         <div className="profile-menu-pop" onClick={click}>
             <ul>
@@ -20,12 +30,7 @@ const MenuPopOut = ({ click }) => {
                     </NavLink>
                 </li>
                 <li className="profile-menu-pop-link">
-                    <Link to="#" onClick={(e) => {
-                        e.preventDefault()
-                        dispatch(logout())
-                        dispatch(clearSongs())
-                        history.push("/")
-                    }}>
+                    <Link to="#" onClick={logoutHandler}>
                         <span>Logout</span>
                         <Logout />
                     </Link>

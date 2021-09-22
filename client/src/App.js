@@ -12,18 +12,29 @@ import Create from './components/Create/Create';
 import Profile from './components/Profile/Profile';
 import Details from './components/Details/Details';
 import Loader from './components/shared/Loader/Loader';
+import Alert from './components/shared/Alert/Alert';
 
 import { Switch, Route } from "react-router-dom"
-import { useState } from 'react';
-import { useSelector } from "react-redux"
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux"
+import { clearAlert } from './actions';
 
 
 function App() {
   const user = useSelector(state => state.auth)
   const songs = useSelector(state => state.songs.songs)
   const isLoading = useSelector(state => state.load)
+  const alert = useSelector(state => state.alert)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isAsideOpen, setIsAsideOpen] = useState(false)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const timer = setTimeout(() =>
+      dispatch(clearAlert()),
+      3000);
+    return () => clearTimeout(timer);
+  }, [alert.shown]);
 
   const switchAside = () => {
     setIsAsideOpen(!isAsideOpen)
@@ -55,6 +66,7 @@ function App() {
         </div>
         {songs.length > 0 ? < Footer isPlaying={isPlaying} setIsPlaying={setIsPlaying} /> : ""}
         {isLoading ? <Loader /> : ""}
+        {alert.shown ? <Alert msg={alert.message} /> : ""}
       </>
     )
   }
@@ -66,6 +78,8 @@ function App() {
         <Route path="/auth/login" component={Login} />
         <Route path="/auth/sign-up" component={Register} />
       </Switch>
+      {isLoading ? <Loader /> : ""}
+      {alert.shown ? <Alert msg={alert.message} /> : ""}
     </>
   );
 }

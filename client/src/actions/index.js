@@ -49,3 +49,14 @@ export const loader = () => {
         type: "LOAD"
     }
 }
+export const showAlert = (msg) => {
+    return {
+        type: "SHOW_MESSAGE",
+        payload: msg
+    }
+}
+export const clearAlert = () => {
+    return {
+        type: "CLEAR_MESSAGE",
+    }
+}

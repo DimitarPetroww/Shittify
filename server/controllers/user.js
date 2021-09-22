@@ -64,6 +64,10 @@ router.post("/login", async (req, res) => {
         res.json({ message: error.message })
     }
 })
+router.post("/logout", async (req, res) => {
+    res.clearCookie(process.env.COOKIE_NAME)
+    res.json({})
+})
 router.post("/upload", async (req, res) => {
     const form = formidable()
     try {

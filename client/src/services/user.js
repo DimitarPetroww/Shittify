@@ -19,6 +19,14 @@ const login = (data) => {
         body: JSON.stringify(data)
     })
 }
+const logout = () => {
+    return request(endpoints.logout, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+}
 const upload = (formData) => {
     return request(endpoints.uploadProfilePic, {
         method: "POST",
@@ -38,5 +46,6 @@ export {
     register,
     login,
     upload,
-    rename
+    rename,
+    logout
 }
