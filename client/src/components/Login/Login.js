@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { loader, signIn } from "../../actions"
+import { loader, showAlert, signIn } from "../../actions"
 import * as userService from "../../services/user"
 import "./Login.css"
 import REGEX from "../../utils/EmailRegex"
@@ -30,15 +30,15 @@ const Login = ({ history }) => {
         e.preventDefault()
         dispatch(loader())
         userService.login(fields)
-        .then(data => {
-            dispatch(signIn(data))
-            dispatch(loader())
-            history.push("/")
-        })
-        .catch(e => {
-            console.log("message:", e.message)
-            dispatch(loader())
-        })
+            .then(data => {
+                dispatch(signIn(data))
+                dispatch(loader())
+                history.push("/")
+            })
+            .catch(e => {
+                dispatch(loader())
+                dispatch(showAlert(e.message))
+            })
     }
 
 
@@ -50,11 +50,11 @@ const Login = ({ history }) => {
                     <h2 className="login-title">Login info</h2>
                     <form className="login-form" onSubmit={submitHandler}>
                         <div className="login-group">
-                            <input type="text" placeholder="Email" className={`login-input ${errors.email ? "login-input-error" : ""}`} value={fields.email} onChange={handleChange} name="email"/>
+                            <input type="text" placeholder="Email" className={`login-input ${errors.email ? "login-input-error" : ""}`} value={fields.email} onChange={handleChange} name="email" />
                             {errors.email ? <small className="login-error">Email is in incorrect format</small> : ""}
                         </div>
                         <div className="login-group">
-                            <input type="password" placeholder="Password" className={`login-input ${errors.email ? "login-input-error" : ""}`} value={fields.password} onChange={handleChange} name="password"/>
+                            <input type="password" placeholder="Password" className={`login-input ${errors.password ? "login-input-error" : ""}`} value={fields.password} onChange={handleChange} name="password" />
                             {errors.password ? <small className="login-error">Password is required</small> : ""}
                         </div>
                         <input type="submit" value="Login" className="login-btn" />
