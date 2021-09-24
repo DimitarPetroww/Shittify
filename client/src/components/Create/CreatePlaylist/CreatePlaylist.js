@@ -1,4 +1,5 @@
-import {ReactComponent as ImageFile} from "../../../svg/image_file.svg"
+import { ReactComponent as ImageFile } from "../../../svg/image_file.svg"
+import { ReactComponent as Cross } from "../../../svg/cross.svg"
 
 const CreatePlaylist = () => {
     return (
@@ -9,12 +10,15 @@ const CreatePlaylist = () => {
                     <form className="create-form">
                         <div className="create-group">
                             <input type="text" placeholder="Playlist Name" className="create-input create-input-error" />
-                            <small className="create-error">Playlist Name is required</small>
+                            <small className="create-error">
+                                <Cross />
+                                <span>Playlist Name is required</span>
+                            </small>
                         </div>
                         <div className="create-group">
                             <input type="file" className="create-input-file" id="playlist" />
                             <label htmlFor="playlist" className="file-label">
-                                <ImageFile className="file-icon"/>
+                                <ImageFile className="file-icon" />
                                 Playlist Image (under 100mb)
                             </label>
                         </div>
