@@ -6,6 +6,7 @@ const router = require("express").Router()
 const userService = require("../services/user")
 const { parseForm } = require("../utils/parseForm")
 const { cloudinaryUpload } = require("../utils/cloudinaryUpload")
+const { cloudinaryDelete } = require("../utils/cloudinaryDelete")
 
 
 router.post("/register", async (req, res) => {
@@ -25,7 +26,7 @@ router.post("/register", async (req, res) => {
     }
     try {
         const hashedPassword = await bcrypt.hash(data.password, Number(process.env.SALT_ROUNDS))
-        const user = await userService.createUser({ email: data.email, username: data.username, password: hashedPassword, photoUrl: "" })
+        const user = await userService.createUser({ email: data.email, username: data.username, password: hashedPassword })
         const temp = { email: user.email, _id: user._id, username: user.username, photoUrl: user.photoUrl }
 
         const token = jwt.sign(temp, process.env.TOKEN_SECRET)
@@ -71,10 +72,12 @@ router.post("/logout", async (req, res) => {
 router.post("/upload", async (req, res) => {
     const form = formidable()
     try {
-        const [data, { file }] = await parseForm(req, form)
-        const fileUrl = await cloudinaryUpload(file.path)
-        const user = await userService.uploadPhoto(req.user._id, fileUrl)
-        res.json(user)
+        const user = await userService.findUserById(req.user._id)
+        if (user.photoId !== "") await cloudinaryDelete(user.photoId)
+        const [_, { file }] = await parseForm(req, form)
+        const [fileUrl, publicId] = await cloudinaryUpload(file.path)
+        const temp = await userService.uploadPhoto(req.user._id, fileUrl, publicId)
+        res.json(temp)
     } catch (error) {
         res.status(400)
         res.json({ message: error.message })
@@ -82,7 +85,7 @@ router.post("/upload", async (req, res) => {
 })
 router.post("/rename", async (req, res) => {
     const username = req.body.username
-    if(username === "") {
+    if (username === "") {
         res.status(400)
         return res.json({ message: "Username is required" })
     }

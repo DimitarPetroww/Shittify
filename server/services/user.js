@@ -13,9 +13,15 @@ async function findUserByEmail(email) {
 
     return existing
 }
-async function uploadPhoto(id, photoUrl) {
+async function findUserById(id) {
+    const existing = await User.findById(id)
+
+    return existing
+}
+async function uploadPhoto(id, photoUrl, publicId) {
     const existing = await User.findById(id)
     existing.photoUrl = photoUrl
+    existing.photoId = publicId
 
     return existing.save()
 }
@@ -29,5 +35,6 @@ module.exports = {
     createUser,
     findUserByEmail,
     uploadPhoto,
-    changeName
+    changeName,
+    findUserById
 }
