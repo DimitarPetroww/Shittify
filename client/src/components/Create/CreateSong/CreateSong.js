@@ -64,23 +64,25 @@ const CreateSong = ({ history }) => {
                             <span>Song Artist is required</span>
                         </small> : ""}
                     </div>
-                    <div className="create-group">
-                        <input type="file" className="create-input-file" id="image" accept="image/*" onChange={(e) => {
-                            if (e.target.files.length !== 0) setImage(e.target.files[0])
-                        }} />
-                        <label htmlFor="image" className="file-label">
-                            <ImageFile className="file-icon" />
-                            {image.name}
-                        </label>
-                    </div>
-                    <div className="create-group">
-                        <input type="file" className="create-input-file" id="audio" accept="audio/*" onChange={(e) => {
-                            if (e.target.files.length !== 0) setAudio(e.target.files[0])
-                        }} />
-                        <label htmlFor="audio" className="file-label">
-                            <AudioFile className="file-icon" />
-                            {audio.name}
-                        </label>
+                    <div className="create-input-files">
+                        <div className="create-group">
+                            <input type="file" className="create-input-file" id="image" accept="image/*" onChange={(e) => {
+                                if (e.target.files.length !== 0) setImage(e.target.files[0])
+                            }} />
+                            <label htmlFor="image" className="file-label">
+                                <ImageFile className="file-icon" />
+                                {image.name}
+                            </label>
+                        </div>
+                        <div className="create-group">
+                            <input type="file" className="create-input-file" id="audio" accept="audio/*" onChange={(e) => {
+                                if (e.target.files.length !== 0) setAudio(e.target.files[0])
+                            }} />
+                            <label htmlFor="audio" className="file-label">
+                                <AudioFile className="file-icon" />
+                                {audio.name}
+                            </label>
+                        </div>
                     </div>
                     <input type="submit" value="Create Song" className="create-btn" />
                 </form>

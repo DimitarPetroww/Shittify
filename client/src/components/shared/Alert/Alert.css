@@ -1,27 +1,16 @@
 .alert {
-    border: 1px outset #b9b69a;
     border-left-width: 5px;
-    box-shadow: 0 4px 10px #0004, 0 2px 20px #0008;
+    background: #C34A43;
     display: flex;
     align-items: center;
     padding: 15px 25px;
     margin: 15px 0;
     border-radius: 15px;
-    backdrop-filter: blur(10px);
-    background-image: linear-gradient(45deg, #ffffff2f, #ffffff10);
-    transition-property: opacity, transform;
-    transition: 0.5s ease-in;
-    border-color: red;
     position: absolute;
     top: 10%;
     left: 68%;
     z-index: 999999;
     width: 25%;
-}
-
-.alert.close {
-    opacity: 0;
-    transform: translateY(40px);
 }
 
 .alert>.icon {
@@ -31,18 +20,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: red;
+    background-color: white;
 }
 
 .alert>.text {
     width: 100%;
     padding: 0 15px;
-    color: #fff;
+}
+.alert>.text strong {
+    color: white;
 }
 
 .alert>.text p {
     margin: 5px 0;
     font-size: 14px;
+    color: #ccc;
 }
 .alert>.close {
     outline: none;
@@ -51,7 +43,7 @@
     justify-content: center;
     align-items: center;
     background-color: transparent;
-    fill: #fff;
+    fill: #ccc;
     cursor: pointer;
     transition: 0.3s ease-in-out;
 }

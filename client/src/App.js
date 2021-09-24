@@ -15,9 +15,8 @@ import Loader from './components/shared/Loader/Loader';
 import Alert from './components/shared/Alert/Alert';
 
 import { Switch, Route } from "react-router-dom"
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux"
-import { clearAlert } from './actions';
+import { useState } from 'react';
+import { useSelector } from "react-redux"
 
 
 function App() {
@@ -27,14 +26,6 @@ function App() {
   const alert = useSelector(state => state.alert)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isAsideOpen, setIsAsideOpen] = useState(false)
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    const timer = setTimeout(() =>
-      dispatch(clearAlert()),
-      3000);
-    return () => clearTimeout(timer);
-  }, [alert.shown]);
 
   const switchAside = () => {
     setIsAsideOpen(!isAsideOpen)

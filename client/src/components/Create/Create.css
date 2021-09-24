@@ -92,7 +92,14 @@
 .select .create-error {
     top: 100%;
 }
-
+.create-input-files {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.create-input-files .create-group {
+    width: 45%;
+}
 .create-input-error {
     border-bottom: 1px solid red;
 }
@@ -122,5 +129,13 @@
         height: fit-content;
         padding: 27px 35px;
         padding-bottom: 35px;
+    }
+}
+@media (max-width: 900px) {
+    .create-input-files {
+        flex-direction: column;
+    }
+    .create-input-files .create-group {
+        width: 100%;
     }
 }
