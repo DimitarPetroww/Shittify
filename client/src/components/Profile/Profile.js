@@ -16,12 +16,13 @@ const Profile = () => {
     const [isModal, setIsModal] = useState(false)
 
     const uploadPicture = (e) => {
-        dispatch(loader())
-        const file = e.target.files[0]
-        const formData = new FormData()
-        formData.append("file", file)
-        
-        userService.upload(formData)
+        if (e.target.files.length !== 0) {
+            dispatch(loader())
+            const file = e.target.files[0]
+            const formData = new FormData()
+            formData.append("file", file)
+
+            userService.upload(formData)
             .then(data => {
                 dispatch(loader())
                 dispatch(updateProfilePic(data.photoUrl))
@@ -30,6 +31,7 @@ const Profile = () => {
                 dispatch(loader())
                 dispatch(showAlert(e.message))
             })
+        }
     }
 
     const switchModal = () => {
@@ -40,7 +42,7 @@ const Profile = () => {
         <>
             <section className="profile-wrapper">
                 <div className="profile-container">
-                    <ProfilePicture uploadPicture={uploadPicture} photo={user.photoUrl}/>
+                    <ProfilePicture uploadPicture={uploadPicture} photo={user.photoUrl} />
                     <article className="profile-data">
                         <h4 className="profile-heading">Profile</h4>
                         <div>
@@ -54,7 +56,7 @@ const Profile = () => {
                     </article>
                 </div>
             </section>
-            {isModal ? <EditModal close={() => { setIsModal(false) }} username={user.username}/> : ""}
+            {isModal ? <EditModal close={() => { setIsModal(false) }} username={user.username} /> : ""}
         </>
     )
 }

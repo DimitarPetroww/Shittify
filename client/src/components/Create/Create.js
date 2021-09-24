@@ -4,9 +4,9 @@ import CreatePlaylist from "./CreatePlaylist/CreatePlaylist"
 
 const Create = ({ match, history, location }) => {
     if (match.params.category === "song") {
-        return <CreateSong />
-    }else if(match.params.category === "playlist") {
-        return <CreatePlaylist />
+        return <CreateSong history={history} />
+    } else if (match.params.category === "playlist") {
+        return <CreatePlaylist history={history} />
     }
 
 }

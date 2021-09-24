@@ -2,9 +2,13 @@ import { ReactComponent as AudioFile } from "../../../svg/audio_file.svg"
 import { ReactComponent as ImageFile } from "../../../svg/image_file.svg"
 import { ReactComponent as Cross } from "../../../svg/cross.svg"
 import { useState } from "react"
-const CreateSong = () => {
-    const [image, setImage] = useState()
-    const [audio, setAudio] = useState()
+import { useDispatch } from "react-redux"
+import * as songService from "../../../services/song"
+import { loader, showAlert } from "../../../actions"
+const CreateSong = ({ history }) => {
+    const dispatch = useDispatch()
+    const [audio, setAudio] = useState({ name: "Song Audio (under 100mb)" })
+    const [image, setImage] = useState({ name: "Song Image (under 100mb)" })
 
     const [fields, setFields] = useState({
         name: "",
@@ -27,14 +31,17 @@ const CreateSong = () => {
         formData.append("audio", audio)
         formData.append("name", e.target.name.value)
         formData.append("artist", e.target.artist.value)
-       
-        fetch("http://localhost:5000/api/song/create", {
-            method: "POST",
-            body: formData
-        })
-        .then((r)=> r.json())
-        .then(data=> console.log(data))
-        .catch(e=> console.log(e.message))
+
+        dispatch(loader())
+        songService.createSong(formData)
+            .then(data => {
+                dispatch(loader())
+                history.push("/")
+            })
+            .catch(e => {
+                dispatch(loader())
+                dispatch(showAlert(e.message))
+            })
     }
 
 
@@ -58,17 +65,21 @@ const CreateSong = () => {
                         </small> : ""}
                     </div>
                     <div className="create-group">
-                        <input type="file" className="create-input-file" id="image" accept="image/*" onChange={(e) => setImage(e.target.files[0])} />
+                        <input type="file" className="create-input-file" id="image" accept="image/*" onChange={(e) => {
+                            if (e.target.files.length !== 0) setImage(e.target.files[0])
+                        }} />
                         <label htmlFor="image" className="file-label">
                             <ImageFile className="file-icon" />
-                            Song Image (under 100mb)
+                            {image.name}
                         </label>
                     </div>
                     <div className="create-group">
-                        <input type="file" className="create-input-file" id="audio" accept="audio/*" onChange={(e) => setAudio(e.target.files[0])} />
+                        <input type="file" className="create-input-file" id="audio" accept="audio/*" onChange={(e) => {
+                            if (e.target.files.length !== 0) setAudio(e.target.files[0])
+                        }} />
                         <label htmlFor="audio" className="file-label">
                             <AudioFile className="file-icon" />
-                            Song Audio (under 100mb)
+                            {audio.name}
                         </label>
                     </div>
                     <input type="submit" value="Create Song" className="create-btn" />
