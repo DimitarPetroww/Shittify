@@ -73,7 +73,7 @@
     color: white;
 }
 
-@media (max-width: 599px) {
+@media (max-width: 699px) {
     .aside {
         display: none;
     }

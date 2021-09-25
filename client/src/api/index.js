@@ -1,12 +1,12 @@
-async function request(URL, options) {
+async function request(URL, options = {}) {
     try {
-        const r = await fetch(URL, Object.assign(options, {credentials: "include"}))
+        const r = await fetch(URL, Object.assign(options, { credentials: "include" }))
         const data = await r.json()
-        if(!r.ok) {
+        if (!r.ok) {
             throw new Error(data.message)
         }
         return data
-    }catch(e) {
+    } catch (e) {
         throw e
     }
 }

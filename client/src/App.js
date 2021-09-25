@@ -44,7 +44,7 @@ function App() {
             <main className="main-content-container" onClick={closeAside}>
               <Switch>
                 <Route path="/" exact component={Home} />
-                <Route path="/library/:collection" component={Browse} />
+                <Route path="/library/:category" component={Browse} />
                 <Route path="/search/:category" component={Browse} />
                 <Route path="/create/:category" component={Create} />
                 <Route path="/profile" component={Profile} />

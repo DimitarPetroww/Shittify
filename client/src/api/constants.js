@@ -6,7 +6,8 @@ const endpoints = {
     logout: `${API_URL}/user/logout`,
     uploadProfilePic: `${API_URL}/user/upload`,
     rename: `${API_URL}/user/rename`,
-    createSong: `${API_URL}/song/create`
+    getSongs: `${API_URL}/songs`,
+    createSong: `${API_URL}/songs/create`,
 }
 
 export default endpoints

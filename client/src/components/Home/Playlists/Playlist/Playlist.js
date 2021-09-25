@@ -1,6 +1,6 @@
 import "./Playlist.css"
 
-import PlayButton from "../../PlayButton/PlayButton";
+import PlayButton from "../../../PlayButton/PlayButton";
 const Playlist = () => {
     return (
         <article className="playlist">

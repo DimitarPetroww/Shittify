@@ -5,6 +5,18 @@ const { parseForm } = require("../utils/parseForm")
 
 const router = require("express").Router()
 
+router.get("/", async (req, res) => {
+    const search = req.query.search || ""
+    try {
+        const songs = await songService.getSongs(search)
+        res.json(songs)
+    } catch (e) {
+        res.status(400)
+        console.log(e.message);
+        res.json({ message: e.message })
+    }
+})
+
 router.post("/create", async (req, res) => {
     const form = formidable()
     try {

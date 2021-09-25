@@ -12,7 +12,7 @@ const SearchNavigation = ({ location, history }) => {
                     clearTimeout(timeout)
 
                     timeout = setTimeout(function () {
-                        history.push(`${location.pathname}?${e.target.value}`);
+                       e.target.value !== "" ?  history.push(`${location.pathname}?search=${e.target.value}`) : history.push(location.pathname)
                     }, 500);
                 })} />
             </div>

@@ -1,4 +1,4 @@
-import PlayButton from "../../PlayButton/PlayButton";
+import PlayButton from "../../../PlayButton/PlayButton";
 import "./Song.css"
 
 const Song = () => {

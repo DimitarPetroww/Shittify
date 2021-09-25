@@ -45,7 +45,7 @@
         width: 285px;
     }
 }
-@media (max-width: 599px) {
+@media (max-width: 699px) {
     .navigation-list {
         flex-direction: column;
         margin: 0 10px;

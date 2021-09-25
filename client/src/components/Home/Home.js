@@ -1,5 +1,5 @@
-import Playlists from "../Playlists/Playlists"
-import Songs from "../Songs/Songs"
+import Playlists from "./Playlists/Playlists"
+import Songs from "./Songs/Songs"
 import "./Home.css"
 
 

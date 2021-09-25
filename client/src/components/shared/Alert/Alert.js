@@ -15,15 +15,15 @@ function Alert({ msg }) {
     }, [alert.shown]);
 
     return (
-        <div class="alert">
-            <span class="icon">
+        <div className="alert">
+            <span className="icon">
                 <Close />
             </span>
-            <div class="text">
+            <div className="text">
                 <strong>Error</strong>
                 <p>{msg}</p>
             </div>
-            <button class="close" onClick={() => dispatch(clearAlert())}>
+            <button className="close" onClick={() => dispatch(clearAlert())}>
                 <Close />
             </button>
 

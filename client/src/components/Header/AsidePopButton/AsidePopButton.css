@@ -7,7 +7,7 @@
     fill: white;
 }
 
-@media (max-width: 599px) {
+@media (max-width: 699px) {
     .aside-pop-btn {
         display: block;
     }

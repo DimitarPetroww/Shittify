@@ -1,42 +1,33 @@
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { loader, showAlert } from "../../actions";
+
+import * as songService from "../../services/song"
 import "./Browse.css"
 import Container from "./Container/Container"
-const Wrapper = ({ match }) => {
+const Wrapper = ({ match, location }) => {
+    const dispatch = useDispatch()
     const [category, setCategory] = useState()
+    const [data, setData] = useState([])
 
     useEffect(() => {
-        let param = match.url.slice(match.url.lastIndexOf("/") + 1)
+        dispatch(loader())
+        let param = match.params.category
+        const search = new URLSearchParams(location.search).get("search") || ""
         param.includes("songs") ? setCategory("songs") : setCategory("playlists")
-    }, [match.url])
-
-    // if(match.url.startsWith("/library/")) {
-    //     console.log("library");
-    // }
-    // if(match.url.startsWith("/search")) {
-    //     console.log("search");
-    // }
+        songService.getSongs(search)
+        .then((songs) => {
+            setData(songs)
+            dispatch(loader())
+        })
+        .catch((e) => {
+            dispatch(showAlert(e.message))
+            dispatch(loader())
+        })
+    }, [match.params.category, location.search])
     return (
         <section className="wrapper">
-            <Container category={category} />
-            <Container category={category} />
-            <Container category={category} />
-            <Container category={category} />
-            <Container category={category} />
-            <Container category={category} />
-            <Container category={category} />
-            <Container category={category} />
-            <Container category={category} />
-            <Container category={category} />
-            <Container category={category} />
-            <Container category={category} />
-            <Container category={category} />
-            <Container category={category} />
-            <Container category={category} />
-            <Container category={category} />
-            <Container category={category} />
-            <Container category={category} />
-            <Container category={category} />
-            <Container category={category} />
+            {data.map(x => <Container key={x._id} category={category} data={x}/>)}
         </section>
     )
 }

@@ -1,7 +1,11 @@
 .wrapper {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0 20px;
+    padding-left: 40px;
     height: 77vh;
     overflow-y: scroll;
 }
+

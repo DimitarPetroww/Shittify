@@ -3,6 +3,8 @@
     background-color: #181818;
     border-radius: 5px;
     margin-top: 20px;
+    width: 20%;
+    margin-right: 20px;
     position: relative;
 }
 
@@ -26,9 +28,28 @@
     width: 100%;
     height: 157px;
 }
+
 .container:hover .play-button-container {
     display: block;
 }
+
 .container .play-button-container {
-    left: 75%;
+    left: 70%;
+}
+
+@media (max-width: 699px) {
+    .container {
+        width: 100%;
+    }
+    .container-img img {
+        height: 250px;
+    }
+    .container .play-button-container {
+        top: 60%;
+    }
+}
+@media (max-width: 1299px) {
+    .container {
+        margin-right: 0;
+    }
 }
