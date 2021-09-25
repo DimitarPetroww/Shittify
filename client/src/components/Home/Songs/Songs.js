@@ -1,9 +1,9 @@
 import Song from "./Song/Song"
 import "./Songs.css"
 
-import { NavLink  } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-const Songs = () => {
+const Songs = ({ songs }) => {
     return (
         <article className="songs">
             <div className="songs-header">
@@ -13,11 +13,7 @@ const Songs = () => {
                 <NavLink to="/search/songs">Check All</NavLink>
             </div>
             <div className="songs-container">
-                <Song />
-                <Song />
-                <Song />
-                <Song />
-                <Song />
+                {songs.map(x => <Song song={x} key={x._id} />)}
             </div>
         </article>
     );

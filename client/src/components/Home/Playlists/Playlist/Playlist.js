@@ -1,17 +1,17 @@
 import "./Playlist.css"
 
 import PlayButton from "../../../PlayButton/PlayButton";
-const Playlist = () => {
+const Playlist = ({ playlist }) => {
     return (
         <article className="playlist">
             <div className="playlist-img">
-                <img src="https://i.ytimg.com/vi/Og5lDcadRtU/maxresdefault.jpg" alt="" />
+                <img src={playlist.image} alt="" />
             </div>
             <div className="playlist-content">
-                <h3 className="playlist-content-title">Пиян 2005</h3>
-                <p className="playlist-content-author">Борис Дали</p>
+                <h3 className="playlist-content-title">{playlist.name}</h3>
+                <p className="playlist-content-author">{playlist.artist}</p>
             </div>
-            <PlayButton category="playlist"/>
+            <PlayButton category="playlist" />
         </article>
     );
 }

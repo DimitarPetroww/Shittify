@@ -4,7 +4,7 @@ import "./Playlists.css"
 
 import { NavLink } from "react-router-dom";
 
-const Playlists = () => {
+const Playlists = ({ playlists }) => {
     return (
         <article className="playlists">
             <div className="playlists-header">
@@ -14,11 +14,7 @@ const Playlists = () => {
                 <NavLink to="/search/playlists">Check All</NavLink>
             </div>
             <div className="playlists-container">
-                <Playlist />
-                <Playlist />
-                <Playlist />
-                <Playlist />
-                <Playlist />
+               {playlists.map(x=> <Playlist key={x._id} playlist={x}/>)}
             </div>
         </article>
     );

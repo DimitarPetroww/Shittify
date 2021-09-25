@@ -1,17 +1,17 @@
 import PlayButton from "../../../PlayButton/PlayButton";
 import "./Song.css"
 
-const Song = () => {
+const Song = ({ song }) => {
     return (
         <article className="song">
             <div className="song-img">
-                <img src="https://i.ytimg.com/vi/Og5lDcadRtU/maxresdefault.jpg" alt="" />
+                <img src={song.image} alt="" />
             </div>
             <div className="song-content">
-                <h3 className="song-content-title">Пиян 2005</h3>
-                <p className="song-content-author">Борис Дали</p>
+                <h3 className="song-content-title">{song.name}</h3>
+                <p className="song-content-author">{song.artist}</p>
             </div>
-            <PlayButton category="song"/>
+            <PlayButton category="song" />
         </article>
     );
 }
