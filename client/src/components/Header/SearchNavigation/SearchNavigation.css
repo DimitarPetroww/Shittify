@@ -10,6 +10,14 @@
     top: 2px;
     color: black;
 }
+.clear-icon {
+    fill: #121212;
+    position: relative;
+    right: 25px;
+    top: 2px;
+    cursor: pointer;
+}
+
 
 .search-input {
     max-width: 365px;

@@ -1,5 +1,5 @@
 const formidable = require("formidable")
-const songService = require("../services/song")
+const playlistService = require("../services/playlist")
 const { cloudinaryUpload } = require("../utils/cloudinaryUpload")
 const { parseForm } = require("../utils/parseForm")
 
@@ -8,7 +8,7 @@ const router = require("express").Router()
 router.get("/", async (req, res) => {
     const search = req.query.search || ""
     try {
-        const songs = await songService.getSongs(search)
+        const songs = await playlistService.getPlaylists(search)
         res.json(songs)
     } catch (e) {
         res.status(400)
@@ -24,8 +24,7 @@ router.post("/create", async (req, res) => {
             throw new Error("All fields are required")
         }
         const [image, imageId] = await cloudinaryUpload(files.image.path)
-        const [audio, audioId] = await cloudinaryUpload(files.audio.path, "video")
-        const song = await songService.createSong({ ...fields, image, imageId, audio, audioId, owner: req.user._id })
+        const song = await playlistService.createPlaylist({ ...fields, image, imageId, owner: req.user._id })
 
         res.json(song)
     } catch (e) {

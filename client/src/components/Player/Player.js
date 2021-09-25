@@ -13,15 +13,11 @@ const Player = ({ currentSongIndex, setCurrentSongIndex, songs, isPlaying, setIs
     const [lastVolume, setLastVolume] = useState(0)
     const [isMuted, setIsMuted] = useState(false)
 
-
-    useEffect(() => {
-        if (isPlaying) {
-            const secs = Math.floor(audio.current.duration) || 0
-            setDuration(secs)
-            progress.current.max = secs
-        }
-    }, [audio?.current?.readyState])
-
+    const readAudioMeta = () => {
+        const secs = Math.floor(audio.current.duration)
+        setDuration(secs)
+        progress.current.max = secs
+    }
     useEffect(() => {
         if (isPlaying) {
             audio.current.play()
@@ -91,7 +87,7 @@ const Player = ({ currentSongIndex, setCurrentSongIndex, songs, isPlaying, setIs
 
     return (
         <section className="player">
-            <audio ref={audio} src={songs[currentSongIndex].src} onEnded={forwardSong}></audio>
+            <audio ref={audio} src={songs[currentSongIndex].src} onEnded={forwardSong} onLoadedMetadata={readAudioMeta}></audio>
             <NowPlaying song={songs[currentSongIndex]} />
             <Controls
                 isMuted={isMuted}

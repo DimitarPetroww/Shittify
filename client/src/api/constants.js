@@ -8,6 +8,8 @@ const endpoints = {
     rename: `${API_URL}/user/rename`,
     getSongs: `${API_URL}/songs`,
     createSong: `${API_URL}/songs/create`,
+    getPlaylists: `${API_URL}/playlists`,
+    createPlaylist: `${API_URL}/playlists/create`
 }
 
 export default endpoints

@@ -59,7 +59,7 @@ const Details = ({ setIsPlaying }) => {
                 <div className="song-info">
                     <article className="song-picture-container">
                         <label className="song-picture" htmlFor="picture">
-                            <img src="https://res.cloudinary.com/douwa5b0u/image/upload/v1631438255/HotFlix/fyre_wofwkf.jpg" className={isOwner ? "can-change" : ""} />
+                            <img src="https://res.cloudinary.com/douwa5b0u/image/upload/v1631438255/HotFlix/fyre_wofwkf.jpg" className={isOwner ? "can-change" : ""} alt=""/>
                             {isOwner ? <div className="edit-img" style={{ "--image": "url('https://res.cloudinary.com/douwa5b0u/image/upload/v1631438255/HotFlix/fyre_wofwkf.jpg')" }}>
                                 <Pen />
                                 <span>Choose an image</span>

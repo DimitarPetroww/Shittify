@@ -29,8 +29,8 @@ const CreateSong = ({ history }) => {
         const formData = new FormData()
         formData.append("image", image)
         formData.append("audio", audio)
-        formData.append("name", e.target.name.value)
-        formData.append("artist", e.target.artist.value)
+        formData.append("name", fields.name)
+        formData.append("artist", fields.artist)
 
         dispatch(loader())
         songService.createSong(formData)

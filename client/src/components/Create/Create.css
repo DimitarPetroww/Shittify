@@ -113,6 +113,7 @@
     line-height: 40px;
     cursor: pointer;
     width: 60%;
+    outline: none;
     font-size: 20px;
     padding: 10px 20px;
 }

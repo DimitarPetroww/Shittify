@@ -192,7 +192,7 @@
 .add-search-icon {
     fill: rgba(255,255,255,.7);
     position: absolute;
-    top: 10px;
+    top: 18px;
     left: 8px;
 }
 .add-search-header input::placeholder {
@@ -204,6 +204,7 @@
     .song-info {
         flex-direction: column;
         margin: 0;
+        padding-left: 0;
     }
     .song-picture-container {
         margin-top: 20px;
@@ -222,7 +223,7 @@
         font-size: 25px;
     }
     .song-data {
-        margin-left: 20px;
+        margin-left: 0;
         align-items: center;
     }
     .song-data div {
@@ -236,7 +237,7 @@
         margin-left: 10px;
     }
     .grid {
-        grid-template-columns: 1fr 70% 1fr 1fr;
+        grid-template-columns: 1fr 65% 1fr 1fr;
     }
     .play-btn {
         width: 30px;
@@ -245,5 +246,8 @@
     .like-btn svg {
         width: 25px;
         height: 25px;
+    }
+    .add-search-header input {
+        width: 80%;
     }
 }

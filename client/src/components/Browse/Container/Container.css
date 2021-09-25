@@ -48,8 +48,3 @@
         top: 60%;
     }
 }
-@media (max-width: 1299px) {
-    .container {
-        margin-right: 0;
-    }
-}

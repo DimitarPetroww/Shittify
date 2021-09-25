@@ -49,3 +49,15 @@
 .search-item-add:hover {
     transform: scale(1.1);
 }
+@media (max-width: 750px) {
+    .search-item-content p:nth-child(1) {
+        font-size: 11px;
+    }
+    .search-item-content p:nth-child(2) {
+        font-size: 9px;
+    }
+    .search-item-add {
+        padding: 8px 15px;
+        width: 30%;
+    }
+}

@@ -2,7 +2,6 @@ import { request } from "../api";
 import endpoints from "../api/constants";
 
 const getSongs = (query = "") => {
-    console.log(query);
     if(query !== "") {
         return request(`${endpoints.getSongs}?search=${query}`)
     }
