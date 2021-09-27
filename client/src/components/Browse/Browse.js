@@ -21,7 +21,7 @@ const Wrapper = ({ match, location, history }) => {
 
     useEffect(() => {
         const request = requestMapper[match.params.category]
-        if(!request) { //404 NOT FOUND
+        if (!request) { //404 NOT FOUND
             return history.push("/")
         }
 
@@ -29,14 +29,14 @@ const Wrapper = ({ match, location, history }) => {
         match.params.category.includes("songs") ? setCategory("songs") : setCategory("playlists")
 
         request(search)
-        .then(setData)
-        .catch((e) => {
-            dispatch(showAlert(e.message))
-        })
+            .then(setData)
+            .catch((e) => {
+                dispatch(showAlert(e.message))
+            })
     }, [match.params.category, location.search])
     return (
         <section className="wrapper">
-            {data.map(x => <Container key={x._id} category={category} data={x} />)}
+            {data.length !== 0 ? data.map(x => <Container key={x._id} category={category} data={x} />) : <h1>No songs yet...</h1>}
         </section>
     )
 }

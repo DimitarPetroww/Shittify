@@ -11,7 +11,7 @@ const SearchNavigation = ({ location, history }) => {
     const searchInput = useRef()
     useEffect(() => {
         searchInput.current.value = ""
-    }, [location])
+    }, [location.pathname])
 
     return (
         <>
