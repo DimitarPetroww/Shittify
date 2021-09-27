@@ -14,7 +14,7 @@ import Details from './components/Details/Details';
 import Loader from './components/shared/Loader/Loader';
 import Alert from './components/shared/Alert/Alert';
 
-import { Switch, Route } from "react-router-dom"
+import { Switch, Route, Redirect } from "react-router-dom"
 import { useState } from 'react';
 import { useSelector } from "react-redux"
 
@@ -44,13 +44,14 @@ function App() {
             <main className="main-content-container" onClick={closeAside}>
               <Switch>
                 <Route path="/" exact component={Home} />
-                <Route path="/library/:category" component={Browse} />
-                <Route path="/search/:category" component={Browse} />
-                <Route path="/create/:category" component={Create} />
-                <Route path="/profile" component={Profile} />
-                <Route path="/details/:category/:id">
+                <Route path="/library/:category" component={Browse} exact/>
+                <Route path="/search/:category" component={Browse} exact/>
+                <Route path="/create/:category" component={Create} exact/>
+                <Route path="/profile" component={Profile} exact/>
+                <Route path="/details/:category/:id" exact>
                   <Details isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
                 </Route>
+                <Redirect from="*" to="/" />
               </Switch>
             </main>
           </div>

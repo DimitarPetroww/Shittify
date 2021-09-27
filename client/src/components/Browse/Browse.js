@@ -14,14 +14,16 @@ const requestMapper = {
     "liked-playlists": playlistService.getLikedPlaylists,
     "liked-songs": songService.getLikedSongs
 }
-const Wrapper = ({ match, location }) => {
+const Wrapper = ({ match, location, history }) => {
     const dispatch = useDispatch()
     const [category, setCategory] = useState()
     const [data, setData] = useState([])
 
     useEffect(() => {
         const request = requestMapper[match.params.category]
-        // if(!request) //404 NOT FOUND
+        if(!request) { //404 NOT FOUND
+            return history.push("/")
+        }
 
         const search = new URLSearchParams(location.search).get("search") || ""
         match.params.category.includes("songs") ? setCategory("songs") : setCategory("playlists")
