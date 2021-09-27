@@ -11,6 +11,12 @@
     width: 50px;
     margin-left: 20px;
 }
+.aside-sub-logo {
+    fill: #0AD157;
+    width: 11px;
+    margin-top: 5px;
+    align-self: flex-start;
+}
 .logo-container {
     text-decoration: none;
     display: flex;

@@ -8,4 +8,37 @@
     height: 77vh;
     overflow-y: scroll;
 }
-
+.no-data {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    height: 77vh;
+}
+.no-data-logo {
+    fill: #0AD157;
+    height: 50px;
+    width: 200px;
+}
+.no-data-title {
+    font-size: 30px;
+}
+.no-data-links a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    border-radius: 33px;
+    background: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 20px;
+    font-size: 20px;
+    height: 50px;
+    width: 200px;
+}
+.no-data-links a:hover {
+    transform: scale(1.03);
+    text-decoration: underline;
+}

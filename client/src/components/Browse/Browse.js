@@ -1,5 +1,8 @@
+import { ReactComponent as Audio } from "../../svg/audio.svg"
+
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { showAlert } from "../../actions";
 import * as playlistService from "../../services/playlist";
 import * as songService from "../../services/song"
@@ -35,9 +38,22 @@ const Wrapper = ({ match, location, history }) => {
             })
     }, [match.params.category, location.search])
     return (
-        <section className="wrapper">
-            {data.length !== 0 ? data.map(x => <Container key={x._id} category={category} data={x} />) : <h1>No songs yet...</h1>}
-        </section>
+        <>
+            {data.length !== 0
+                ?
+                <section className="wrapper">
+                    {data.map(x => <Container key={x._id} category={category} data={x} />)}
+                </section>
+                :
+                <section className="no-data">
+                    <Audio className="no-data-logo"/>
+                    <h1 className="no-data-title">No results found</h1>
+                    <div className="no-data-links">
+                        <NavLink to="#">Create Song</NavLink>
+                        <NavLink to="#">Create Playlist</NavLink>
+                    </div>
+                </section>}
+        </>
     )
 }
 

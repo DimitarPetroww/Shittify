@@ -2,10 +2,13 @@ import "./Aside.css"
 import { NavLink } from "react-router-dom"
 import { ReactComponent as Home } from "../../svg/home.svg"
 import { ReactComponent as Logo } from "../../svg/logo.svg"
+import { ReactComponent as Audio } from "../../svg/audio.svg"
+
 import { ReactComponent as Search } from "../../svg/search.svg"
 import { ReactComponent as Library } from "../../svg/library.svg"
 import { ReactComponent as CreatePlaylist } from "../../svg/createPlaylist.svg"
 import { ReactComponent as CreateSong } from "../../svg/createSong.svg"
+
 
 
 const Aside = ({ isOpen, click }) => {
@@ -19,6 +22,7 @@ const Aside = ({ isOpen, click }) => {
                 <NavLink to="/" className="logo-container">
                     <Logo className="aside-logo" />
                     <span>Shittify</span>
+                    <Audio className="aside-sub-logo"/>
                 </NavLink>
 
                 <hr className="aside-nav-list-border" />
