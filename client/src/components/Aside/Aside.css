@@ -7,7 +7,20 @@
     color: #757575;
     animation: slide-right 0.5s ease-in both;
 }
-
+.aside-logo {
+    width: 50px;
+    margin-left: 20px;
+}
+.logo-container {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+.logo-container span {
+    color: #0AD157;
+    font-size: 25px;
+    margin-left: 10px;
+}
 .aside-nav {
     margin-top: 20px;
 }

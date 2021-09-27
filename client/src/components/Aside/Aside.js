@@ -1,6 +1,7 @@
 import "./Aside.css"
 import { NavLink } from "react-router-dom"
 import { ReactComponent as Home } from "../../svg/home.svg"
+import { ReactComponent as Logo } from "../../svg/logo.svg"
 import { ReactComponent as Search } from "../../svg/search.svg"
 import { ReactComponent as Library } from "../../svg/library.svg"
 import { ReactComponent as CreatePlaylist } from "../../svg/createPlaylist.svg"
@@ -15,6 +16,11 @@ const Aside = ({ isOpen, click }) => {
     return (
         <aside className={classes.join(" ")}>
             <nav className="aside-nav">
+                <NavLink to="/" className="logo-container">
+                    <Logo className="aside-logo" />
+                    <span>Shittify</span>
+                </NavLink>
+
                 <hr className="aside-nav-list-border" />
                 <ul className="aside-nav-list" onClick={click}>
                     <li className="aside-nav-list-link">
