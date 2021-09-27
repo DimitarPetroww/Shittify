@@ -50,8 +50,8 @@ const Profile = () => {
                             <span className="edit-btn" onClick={switchModal}><Edit /></span>
                         </div>
                         <div>
-                            <NavLink className="profile-playlists-count" to="/library/my-playlists">9 Playlists</NavLink>
-                            <NavLink className="profile-songs-count" to="/library/my-songs">9 Songs</NavLink>
+                            <NavLink className="profile-playlists-count" to="/library/my-playlists">{user.ownedPlaylists.length} {user.ownedPlaylists.length === 1 ? "Playlist" : "Playlists"}</NavLink>
+                            <NavLink className="profile-songs-count" to="/library/my-songs">{user.ownedSongs.length} {user.ownedSongs.length === 1 ? "Song" : "Songs"}</NavLink>
                         </div>
                     </article>
                 </div>

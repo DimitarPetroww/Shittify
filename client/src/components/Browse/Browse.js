@@ -2,32 +2,32 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { showAlert } from "../../actions";
 import * as playlistService from "../../services/playlist";
-
 import * as songService from "../../services/song"
 import "./Browse.css"
 import Container from "./Container/Container"
+
+const requestMapper = {
+    "songs": songService.getSongs,
+    "playlists": playlistService.getPlaylists,
+    "my-playlists": playlistService.getMyPlaylists,
+    "my-songs": songService.getMySongs,
+    "liked-playlists": playlistService.getLikedPlaylists,
+    "liked-songs": songService.getLikedSongs
+}
 const Wrapper = ({ match, location }) => {
     const dispatch = useDispatch()
     const [category, setCategory] = useState()
     const [data, setData] = useState([])
 
     useEffect(() => {
-        let param = match.params.category
-        let request;
+        const request = requestMapper[match.params.category]
+        // if(!request) //404 NOT FOUND
+
         const search = new URLSearchParams(location.search).get("search") || ""
-        param.includes("songs") ? setCategory("songs") : setCategory("playlists")
-        switch (param) {
-            case "songs":
-                request = songService.getSongs
-            break;
-            case "playlists":
-                request = playlistService.getPlaylists
-            break;
-        }
+        match.params.category.includes("songs") ? setCategory("songs") : setCategory("playlists")
+
         request(search)
-        .then((res) => {
-            setData(res)
-        })
+        .then(setData)
         .catch((e) => {
             dispatch(showAlert(e.message))
         })

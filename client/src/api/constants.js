@@ -10,6 +10,10 @@ const endpoints = {
     createSong: `${API_URL}/songs/create`,
     getPlaylists: `${API_URL}/playlists`,
     createPlaylist: `${API_URL}/playlists/create`,
+    getMyPlaylists: `${API_URL}/user/my-playlists`,
+    getMySongs: `${API_URL}/user/my-songs`,
+    getLikedSongs: `${API_URL}/user/liked-songs`,
+    getLikedPlaylists: `${API_URL}/user/liked-playlists`
 }
 
 export default endpoints

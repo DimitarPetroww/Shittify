@@ -7,6 +7,12 @@ const getPlaylists = (query = "") => {
     }
     return request(endpoints.getPlaylists)
 }
+const getMyPlaylists = () => {
+    return request(endpoints.getMyPlaylists)
+}
+const getLikedPlaylists = () => {
+    return request(endpoints.getLikedPlaylists)
+}
 const createPlaylist = (formData) => {
     return request(endpoints.createPlaylist, {
         method: "POST",
@@ -15,5 +21,7 @@ const createPlaylist = (formData) => {
 }
 export {
     createPlaylist,
-    getPlaylists
+    getPlaylists,
+    getMyPlaylists,
+    getLikedPlaylists
 }

@@ -27,8 +27,8 @@ router.post("/register", async (req, res) => {
     try {
         const hashedPassword = await bcrypt.hash(data.password, Number(process.env.SALT_ROUNDS))
         const user = await userService.createUser({ email: data.email, username: data.username, password: hashedPassword })
-        const temp = { email: user.email, _id: user._id, username: user.username, photoUrl: user.photoUrl }
-
+        const temp = JSON.parse(JSON.stringify(user))
+        delete temp.password
         const token = jwt.sign(temp, process.env.TOKEN_SECRET)
         res.cookie(process.env.COOKIE_NAME, token, { httpOnly: true })
         res.json(temp)
@@ -55,7 +55,8 @@ router.post("/login", async (req, res) => {
         if (!isMatch) {
             throw new Error("Wrong email or password")
         }
-        const temp = { email: user.email, _id: user._id, username: user.username, photoUrl: user.photoUrl }
+        const temp = JSON.parse(JSON.stringify(user))
+        delete temp.password
         const token = jwt.sign(temp, process.env.TOKEN_SECRET)
 
         res.cookie(process.env.COOKIE_NAME, token, { httpOnly: true })
@@ -92,6 +93,43 @@ router.post("/rename", async (req, res) => {
     try {
         const user = await userService.changeName(req.user._id, username)
         res.json(user.username)
+    } catch (error) {
+        res.status(400)
+        res.json({ message: error.message })
+    }
+})
+
+router.get("/my-playlists", async (req, res) => {
+    try {
+        const playlists = await userService.getMyPlaylists(req.user._id)
+        res.json(playlists)
+    } catch (error) {
+        res.status(400)
+        res.json({ message: error.message })
+    }
+})
+router.get("/my-songs", async (req, res) => {
+    try {
+        const songs = await userService.getMySongs(req.user._id)
+        res.json(songs)
+    } catch (error) {
+        res.status(400)
+        res.json({ message: error.message })
+    }
+})
+router.get("/liked-songs", async (req, res) => {
+    try {
+        const songs = await userService.getLikedSongs(req.user._id)
+        res.json(songs)
+    } catch (error) {
+        res.status(400)
+        res.json({ message: error.message })
+    }
+})
+router.get("/liked-playlists", async (req, res) => {
+    try {
+        const songs = await userService.getLikedPlaylists(req.user._id)
+        res.json(songs)
     } catch (error) {
         res.status(400)
         res.json({ message: error.message })

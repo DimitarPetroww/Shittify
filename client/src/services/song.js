@@ -7,6 +7,12 @@ const getSongs = (query = "") => {
     }
     return request(endpoints.getSongs)
 }
+const getMySongs = () => {
+    return request(endpoints.getMySongs)
+}
+const getLikedSongs = () => {
+    return request(endpoints.getLikedSongs)
+}
 const createSong = (formData) => {
     return request(endpoints.createSong, {
         method: "POST",
@@ -15,5 +21,7 @@ const createSong = (formData) => {
 }
 export {
     createSong,
-    getSongs
+    getSongs,
+    getMySongs,
+    getLikedSongs
 }

@@ -1,4 +1,5 @@
 const Playlist = require("../models/Playlist")
+const { findUserById } = require("./user")
 
 async function getPlaylists(search) {
     return Playlist.find({
@@ -6,9 +7,11 @@ async function getPlaylists(search) {
     })
 
 }
-
 async function createPlaylist(data) {
     const existing = new Playlist(data)
+    const user = await findUserById(data.owner)
+    user.ownedPlaylists.push(existing._id)
+    await user.save()
 
     return existing.save()
 }

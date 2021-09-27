@@ -5,7 +5,6 @@ async function createUser({ email, username, password, photoUrl }) {
         throw new Error("Email is already taken")
     }
     const existing = new User({ email, username, password, photoUrl })
-
     return existing.save()
 }
 async function findUserByEmail(email) {
@@ -31,10 +30,34 @@ async function changeName(id, username) {
 
     return existing.save()
 }
+async function getMyPlaylists(id) {
+    const existing = await User.findById(id).populate("ownedPlaylists")
+
+    return existing.ownedPlaylists
+}
+async function getMySongs(id) {
+    const existing = await User.findById(id).populate("ownedSongs")
+
+    return existing.ownedSongs
+}
+async function getLikedSongs(id) {
+    const existing = await User.findById(id).populate("likedSongs")
+
+    return existing.likedSongs
+}
+async function getLikedPlaylists(id) {
+    const existing = await User.findById(id).populate("likedPlaylists")
+
+    return existing.likedPlaylists
+}
 module.exports = {
     createUser,
     findUserByEmail,
     uploadPhoto,
     changeName,
-    findUserById
+    findUserById,
+    getMyPlaylists,
+    getMySongs,
+    getLikedSongs,
+    getLikedPlaylists
 }
