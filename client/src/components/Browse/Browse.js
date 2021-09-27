@@ -49,8 +49,8 @@ const Wrapper = ({ match, location, history }) => {
                     <Audio className="no-data-logo"/>
                     <h1 className="no-data-title">No results found</h1>
                     <div className="no-data-links">
-                        <NavLink to="#">Create Song</NavLink>
-                        <NavLink to="#">Create Playlist</NavLink>
+                        <NavLink to="/create/song">Create Song</NavLink>
+                        <NavLink to="/create/playlist">Create Playlist</NavLink>
                     </div>
                 </section>}
         </>
