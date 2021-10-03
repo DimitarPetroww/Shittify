@@ -103,6 +103,14 @@
         width: 60%; 
     }
 }
+@media (max-width: 1024px) {
+    .aside-logo {
+        margin-left: 10px;
+    }
+    .logo-container span {
+        font-size: 15px;
+    }
+}
 
 @keyframes slide-right {
     0% {
