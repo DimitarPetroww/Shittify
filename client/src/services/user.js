@@ -1,6 +1,9 @@
 import { request } from "../api";
 import endpoints from "../api/constants";
 
+const getUser = () => {
+    return request(endpoints.getUser)
+}
 const register = (data) => {
     return request(endpoints.register, {
         method: "POST",
@@ -47,5 +50,6 @@ export {
     login,
     upload,
     rename,
-    logout
+    logout,
+    getUser
 }

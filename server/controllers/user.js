@@ -9,6 +9,12 @@ const { cloudinaryUpload } = require("../utils/cloudinaryUpload")
 const { cloudinaryDelete } = require("../utils/cloudinaryDelete")
 
 
+router.get("/", async (req, res) => {
+    if(req.user) {
+        return res.json(req.user)
+    }
+    res.json(undefined)
+})
 router.post("/register", async (req, res) => {
     const data = {
         email: req.body.email,

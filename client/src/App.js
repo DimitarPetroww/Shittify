@@ -15,17 +15,37 @@ import Loader from './components/shared/Loader/Loader';
 import Alert from './components/shared/Alert/Alert';
 
 import { Switch, Route, Redirect } from "react-router-dom"
-import { useState } from 'react';
-import { useSelector } from "react-redux"
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux"
+
+import * as userService from "./services/user"
+import { loader, logout, showAlert, signIn } from './actions';
 
 
 function App() {
+  const dispatch = useDispatch()
   const user = useSelector(state => state.auth)
   const songs = useSelector(state => state.songs.songs)
   const isLoading = useSelector(state => state.load)
   const alert = useSelector(state => state.alert)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isAsideOpen, setIsAsideOpen] = useState(false)
+
+  useEffect(() => {
+    dispatch(loader())
+    userService.getUser()
+      .then(data => {
+        dispatch(loader())
+        if (data) dispatch(signIn(data))
+        else dispatch(logout())
+      })
+      .catch(e => {
+        dispatch(loader())
+        dispatch(showAlert(e.message))
+        dispatch(logout())
+      })
+  }, [])
+
 
   const switchAside = () => {
     setIsAsideOpen(!isAsideOpen)
@@ -44,10 +64,10 @@ function App() {
             <main className="main-content-container" onClick={closeAside}>
               <Switch>
                 <Route path="/" exact component={Home} />
-                <Route path="/library/:category" component={Browse} exact/>
-                <Route path="/search/:category" component={Browse} exact/>
-                <Route path="/create/:category" component={Create} exact/>
-                <Route path="/profile" component={Profile} exact/>
+                <Route path="/library/:category" component={Browse} exact />
+                <Route path="/search/:category" component={Browse} exact />
+                <Route path="/create/:category" component={Create} exact />
+                <Route path="/profile" component={Profile} exact />
                 <Route path="/details/:category/:id" exact>
                   <Details isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
                 </Route>
