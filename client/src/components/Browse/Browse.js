@@ -34,6 +34,7 @@ const Wrapper = ({ match, location, history }) => {
         request(search)
             .then(setData)
             .catch((e) => {
+                setData([])
                 dispatch(showAlert(e.message))
             })
     }, [match.params.category, location.search])

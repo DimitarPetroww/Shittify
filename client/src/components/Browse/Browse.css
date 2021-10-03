@@ -42,3 +42,9 @@
     transform: scale(1.03);
     text-decoration: underline;
 }
+@media (max-width: 699px) {
+    .no-data-links a {
+        width: 140px;
+        font-size: 16px;
+    }
+}
