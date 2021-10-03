@@ -23,7 +23,7 @@ const SearchNavigation = ({ location, history }) => {
                         e.target.value !== "" ? history.push(`${location.pathname}?search=${e.target.value}`) : history.push(location.pathname)
                     }, 500);
                 })} />
-                <span className="clear-icon" onClick={() => history.push(location.pathname)}><Close /></span>
+                <span className="clear-icon" onClick={() => { history.push(location.pathname); searchInput.current.value = ""}}><Close /></span>
             </div>
             <nav className="navigation">
                 <ul className="navigation-list">
