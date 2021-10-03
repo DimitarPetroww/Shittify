@@ -3,9 +3,9 @@ import endpoints from "../api/constants";
 
 const getSongs = (query = "") => {
     if(query !== "") {
-        return request(`${endpoints.getSongs}?search=${query}`)
+        return request(`${endpoints.songs}?search=${query}`)
     }
-    return request(endpoints.getSongs)
+    return request(endpoints.songs)
 }
 const getMySongs = () => {
     return request(endpoints.getMySongs)
@@ -19,9 +19,13 @@ const createSong = (formData) => {
         body: formData
     })
 }
+const getOne = (id) => {
+    return request(`${endpoints.songs}/${id}`)
+}
 export {
     createSong,
     getSongs,
     getMySongs,
-    getLikedSongs
+    getLikedSongs,
+    getOne
 }

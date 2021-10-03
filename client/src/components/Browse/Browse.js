@@ -25,7 +25,7 @@ const Wrapper = ({ match, location, history }) => {
     useEffect(() => {
         const request = requestMapper[match.params.category]
         if (!request) { //404 NOT FOUND
-            return history.push("/")
+            return history.push("/404")
         }
 
         const search = new URLSearchParams(location.search).get("search") || ""

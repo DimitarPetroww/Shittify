@@ -87,6 +87,7 @@ function App() {
         <Route path="/" component={LandingPage} exact />
         <Route path="/auth/login" component={Login} />
         <Route path="/auth/sign-up" component={Register} />
+        <Redirect from="*" to="/" />
       </Switch>
       {isLoading ? <Loader /> : ""}
       {alert.shown ? <Alert msg={alert.message} /> : ""}

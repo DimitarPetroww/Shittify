@@ -5,7 +5,7 @@ import { ReactComponent as Liked } from "../../../svg/liked.svg";
 const NowPlaying = ({ song }) => {
     return (
         <article className="player-now-playing">
-            <img src={song.img_src} alt="" />
+            <img src={song.image} alt="" />
             <div className="player-now-playing-info">
                 <h4 className="player-now-playing-info-title">{song.name}</h4>
                 <p className="player-now-playing-info-author">{song.artist}</p>

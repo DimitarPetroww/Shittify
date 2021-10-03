@@ -15,6 +15,15 @@ router.get("/", async (req, res) => {
         res.json({ message: e.message })
     }
 })
+router.get("/:id", async (req, res) => {
+    try {
+        const playlist = await playlistService.getOne(req.params.id)
+        res.json(playlist)
+    } catch (e) {
+        res.status(400)
+        res.json({ message: e.message })
+    }
+})
 
 router.post("/create", async (req, res) => {
     const form = formidable()

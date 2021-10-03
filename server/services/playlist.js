@@ -15,8 +15,12 @@ async function createPlaylist(data) {
 
     return existing.save()
 }
+async function getOne(id) {
+    return Playlist.findById(id)
+}
 
 module.exports = {
     createPlaylist,
-    getPlaylists
+    getPlaylists,
+    getOne
 }

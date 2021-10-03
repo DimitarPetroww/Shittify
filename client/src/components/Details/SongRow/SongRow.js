@@ -1,19 +1,29 @@
+import { useEffect } from "react"
+import { useState } from "react"
+
 import { ReactComponent as Can } from "../../../svg/can.svg"
 import { ReactComponent as Play } from "../../../svg/play.svg"
 import "./SongRow.css"
-const SongRow = () => {
+const SongRow = ({ song, index }) => {
+    const [duration, setDuration] = useState(0)
+    
     return (
         <div className="grid center">
-            <div className="index song-index">5</div>
+            <audio src={song.audio} onLoadedMetadata={(e) => {
+                const minutes = Math.floor(e.target.duration / 60)
+                const seconds = Math.floor(e.target.duration % 60)
+                setDuration(`${minutes}:${seconds}`)
+            }}></audio>
+            <div className="index song-index">{index}</div>
             <div className="play"><Play /></div>
             <div className="title song-text">
-                <img src="https://res.cloudinary.com/douwa5b0u/image/upload/v1631438255/HotFlix/fyre_wofwkf.jpg" />
+                <img src={song.image} />
                 <div>
-                    <p>Aромат на барут</p>
-                    <p>Pamela X Fyre</p>
+                    <p>{song.name}</p>
+                    <p>{song.artist}</p>
                 </div>
             </div>
-            <div className="time song-time">4:20</div>
+            <div className="time song-time">{duration}</div>
             <div className="delete"><Can /></div>
         </div>
     )

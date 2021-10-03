@@ -1,12 +1,12 @@
 import "./Edit.css"
 import { ReactComponent as Close } from "../../../svg/close.svg"
 
-const Edit = ({ close }) => {
+const Edit = ({ close, name }) => {
     return (
         <section className="edit-wrapper">
             <div className="edit-content">
                 <div className="edit-text">
-                    <h1 className="edit-heading">Edit "Аромат на барут"</h1>
+                    <h1 className="edit-heading">Edit "{name}"</h1>
                     <span className="close" onClick={close}>
                         <Close />
                     </span>
@@ -16,7 +16,7 @@ const Edit = ({ close }) => {
                         e.preventDefault()
                         close()
                     }}>
-                        <input type="text" defaultValue="Аромат на барут" className="edit-error-input" />
+                        <input type="text" defaultValue={name} className="edit-error-input" />
                         <span className="edit-error">Name</span>
                         <input type="submit" value="Save" />
                     </form>

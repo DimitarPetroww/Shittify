@@ -10,6 +10,9 @@ async function getSongs(search) {
     })
 
 }
+async function getOne(id) {
+    return Song.findById(id)
+}
 
 async function createSong(data) {
     const existing = new Song(data)
@@ -21,5 +24,6 @@ async function createSong(data) {
 
 module.exports = {
     createSong,
-    getSongs
+    getSongs,
+    getOne
 }
