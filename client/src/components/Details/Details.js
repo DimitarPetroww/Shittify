@@ -7,22 +7,31 @@ import { ReactComponent as Cross } from "../../svg/cross.svg"
 import { ReactComponent as Pen } from "../../svg/pen.svg"
 import { ReactComponent as Search } from "../../svg/bold_search.svg"
 import { ReactComponent as EditLink } from "../../svg/edit.svg"
-
-import { useDispatch } from "react-redux"
-import { useState } from "react"
-import { setSongs } from "../../actions"
-
 import SongRow from "./SongRow/SongRow"
 import Edit from "./Edit/Edit"
 import Delete from "./Delete/Delete"
 import SearchSongItem from "./SearchSongItem/SearchSongItem"
 
-const Details = ({ setIsPlaying }) => {
+import { useDispatch } from "react-redux"
+import { useState, useEffect } from "react"
+
+import { setSongs } from "../../actions"
+
+const requestMapper = {
+    "playlist": "da",
+    "song": "ne"
+}
+
+const Details = ({ setIsPlaying, match }) => {
     const dispatch = useDispatch()
     const [isOwner] = useState(true)
     const [isEdit, setIsEdit] = useState(false)
     const [isDelete, setIsDelete] = useState(false)
 
+    useEffect(() => {
+        const { category, id } = match.params
+        console.log(requestMapper[category]);
+    }, [])
     const setSongsHandler = () => {
         dispatch(setSongs([
             {
@@ -59,7 +68,7 @@ const Details = ({ setIsPlaying }) => {
                 <div className="song-info">
                     <article className="song-picture-container">
                         <label className="song-picture" htmlFor="picture">
-                            <img src="https://res.cloudinary.com/douwa5b0u/image/upload/v1631438255/HotFlix/fyre_wofwkf.jpg" className={isOwner ? "can-change" : ""} alt=""/>
+                            <img src="https://res.cloudinary.com/douwa5b0u/image/upload/v1631438255/HotFlix/fyre_wofwkf.jpg" className={isOwner ? "can-change" : ""} alt="" />
                             {isOwner ? <div className="edit-img" style={{ "--image": "url('https://res.cloudinary.com/douwa5b0u/image/upload/v1631438255/HotFlix/fyre_wofwkf.jpg')" }}>
                                 <Pen />
                                 <span>Choose an image</span>

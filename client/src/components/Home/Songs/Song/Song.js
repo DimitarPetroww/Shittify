@@ -11,7 +11,7 @@ const Song = ({ song }) => {
                 <h3 className="song-content-title">{song.name}</h3>
                 <p className="song-content-author">{song.artist}</p>
             </div>
-            <PlayButton category="song" />
+            <PlayButton category="song" id={song._id} />
         </article>
     );
 }

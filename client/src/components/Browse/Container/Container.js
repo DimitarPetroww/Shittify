@@ -10,7 +10,7 @@ const Container = ({category, data}) => {
                 <h3 className="container-content-title">{data.name}</h3>
                 <p className="container-content-author">{data.artist}</p>
             </div>
-            <PlayButton category={category}/>
+            <PlayButton category={category.slice(0, category.length - 1)} id={data._id}/>
         </article>
     );
 }

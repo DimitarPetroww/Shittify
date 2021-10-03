@@ -68,9 +68,7 @@ function App() {
                 <Route path="/search/:category" component={Browse} exact />
                 <Route path="/create/:category" component={Create} exact />
                 <Route path="/profile" component={Profile} exact />
-                <Route path="/details/:category/:id" exact>
-                  <Details isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
-                </Route>
+                <Route path="/details/:category/:id" exact render={(props) => <Details isPlaying={isPlaying} setIsPlaying={setIsPlaying} {...props} />} />
                 <Redirect from="*" to="/" />
               </Switch>
             </main>
