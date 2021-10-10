@@ -5,12 +5,7 @@ const SearchSongItem = ({ data }) => {
     const dispatch = useDispatch()
 
     const addSongHandler = () => {
-        dispatch(addSong({
-            name: "Hail Mary",
-            artist: "2PAC",
-            img_src: "https://res.cloudinary.com/douwa5b0u/image/upload/v1631801782/HotFlix/hail_mary_yafguf.jpg",
-            src: "https://res.cloudinary.com/douwa5b0u/video/upload/v1631801784/HotFlix/Tupac_-_Hail_Mary_yntzio.mp4"
-        }))
+       
     }
 
     return (

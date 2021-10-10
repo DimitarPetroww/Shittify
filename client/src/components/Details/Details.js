@@ -134,7 +134,7 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
                         </article> : ""}
                 </div>
                 {isOwner && match.params.category === "playlist"
-                    ? <AddSongs />
+                    ? <AddSongs containedSongs={localSongs}/>
                     : ""
                 }
             </section>
