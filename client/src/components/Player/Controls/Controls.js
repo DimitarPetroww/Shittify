@@ -26,7 +26,7 @@ const Controls = ({
             <article className="player-controls">
                 <ul className="player-controls-controller">
                     <li className="player-backward" onClick={backwardSong}>
-                       <Backward />
+                        <Backward />
                     </li>
                     {isPlaying
                         ? <li className="player-stop" onClick={() => setIsPlaying(false)}>
@@ -36,11 +36,11 @@ const Controls = ({
                         </li>
                         : <li className="player-start" onClick={() => setIsPlaying(true)}>
                             <button className="player-start-button">
-                               <Play />
+                                <Play />
                             </button>
                         </li>}
                     <li className="player-forward" onClick={forwardSong}>
-                       <Forward />
+                        <Forward />
                     </li>
                 </ul>
                 <div className="player-controls-progress">
@@ -51,7 +51,6 @@ const Controls = ({
             </article>
             <article className="player-audio">
                 {isMuted ? <div onClick={unmute}><Mute /></div> : <div onClick={mute}><Volume /></div>}
-
                 <input className="audio-bar" type="range" defaultValue="100" ref={volume} onChange={onVolumeChange} />
             </article>
         </>

@@ -10,10 +10,10 @@ const { cloudinaryDelete } = require("../utils/cloudinaryDelete")
 
 
 router.get("/", async (req, res) => {
-    if(req.user) {
+    if (req.user) {
         return res.json(req.user)
     }
-    res.json(undefined)
+    res.json(null)
 })
 router.post("/register", async (req, res) => {
     const data = {

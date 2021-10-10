@@ -80,14 +80,20 @@ const Player = ({ currentSongIndex, setCurrentSongIndex, songs, isPlaying, setIs
         }
     }
     const changeCurrentTime = () => {
-        progress.current.style.setProperty("--width", `${progress.current.value / duration * 100}%`)
+        progress.current.style.setProperty("--width", `${(progress.current.value / duration) * 100}%`)
         setCurrentTime(progress.current.value)
     }
 
 
     return (
         <section className="player">
-            <audio ref={audio} src={songs[currentSongIndex].audio} onEnded={forwardSong} onLoadedMetadata={readAudioMeta}></audio>
+            <audio ref={audio} src={songs[currentSongIndex].audio} onEnded={(e) => {
+                if(songs.length === 1) {
+                    setIsPlaying(false)
+                }else {
+                    forwardSong()
+                }
+            }} onLoadedMetadata={readAudioMeta}></audio>
             <NowPlaying song={songs[currentSongIndex]} />
             <Controls
                 isMuted={isMuted}

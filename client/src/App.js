@@ -63,13 +63,12 @@ function App() {
             <Header click={switchAside} />
             <main className="main-content-container" onClick={closeAside}>
               <Switch>
-                <Route path="/" exact component={Home} />
                 <Route path="/library/:category" component={Browse} exact />
                 <Route path="/search/:category" component={Browse} exact />
                 <Route path="/create/:category" component={Create} exact />
                 <Route path="/profile" component={Profile} exact />
                 <Route path="/details/:category/:id" exact render={(props) => <Details isPlaying={isPlaying} setIsPlaying={setIsPlaying} {...props} />} />
-                <Redirect from="*" to="/" />
+                <Route path="*" component={Home} />
               </Switch>
             </main>
           </div>
@@ -84,10 +83,9 @@ function App() {
     <>
       <Header />
       <Switch>
-        <Route path="/" component={LandingPage} exact />
         <Route path="/auth/login" component={Login} />
         <Route path="/auth/sign-up" component={Register} />
-        <Redirect from="*" to="/" />
+        <Route path="*" exact component={LandingPage} />
       </Switch>
       {isLoading ? <Loader /> : ""}
       {alert.shown ? <Alert msg={alert.message} /> : ""}

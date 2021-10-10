@@ -3,6 +3,7 @@ import { ReactComponent as Like } from "../../svg/like.svg"
 import { ReactComponent as Liked } from "../../svg/liked.svg"
 import { ReactComponent as Time } from "../../svg/time.svg"
 import { ReactComponent as Play } from "../../svg/play.svg"
+import { ReactComponent as Stop } from "../../svg/stop.svg"
 import { ReactComponent as Cross } from "../../svg/cross.svg"
 import { ReactComponent as Pen } from "../../svg/pen.svg"
 import { ReactComponent as Search } from "../../svg/bold_search.svg"
@@ -25,7 +26,7 @@ const requestMapper = {
     "song": songService.getOne
 }
 
-const Details = ({ setIsPlaying, match, history }) => {
+const Details = ({ setIsPlaying, match, history, isPlaying }) => {
     const user = useSelector(state => state.auth)
     const dispatch = useDispatch()
     const [isOwner, setIsOwner] = useState(true)
@@ -54,8 +55,12 @@ const Details = ({ setIsPlaying, match, history }) => {
             })
     }, [])
     const setSongsHandler = () => {
-        dispatch(setSongs(localSongs))
-        setIsPlaying(true)
+        if (isPlaying === false) {
+            setIsPlaying(true)
+            dispatch(setSongs(localSongs))
+        } else {
+            setIsPlaying(false)
+        }
     }
 
     return (
@@ -89,7 +94,7 @@ const Details = ({ setIsPlaying, match, history }) => {
                 </div>
                 <div className="details-content">
                     <article className="content-header">
-                        <button className="play-btn" onClick={setSongsHandler}><Play /></button>
+                        <button className="play-btn" onClick={setSongsHandler}>{!isPlaying ? <Play /> : <Stop />}</button>
                         <button className="like-btn"><Like /></button>
                         {/* <button className="unlike-btn"><Liked /></button> */}
                     </article>
