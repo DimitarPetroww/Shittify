@@ -46,7 +46,7 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
                 setIsOwner(res.owner === user._id)
                 if (category === "playlist") {
                     setLocalSongs(res.songs)
-                    res.artist =  [...new Set(res.songs.slice(0, 3).map(x=> x.artist))].join(", ") + " and others"
+                    res.artist =  res.songs.length > 0 ? [...new Set(res.songs.slice(0, 3).map(x=> x.artist))].join(", ") + " and others" : ""
                 } else {
                     setLocalSongs([res])
                 }

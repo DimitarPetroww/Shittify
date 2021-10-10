@@ -18,8 +18,8 @@ function AddSongs({ containedSongs, playlistId, setLocalSongs, setData }) {
     useEffect(() => {
         songService.getSongs()
             .then((res) => {
-                setSongs(res.filter(x => !containedSongs.includes(x)))
-                setFiltered(res.filter(x => !containedSongs.includes(x)))
+                setSongs(res.filter(x => !containedSongs.some(y=> y._id === x._id)))
+                setFiltered(res.filter(x => !containedSongs.some(y=> y._id === x._id)))
             })
             .catch((e) => {
                 dispatch(showAlert(e.message))
