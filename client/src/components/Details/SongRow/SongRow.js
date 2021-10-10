@@ -1,9 +1,12 @@
 import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { setIndex } from "../../../actions"
 
 import { ReactComponent as Can } from "../../../svg/can.svg"
 import { ReactComponent as Play } from "../../../svg/play.svg"
 import "./SongRow.css"
 const SongRow = ({ song, index, canDelete }) => {
+    const dispatch = useDispatch()
     const [duration, setDuration] = useState(0)
 
     return (
@@ -14,7 +17,7 @@ const SongRow = ({ song, index, canDelete }) => {
                 setDuration(`${minutes}:${seconds}`)
             }}></audio>
             <div className="index song-index">{index}</div>
-            <div className="play"><Play /></div>
+            <div className="play" onClick={() => dispatch(setIndex(index - 1))}><Play /></div>
             <div className="title song-text">
                 <img src={song.image} />
                 <div>
