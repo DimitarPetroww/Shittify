@@ -4,7 +4,7 @@ import { ReactComponent as Liked } from "../../../svg/liked.svg";
 
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { likeSong, showAlert } from "../../../actions";
+import { likeSong, showAlert, unlikeSong } from "../../../actions";
 
 import * as songService from "../../../services/song"
 
@@ -21,6 +21,15 @@ const NowPlaying = ({ song }) => {
                 dispatch(showAlert(e.message))
             })
     }
+    const unlikeSongHandler = () => {
+        songService.unlikeSong(song._id)
+            .then((_) => {
+                dispatch(unlikeSong(user._id))
+            })
+            .catch(e => {
+                dispatch(showAlert(e.message))
+            })
+    }
     return (
         <article className="player-now-playing">
             <img src={song.image} alt="" />
@@ -28,7 +37,7 @@ const NowPlaying = ({ song }) => {
                 <h4 className="player-now-playing-info-title">{song.name}</h4>
                 <p className="player-now-playing-info-author">{song.artist}</p>
             </div>
-            {!song.usersLiked.includes(user._id) ? <div onClick={likeSongHandler}><Like /></div> : <div className="liked"><Liked /></div>}
+            {!song.usersLiked.includes(user._id) ? <div onClick={likeSongHandler}><Like /></div> : <div className="liked" onClick={unlikeSongHandler}><Liked /></div>}
         </article>
     );
 }

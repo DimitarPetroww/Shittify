@@ -17,6 +17,12 @@ const songsReducer = (state = { songs: [], currentSongIndex: 0, nextSongIndex: 1
             temp[state.currentSongIndex].usersLiked.push(action.payload)
 
             return { ...state, songs: temp }
+        case "UNLIKE_SONG":
+            let song = [...state.songs]
+            const index = song[state.currentSongIndex].usersLiked.findIndex(x=> x === action.payload)
+            song[state.currentSongIndex].usersLiked.splice(index, 1)
+
+            return { ...state, songs: song }
         default:
             return state
     }

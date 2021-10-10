@@ -22,7 +22,7 @@ const Home = () => {
         ])
         .then((res) => {
             dispatch(loader())
-            setData(res.map(x => x.sort((a, b) => a.usersLiked.length - b.usersLiked.length).slice(0, 5)))
+            setData(res.map(x => x.sort((a, b) => b.usersLiked.length - a.usersLiked.length).slice(0, 5)))
         })
         .catch(e => {
             dispatch(loader())

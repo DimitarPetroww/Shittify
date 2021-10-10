@@ -27,11 +27,17 @@ const likeSong = (id) => {
         method: "PUT",
     })
 }
+const unlikeSong = (id) => {
+    return request(`${endpoints.songs}/${id}/unlike`, {
+        method: "PUT",
+    })
+}
 export {
     createSong,
     getSongs,
     getMySongs,
     getLikedSongs,
     getOne,
-    likeSong
+    likeSong,
+    unlikeSong
 }

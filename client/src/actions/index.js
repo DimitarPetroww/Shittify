@@ -56,6 +56,12 @@ export const likeSong = (userId) => {
         payload: userId
     }
 }
+export const unlikeSong = (userId) => {
+    return {
+        type: "UNLIKE_SONG",
+        payload: userId
+    }
+}
 export const loader = () => {
     return {
         type: "LOAD"

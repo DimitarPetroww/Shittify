@@ -33,8 +33,7 @@ router.post("/register", async (req, res) => {
     try {
         const hashedPassword = await bcrypt.hash(data.password, Number(process.env.SALT_ROUNDS))
         const user = await userService.createUser({ email: data.email, username: data.username, password: hashedPassword })
-        const temp = JSON.parse(JSON.stringify(user))
-        delete temp.password
+        const temp = {_id: user._id,username: user.username, email: user.email, photoUrl: user.photoUrl, photoId: user.photoId, ownedPlaylists: user.ownedPlaylists, ownedSongs: user.ownedSongs}
         const token = jwt.sign(temp, process.env.TOKEN_SECRET)
         res.cookie(process.env.COOKIE_NAME, token, { httpOnly: true })
         res.json(temp)
@@ -61,8 +60,7 @@ router.post("/login", async (req, res) => {
         if (!isMatch) {
             throw new Error("Wrong email or password")
         }
-        const temp = JSON.parse(JSON.stringify(user))
-        delete temp.password
+        const temp = {_id: user._id, username: user.username, email: user.email, photoUrl: user.photoUrl, photoId: user.photoId, ownedPlaylists: user.ownedPlaylists, ownedSongs: user.ownedSongs}
         const token = jwt.sign(temp, process.env.TOKEN_SECRET)
 
         res.cookie(process.env.COOKIE_NAME, token, { httpOnly: true })

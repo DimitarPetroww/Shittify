@@ -22,7 +22,17 @@ async function likePlaylist(playlistId, userId) {
     const playlist = await getOne(playlistId)
     const user = await findUserById(userId)
     playlist.usersLiked.push(userId)
-    user.likedSongs.push(playlistId)
+    user.likedPlaylists.push(playlistId)
+    
+    await user.save()
+
+    return playlist.save()
+}
+async function unlikePlaylist(playlistId, userId) {
+    const playlist = await getOne(playlistId)
+    const user = await findUserById(userId)
+    playlist.usersLiked.splice(playlist.usersLiked.findIndex(x=> x === userId), 1)
+    user.likedPlaylists.splice(user.likedPlaylists.findIndex(x=> x === playlistId), 1)
     
     await user.save()
 
@@ -33,5 +43,6 @@ module.exports = {
     createPlaylist,
     getPlaylists,
     getOne,
-    likePlaylist
+    likePlaylist,
+    unlikePlaylist
 }

@@ -1,12 +1,11 @@
-import { useEffect } from "react"
 import { useState } from "react"
 
 import { ReactComponent as Can } from "../../../svg/can.svg"
 import { ReactComponent as Play } from "../../../svg/play.svg"
 import "./SongRow.css"
-const SongRow = ({ song, index }) => {
+const SongRow = ({ song, index, canDelete }) => {
     const [duration, setDuration] = useState(0)
-    
+
     return (
         <div className="grid center">
             <audio src={song.audio} onLoadedMetadata={(e) => {
@@ -24,7 +23,7 @@ const SongRow = ({ song, index }) => {
                 </div>
             </div>
             <div className="time song-time">{duration}</div>
-            <div className="delete"><Can /></div>
+            {canDelete ? <div className="delete"><Can /></div> : ""}
         </div>
     )
 }

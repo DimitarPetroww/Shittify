@@ -44,12 +44,14 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
         }
         request(id)
             .then((res) => {
-                setData(res)
                 setIsOwner(res.owner === user._id)
                 if (category === "playlist") {
-                    return setLocalSongs(res.songs)
+                    setLocalSongs(res.songs)
+                    // res.artist = res.songs.slice(0, 3).map(x=> x.artist).join(", ")
+                } else {
+                    setLocalSongs([res])
                 }
-                setLocalSongs([res])
+                setData(res)
             })
             .catch(e => {
                 dispatch(showAlert(e.message))
@@ -65,9 +67,14 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
     }
     const likePlaylist = () => {
         playlistService.likePlaylist(data._id)
-            .then((playlist) => {
-                setData(playlist)
+            .then(setData)
+            .catch(e => {
+                dispatch(showAlert(e.message))
             })
+    }
+    const unlikePlaylist = () => {
+        playlistService.unlikePlaylist(data._id)
+            .then(setData)
             .catch(e => {
                 dispatch(showAlert(e.message))
             })
@@ -99,14 +106,14 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
                                 </>
                                 : ""}
                         </div>
-                        <p className="song-author">{data.artist}</p>
+                        {data.artist ? <p className="song-author">{data.artist}</p> : ""}
                     </article>
                 </div>
                 <div className="details-content">
                     <article className="content-header">
                         <button className="play-btn" onClick={setSongsHandler}>{!isPlaying || playingSongs.id !== match.params.id ? <Play /> : <Stop />}</button>
                         {
-                            match.params.category === "playlist" ? <>{!data?.usersLiked?.includes(user._id) ? <button className="like-btn" onClick={likePlaylist}><Like /></button> : <button className="unlike-btn"><Liked /></button>}</> : ""
+                            match.params.category === "playlist" ? <>{!data?.usersLiked?.includes(user._id) ? <button className="like-btn" onClick={likePlaylist}><Like /></button> : <button className="unlike-btn" onClick={unlikePlaylist}><Liked /></button>}</> : ""
                         }
                     </article>
                     {localSongs.length > 0 ?
@@ -123,7 +130,7 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
                                 </p>
                             </div>
                             <div className="tbody">
-                                {localSongs.map((x, i) => <SongRow key={x._id} song={x} index={i + 1} />)}
+                                {localSongs.map((x, i) => <SongRow key={x._id} song={x} index={i + 1} canDelete={match.params.category === "playlist"} />)}
                             </div>
                         </article> : ""}
                 </div>
