@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux"
 import { addSong } from "../../../actions"
 import "./SearchSongItem.css"
-const SearchSongItem = () => {
+const SearchSongItem = ({ data }) => {
     const dispatch = useDispatch()
 
     const addSongHandler = () => {
@@ -16,10 +16,10 @@ const SearchSongItem = () => {
     return (
         <div className="search-item">
             <div className="search-item-content">
-                <img src="https://res.cloudinary.com/douwa5b0u/image/upload/v1631438255/HotFlix/fyre_wofwkf.jpg" alt="asd"/>
+                <img src={data.image} alt={data.name} />
                 <div>
-                    <p>Aромат на барут</p>
-                    <p>Pamela X Fyre</p>
+                    <p>{data.name}</p>
+                    <p>{data.artist}</p>
                 </div>
             </div>
             <button className="search-item-add" onClick={addSongHandler}>Add</button>
