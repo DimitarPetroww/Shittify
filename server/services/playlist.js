@@ -16,7 +16,7 @@ async function createPlaylist(data) {
     return existing.save()
 }
 async function getOne(id) {
-    return Playlist.findById(id)
+    return Playlist.findById(id).populate("songs")
 }
 async function likePlaylist(playlistId, userId) {
     const playlist = await getOne(playlistId)
@@ -38,11 +38,19 @@ async function unlikePlaylist(playlistId, userId) {
 
     return playlist.save()
 }
+async function addSongToPlaylist(playlistId, songId) {
+    const playlist = await getOne(playlistId)
+
+    playlist.songs.push(songId)
+
+    return playlist.save()
+}
 
 module.exports = {
     createPlaylist,
     getPlaylists,
     getOne,
     likePlaylist,
-    unlikePlaylist
+    unlikePlaylist,
+    addSongToPlaylist
 }

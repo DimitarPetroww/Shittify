@@ -32,6 +32,15 @@ const unlikePlaylist = (id) => {
         method: "PUT",
     })
 }
+const addSongToPlaylist = (playlistId, data) => {
+    return request(`${endpoints.playlists}/${playlistId}/add-song`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+}
 export {
     createPlaylist,
     getPlaylists,
@@ -39,5 +48,6 @@ export {
     getLikedPlaylists,
     getOne,
     likePlaylist,
-    unlikePlaylist
+    unlikePlaylist,
+    addSongToPlaylist
 }

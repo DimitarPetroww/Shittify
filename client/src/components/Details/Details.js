@@ -46,7 +46,7 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
                 setIsOwner(res.owner === user._id)
                 if (category === "playlist") {
                     setLocalSongs(res.songs)
-                    // res.artist = res.songs.slice(0, 3).map(x=> x.artist).join(", ")
+                    res.artist =  [...new Set(res.songs.slice(0, 3).map(x=> x.artist))].join(", ") + " and others"
                 } else {
                     setLocalSongs([res])
                 }
@@ -134,7 +134,7 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
                         </article> : ""}
                 </div>
                 {isOwner && match.params.category === "playlist"
-                    ? <AddSongs containedSongs={localSongs}/>
+                    ? <AddSongs containedSongs={localSongs} playlistId={data._id} setData={setData} setLocalSongs={setLocalSongs}/>
                     : ""
                 }
             </section>

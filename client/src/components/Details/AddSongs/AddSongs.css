@@ -1,5 +1,6 @@
 .add-songs {
     padding: 0 30px;
+    min-height: 100vh;
 }
 
 .add-search-header {

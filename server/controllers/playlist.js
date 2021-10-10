@@ -8,8 +8,8 @@ const router = require("express").Router()
 router.get("/", async (req, res) => {
     const search = req.query.search || ""
     try {
-        const songs = await playlistService.getPlaylists(search)
-        res.json(songs)
+        const playlists = await playlistService.getPlaylists(search)
+        res.json(playlists)
     } catch (e) {
         res.status(400)
         res.json({ message: e.message })
@@ -65,6 +65,16 @@ router.post("/create", async (req, res) => {
         res.json({ message: e.message })
     }
 })
-
+router.post("/:id/add-song", async (req, res) => {
+    const song = req.body
+    const playlistId = req.params.id
+    try {
+        const playlist = await playlistService.addSongToPlaylist(playlistId, song)
+        res.json(playlist)
+    }catch(e) {
+        res.status(400)
+        res.json({ message: e.message })
+    }
+})
 
 module.exports = router

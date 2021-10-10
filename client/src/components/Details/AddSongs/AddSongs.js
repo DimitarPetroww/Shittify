@@ -10,7 +10,7 @@ import { useEffect, useState } from "react"
 
 import { useDispatch } from "react-redux"
 let timeout;
-function AddSongs({ containedSongs }) {
+function AddSongs({ containedSongs, playlistId, setLocalSongs, setData }) {
     const dispatch = useDispatch()
     const [songs, setSongs] = useState()
     const [filtered, setFiltered] = useState()
@@ -18,8 +18,8 @@ function AddSongs({ containedSongs }) {
     useEffect(() => {
         songService.getSongs()
             .then((res) => {
-                setSongs(res.filter(x => !containedSongs.find(y => y._id !== x._id)))
-                setFiltered(res.filter(x => !containedSongs.find(y => y._id !== x._id)))
+                setSongs(res.filter(x => !containedSongs.includes(x)))
+                setFiltered(res.filter(x => !containedSongs.includes(x)))
             })
             .catch((e) => {
                 dispatch(showAlert(e.message))
@@ -43,7 +43,7 @@ function AddSongs({ containedSongs }) {
                 </div>
             </div>
             <div className="add-main">
-                {filtered?.map(x => <SearchSongItem data={x} key={x._id} />)}
+                {filtered?.map(x => <SearchSongItem data={x} key={x._id} playlistId={playlistId} setLocalSongs={setLocalSongs} setData={setData}/>)}
             </div>
         </article>
     )
