@@ -24,6 +24,18 @@ router.get("/:id", async (req, res) => {
         res.json({ message: e.message })
     }
 })
+router.put("/:id/like", async (req, res) => {
+    const userId = req.user._id
+    const playlistId = req.params.id
+
+    try {
+        const playlist = await playlistService.likePlaylist(playlistId, userId)
+        res.json(playlist)
+    } catch (e) {
+        res.status(400)
+        res.json({ message: e.message })
+    }
+})
 
 router.post("/create", async (req, res) => {
     const form = formidable()

@@ -22,10 +22,16 @@ const createPlaylist = (formData) => {
 const getOne = (id) => {
     return request(`${endpoints.playlists}/${id}`)
 }
+const likePlaylist = (id) => {
+    return request(`${endpoints.playlists}/${id}/like`, {
+        method: "PUT",
+    })
+}
 export {
     createPlaylist,
     getPlaylists,
     getMyPlaylists,
     getLikedPlaylists,
-    getOne
+    getOne,
+    likePlaylist
 }

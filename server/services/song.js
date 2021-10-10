@@ -21,9 +21,20 @@ async function createSong(data) {
     await user.save()
     return existing.save()
 }
+async function likeSong(songId, userId) {
+    const song = await getOne(songId)
+    const user = await findUserById(userId)
+    song.usersLiked.push(userId)
+    user.likedPlaylists.push(songId)
+    
+    await user.save()
+
+    return song.save()
+}
 
 module.exports = {
     createSong,
     getSongs,
-    getOne
+    getOne,
+    likeSong
 }

@@ -42,6 +42,18 @@ router.post("/create", async (req, res) => {
         res.json({ message: e.message })
     }
 })
+router.put("/:id/like", async (req, res) => {
+    const userId = req.user._id
+    const songId = req.params.id
+
+    try {
+        const song = await songService.likeSong(songId, userId)
+        res.json(song)
+    } catch (e) {
+        res.status(400)
+        res.json({ message: e.message })
+    }
+})
 
 
 module.exports = router

@@ -22,10 +22,16 @@ const createSong = (formData) => {
 const getOne = (id) => {
     return request(`${endpoints.songs}/${id}`)
 }
+const likeSong = (id) => {
+    return request(`${endpoints.songs}/${id}/like`, {
+        method: "PUT",
+    })
+}
 export {
     createSong,
     getSongs,
     getMySongs,
     getLikedSongs,
-    getOne
+    getOne,
+    likeSong
 }

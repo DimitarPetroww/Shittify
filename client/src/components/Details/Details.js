@@ -15,7 +15,7 @@ import SearchSongItem from "./SearchSongItem/SearchSongItem"
 
 import { useDispatch, useSelector } from "react-redux"
 import { useState, useEffect } from "react"
-import { setSongs, showAlert } from "../../actions"
+import { setSongs, showAlert, updateSong } from "../../actions"
 
 import * as playlistService from "../../services/playlist"
 import * as songService from "../../services/song"
@@ -28,6 +28,7 @@ const requestMapper = {
 
 const Details = ({ setIsPlaying, match, history, isPlaying }) => {
     const user = useSelector(state => state.auth)
+    const playingSongs = useSelector(state => state.songs)
     const dispatch = useDispatch()
     const [isOwner, setIsOwner] = useState(true)
     const [data, setData] = useState({})
@@ -42,25 +43,34 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
             history.push("/404")
         }
         request(id)
-            .then((data) => {
-                setData(data)
-                setIsOwner(data.owner === user._id)
+            .then((res) => {
+                setData(res)
+                setIsOwner(res.owner === user._id)
                 if (category === "playlist") {
-                    return setLocalSongs(data.songs)
+                    return setLocalSongs(res.songs)
                 }
-                setLocalSongs([data])
+                setLocalSongs([res])
             })
             .catch(e => {
                 dispatch(showAlert(e.message))
             })
     }, [])
     const setSongsHandler = () => {
-        if (isPlaying === false) {
+        if (isPlaying === false || playingSongs.id !== match.params.id) {
             setIsPlaying(true)
-            dispatch(setSongs(localSongs))
-        } else {
+            dispatch(setSongs({ songs: localSongs, id: match.params.id }))
+        } else if (isPlaying === true && playingSongs.id === match.params.id) {
             setIsPlaying(false)
         }
+    }
+    const likePlaylist = () => {
+        playlistService.likePlaylist(data._id)
+            .then((playlist) => {
+                setData(playlist)
+            })
+            .catch(e => {
+                dispatch(showAlert(e.message))
+            })
     }
 
     return (
@@ -85,7 +95,7 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
                                 ?
                                 <>
                                     <span className="song-edit-btn" onClick={() => setIsEdit(!isEdit)}><EditLink /></span>
-                                    <span className="song-delete-btn" onClick={() => setIsDelete(!isEdit)}><Cross /></span>
+                                    <span className="song-delete-btn" onClick={() => setIsDelete(!isDelete)}><Cross /></span>
                                 </>
                                 : ""}
                         </div>
@@ -94,9 +104,10 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
                 </div>
                 <div className="details-content">
                     <article className="content-header">
-                        <button className="play-btn" onClick={setSongsHandler}>{!isPlaying ? <Play /> : <Stop />}</button>
-                        <button className="like-btn"><Like /></button>
-                        {/* <button className="unlike-btn"><Liked /></button> */}
+                        <button className="play-btn" onClick={setSongsHandler}>{!isPlaying || playingSongs.id !== match.params.id ? <Play /> : <Stop />}</button>
+                        {
+                            match.params.category === "playlist" ? <>{!data?.usersLiked?.includes(user._id) ? <button className="like-btn" onClick={likePlaylist}><Like /></button> : <button className="unlike-btn"><Liked /></button>}</> : ""
+                        }
                     </article>
                     {localSongs.length > 0 ?
                         <article className="content-main">

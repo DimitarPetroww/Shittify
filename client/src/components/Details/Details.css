@@ -123,40 +123,37 @@
     margin-right: 20px;
     cursor: pointer;
 }
+
 .play-btn svg {
     fill: white;
     width: 28px;
     height: 28px;
 }
 
-.unlike-btn {
-    color: #C1C1C1;
+.like-btn, .unlike-btn {
     background-color: transparent;
     border: none;
     cursor: pointer;
 }
-.like-btn, .unlike-btn  {
-    color: #C1C1C1;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-}
+
 .like-btn svg {
     width: 32px;
     height: 32px;
     fill: #C1C1C1
 }
+
 .unlike-btn svg {
     width: 32px;
     height: 32px;
     fill: #1DB954;
 }
+
 .play-btn:hover {
     transform: scale(1.03);
 }
 
-.like-btn:hover {
-    color: white;
+.like-btn:hover svg {
+    fill: white;
 }
 
 .content-main {
@@ -172,33 +169,38 @@
     border-bottom: 1px solid rgba(255, 255, 255, .1);
     color: #C1C1C1;
 }
+
 .add-songs {
     padding: 0 30px;
 }
+
 .add-search-header {
     position: relative;
     margin-bottom: 20px;
 }
+
 .add-search-header input {
-    background-color: rgba(255,255,255,.1);
+    background-color: rgba(255, 255, 255, .1);
     border: 0;
     border-radius: 4px;
     outline: none;
-    color: rgba(255,255,255,.7);
+    color: rgba(255, 255, 255, .7);
     font-weight: bold;
     height: 40px;
     opacity: 1;
     padding: 8px 10px 8px 32px;
     width: 25%;
 }
+
 .add-search-icon {
-    fill: rgba(255,255,255,.7);
+    fill: rgba(255, 255, 255, .7);
     position: absolute;
     top: 18px;
     left: 8px;
 }
+
 .add-search-header input::placeholder {
-    color: rgba(255,255,255,.7);
+    color: rgba(255, 255, 255, .7);
     font-weight: bold;
 }
 

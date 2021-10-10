@@ -18,9 +18,20 @@ async function createPlaylist(data) {
 async function getOne(id) {
     return Playlist.findById(id)
 }
+async function likePlaylist(playlistId, userId) {
+    const playlist = await getOne(playlistId)
+    const user = await findUserById(userId)
+    playlist.usersLiked.push(userId)
+    user.likedSongs.push(playlistId)
+    
+    await user.save()
+
+    return playlist.save()
+}
 
 module.exports = {
     createPlaylist,
     getPlaylists,
-    getOne
+    getOne,
+    likePlaylist
 }

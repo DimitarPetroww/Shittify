@@ -44,6 +44,18 @@ export const addSong = (song) => {
         payload: song
     }
 }
+export const updateSong = (song) => {
+    return {
+        type: "UPDATE_SONG",
+        payload: song
+    }
+}
+export const likeSong = (userId) => {
+    return {
+        type: "LIKE_SONG",
+        payload: userId
+    }
+}
 export const loader = () => {
     return {
         type: "LOAD"
