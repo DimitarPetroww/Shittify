@@ -18,19 +18,20 @@ function AddSongs({ containedSongs, playlistId, setLocalSongs, setData }) {
     useEffect(() => {
         songService.getSongs()
             .then((res) => {
-                setSongs(res.filter(x => !containedSongs.some(y=> y._id === x._id)))
-                setFiltered(res.filter(x => !containedSongs.some(y=> y._id === x._id)))
+                const notContained = res.filter(x => containedSongs.every(y => y._id !== x._id))
+                setSongs(notContained)
+                setFiltered(notContained)
             })
             .catch((e) => {
                 dispatch(showAlert(e.message))
             })
-    }, [])
+    }, [containedSongs])
 
     const searchHandler = (e) => {
         clearTimeout(timeout)
         timeout = setTimeout(function () {
             const value = e.target.value.toLowerCase()
-            setFiltered(() => songs.filter(x=> x.name.toLowerCase().includes(value) || x.artist.toLowerCase().includes(value)))
+            setFiltered(() => songs.filter(x => x.name.toLowerCase().includes(value) || x.artist.toLowerCase().includes(value)))
         }, 300);
     }
     return (
@@ -43,7 +44,7 @@ function AddSongs({ containedSongs, playlistId, setLocalSongs, setData }) {
                 </div>
             </div>
             <div className="add-main">
-                {filtered?.map(x => <SearchSongItem data={x} key={x._id} playlistId={playlistId} setLocalSongs={setLocalSongs} setData={setData}/>)}
+                {filtered?.map(x => <SearchSongItem data={x} key={x._id} playlistId={playlistId} setLocalSongs={setLocalSongs} setData={setData} />)}
             </div>
         </article>
     )

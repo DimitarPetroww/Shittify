@@ -38,12 +38,6 @@ export const setIndex = (index) => {
         payload: index
     }
 }
-export const addSong = (song) => {
-    return {
-        type: "ADD_SONG",
-        payload: song
-    }
-}
 export const updateSong = (song) => {
     return {
         type: "UPDATE_SONG",

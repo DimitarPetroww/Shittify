@@ -41,6 +41,15 @@ const addSongToPlaylist = (playlistId, data) => {
         body: JSON.stringify(data)
     })
 }
+const removeSongFromPlaylist = (playlistId, songId) => {
+    return request(`${endpoints.playlists}/${playlistId}/remove-song`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({songId})
+    })
+}
 export {
     createPlaylist,
     getPlaylists,
@@ -49,5 +58,6 @@ export {
     getOne,
     likePlaylist,
     unlikePlaylist,
-    addSongToPlaylist
+    addSongToPlaylist,
+    removeSongFromPlaylist
 }

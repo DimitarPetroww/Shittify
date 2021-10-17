@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux"
-import { addSong, showAlert } from "../../../actions"
+import { showAlert } from "../../../actions"
 import * as playlistService from "../../../services/playlist"
 import "./SearchSongItem.css"
 const SearchSongItem = ({ data, playlistId, setLocalSongs, setData }) => {
@@ -7,9 +7,9 @@ const SearchSongItem = ({ data, playlistId, setLocalSongs, setData }) => {
 
     const addSongHandler = () => {
         playlistService.addSongToPlaylist(playlistId, data)
-            .then(data => {
-                setData(data)
-                setLocalSongs(data.songs)
+            .then(res => {
+                setData(res)
+                setLocalSongs(state=> [...state, data])
             })
             .catch(e => {
                 dispatch(showAlert(e.message))

@@ -12,7 +12,7 @@ import Edit from "./Edit/Edit"
 import Delete from "./Delete/Delete"
 
 import { useDispatch, useSelector } from "react-redux"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { setSongs, showAlert, updateSong } from "../../actions"
 
 import * as playlistService from "../../services/playlist"
@@ -46,7 +46,7 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
                 setIsOwner(res.owner === user._id)
                 if (category === "playlist") {
                     setLocalSongs(res.songs)
-                    res.artist =  res.songs.length > 0 ? [...new Set(res.songs.slice(0, 3).map(x=> x.artist))].join(", ") + " and others" : ""
+                    res.artist = res.songs.length > 0 ? [...new Set(res.songs.slice(0, 3).map(x => x.artist))].join(", ") + " and others" : ""
                 } else {
                     setLocalSongs([res])
                 }
@@ -56,11 +56,18 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
                 dispatch(showAlert(e.message))
             })
     }, [])
+    useEffect(() => {
+        if(isPlaying) {
+            start()
+        }if(localSongs.length === 0) {
+            setIsPlaying(false)
+        }
+    }, [localSongs])
+    
     const setSongsHandler = () => {
-        if (isPlaying === false || playingSongs.id !== match.params.id) {
-            setIsPlaying(true)
-            dispatch(setSongs({ songs: localSongs, id: match.params.id }))
-        } else if (isPlaying === true && playingSongs.id === match.params.id) {
+        if ((isPlaying === false || playingSongs.id !== match.params.id) && localSongs.length !== 0) {
+            start()
+        } else if (isPlaying === true && playingSongs.id === match.params.id  && localSongs.length !== 0) {
             setIsPlaying(false)
         }
     }
@@ -78,6 +85,11 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
                 dispatch(showAlert(e.message))
             })
     }
+    const start = () => {
+        setIsPlaying(true)
+        dispatch(setSongs({ songs: localSongs, id: match.params.id }))
+    }
+
 
     return (
         <>
@@ -129,12 +141,12 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
                                 </p>
                             </div>
                             <div className="tbody">
-                                {localSongs.map((x, i) => <SongRow key={x._id} song={x} index={i + 1} canDelete={match.params.category === "playlist"} />)}
+                                {localSongs.map((x, i) => <SongRow playedSongId={playingSongs.id} localSongs={localSongs} start={start} key={x._id} song={x} index={i + 1} canDelete={match.params.category === "playlist"} playlistId={data._id} setData={setData} setLocalSongs={setLocalSongs} />)}
                             </div>
                         </article> : ""}
                 </div>
                 {isOwner && match.params.category === "playlist"
-                    ? <AddSongs containedSongs={localSongs} playlistId={data._id} setData={setData} setLocalSongs={setLocalSongs}/>
+                    ? <AddSongs containedSongs={localSongs} playlistId={data._id} setData={setData} setLocalSongs={setLocalSongs} />
                     : ""
                 }
             </section>

@@ -1,7 +1,5 @@
 const songsReducer = (state = { songs: [], currentSongIndex: 0, nextSongIndex: 1, id: "" }, action) => {
     switch (action.type) {
-        case "ADD_SONG":
-            return { ...state, songs: [...state.songs, action.payload] }
         case "SET_SONGS":
             return { ...state, songs: action.payload.songs, id: action.payload.id }
         case "CLEAR_SONGS":
@@ -19,7 +17,7 @@ const songsReducer = (state = { songs: [], currentSongIndex: 0, nextSongIndex: 1
             return { ...state, songs: temp }
         case "UNLIKE_SONG":
             let song = [...state.songs]
-            const index = song[state.currentSongIndex].usersLiked.findIndex(x=> x === action.payload)
+            const index = song[state.currentSongIndex].usersLiked.findIndex(x => x === action.payload)
             song[state.currentSongIndex].usersLiked.splice(index, 1)
 
             return { ...state, songs: song }
