@@ -27,6 +27,18 @@ export const deletePlaylistFromUser = (playlistId) => {
         payload: playlistId
     }
 }
+export const addSongToUser = (songId) => {
+    return {
+        type: "ADD_SONG_TO_USER",
+        payload: songId
+    }
+}
+export const addPlaylistToUser = (playlistId) => {
+    return {
+        type: "ADD_PLAYLIST_TO_USER",
+        payload: playlistId
+    }
+}
 export const rename = (username) => {
     return {
         type: "CHANGE_NAME",

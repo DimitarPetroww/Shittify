@@ -4,7 +4,7 @@ import { ReactComponent as Cross } from "../../../svg/cross.svg"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import * as songService from "../../../services/song"
-import { loader, showAlert } from "../../../actions"
+import { addSongToUser, loader, showAlert } from "../../../actions"
 const CreateSong = ({ history }) => {
     const dispatch = useDispatch()
     const [audio, setAudio] = useState({ name: "Song Audio (under 100mb)" })
@@ -35,6 +35,7 @@ const CreateSong = ({ history }) => {
         dispatch(loader())
         songService.createSong(formData)
             .then(data => {
+                dispatch(addSongToUser(data._id))
                 dispatch(loader())
                 history.push("/")
             })

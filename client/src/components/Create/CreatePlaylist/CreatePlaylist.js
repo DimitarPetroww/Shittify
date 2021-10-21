@@ -1,6 +1,6 @@
 import { ReactComponent as ImageFile } from "../../../svg/image_file.svg"
 import { ReactComponent as Cross } from "../../../svg/cross.svg"
-import { loader } from "../../../actions"
+import { addPlaylistToUser, loader } from "../../../actions"
 import { showAlert } from "../../../actions"
 import { useDispatch } from "react-redux"
 import { useState } from "react"
@@ -27,6 +27,7 @@ const CreatePlaylist = ({ history }) => {
         dispatch(loader())
         playlistService.createPlaylist(formData)
         .then(data => {
+            dispatch(addPlaylistToUser(data._id))
             dispatch(loader())
             history.push("/")
         })

@@ -13,7 +13,7 @@ import Delete from "./Delete/Delete"
 
 import { useDispatch, useSelector } from "react-redux"
 import { useState, useEffect } from "react"
-import { deleteSongFromUser, setSongs, showAlert } from "../../actions"
+import { deletePlaylistFromUser, deleteSongFromUser, setSongs, showAlert } from "../../actions"
 
 import * as playlistService from "../../services/playlist"
 import * as songService from "../../services/song"

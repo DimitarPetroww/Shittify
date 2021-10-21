@@ -16,8 +16,8 @@ const authReducer = (state = null, action) => {
             return { ...state, ownedSongs: songs }
         case "DELETE_PLAYLIST_FROM_USER":
             let playlists = [...state.ownedPlaylists]
-            const index = playlists.findIndex(x => x === action.payload)
-            playlists.splice(index, 1)
+            const i = playlists.findIndex(x => x === action.payload)
+            playlists.splice(i, 1)
 
             return { ...state, ownedPlaylists: playlists }
         default:
