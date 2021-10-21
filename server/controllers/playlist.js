@@ -1,6 +1,7 @@
 const formidable = require("formidable")
 const playlistService = require("../services/playlist")
 const { cloudinaryUpload } = require("../utils/cloudinaryUpload")
+const { cloudinaryDelete } = require("../utils/cloudinaryDelete")
 const { parseForm } = require("../utils/parseForm")
 
 const router = require("express").Router()
@@ -91,7 +92,6 @@ router.delete("/:id", async (req, res) => {
     try {
         const playlist = await playlistService.getOne(req.params.id)
         await cloudinaryDelete(playlist.imageId)
-        await cloudinaryDelete(playlist.audioId, "video")
         await playlistService.deletePlaylist(playlist)
 
         res.json(playlist)

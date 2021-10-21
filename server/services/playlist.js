@@ -23,7 +23,7 @@ async function likePlaylist(playlistId, userId) {
     const user = await findUserById(userId)
     playlist.usersLiked.push(userId)
     user.likedPlaylists.push(playlistId)
-    
+
     await user.save()
 
     return playlist.save()
@@ -31,9 +31,9 @@ async function likePlaylist(playlistId, userId) {
 async function unlikePlaylist(playlistId, userId) {
     const playlist = await getOne(playlistId)
     const user = await findUserById(userId)
-    playlist.usersLiked.splice(playlist.usersLiked.findIndex(x=> x === userId), 1)
-    user.likedPlaylists.splice(user.likedPlaylists.findIndex(x=> x === playlistId), 1)
-    
+    playlist.usersLiked.splice(playlist.usersLiked.findIndex(x => x === userId), 1)
+    user.likedPlaylists.splice(user.likedPlaylists.findIndex(x => x === playlistId), 1)
+
     await user.save()
 
     return playlist.save()
@@ -47,7 +47,7 @@ async function addSongToPlaylist(playlistId, songId) {
 }
 async function removeSongFromPlaylist(playlistId, songId) {
     const playlist = await getOne(playlistId)
-    const index = playlist.songs.findIndex(x=> x._id == songId)
+    const index = playlist.songs.findIndex(x => x._id == songId)
     playlist.songs.splice(index, 1)
 
     return playlist.save()
@@ -57,7 +57,9 @@ async function deletePlaylist(playlist) {
 
     const index = user.ownedPlaylists.findIndex(x => x == playlist._id)
     user.ownedPlaylists.splice(index, 1)
-    return Playlist.deleteOne({_id: playlist._id})
+    await user.save()
+
+    return Playlist.deleteOne({ _id: playlist._id })
 }
 
 

@@ -4,8 +4,8 @@ const { findUserById } = require("./user")
 async function getSongs(search) {
     return Song.find({
         $or: [
-            {name: new RegExp(search, "i")},
-            {artist: new RegExp(search, "i")}
+            { name: new RegExp(search, "i") },
+            { artist: new RegExp(search, "i") }
         ]
     })
 
@@ -26,7 +26,7 @@ async function likeSong(songId, userId) {
     const user = await findUserById(userId)
     song.usersLiked.push(userId)
     user.likedSongs.push(songId)
-    
+
     await user.save()
 
     return song.save()
@@ -34,19 +34,20 @@ async function likeSong(songId, userId) {
 async function unlikeSong(songId, userId) {
     const song = await getOne(songId)
     const user = await findUserById(userId)
-    song.usersLiked.splice(song.usersLiked.findIndex(x=> x === userId), 1)
-    user.likedSongs.splice(user.likedSongs.findIndex(x=> x === songId), 1)
-    
+    song.usersLiked.splice(song.usersLiked.findIndex(x => x === userId), 1)
+    user.likedSongs.splice(user.likedSongs.findIndex(x => x === songId), 1)
+
     await user.save()
 
     return song.save()
 }
 async function deleteSong(song) {
     const user = await findUserById(song.owner)
-
     const index = user.ownedSongs.findIndex(x => x == song._id)
     user.ownedSongs.splice(index, 1)
-    return Song.deleteOne({_id: song._id})
+    await user.save()
+    
+    return Song.deleteOne({ _id: song._id })
 }
 
 

@@ -20,6 +20,10 @@ const authReducer = (state = null, action) => {
             playlists.splice(i, 1)
 
             return { ...state, ownedPlaylists: playlists }
+        case "ADD_SONG_TO_USER":
+            return { ...state, ownedSongs: [...state.ownedSongs, action.payload] }
+        case "ADD_PLAYLIST_TO_USER":
+            return { ...state, ownedPlaylists: [...state.ownedPlaylists, action.payload] }
         default:
             return state
     }
