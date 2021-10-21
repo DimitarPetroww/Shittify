@@ -12,8 +12,8 @@ import Edit from "./Edit/Edit"
 import Delete from "./Delete/Delete"
 
 import { useDispatch, useSelector } from "react-redux"
-import { useState, useEffect, useRef } from "react"
-import { setSongs, showAlert, updateSong } from "../../actions"
+import { useState, useEffect } from "react"
+import { setSongs, showAlert } from "../../actions"
 
 import * as playlistService from "../../services/playlist"
 import * as songService from "../../services/song"
@@ -21,14 +21,15 @@ import AddSongs from "./AddSongs/AddSongs"
 
 
 const requestMapper = {
-    "playlist": playlistService.getOne,
-    "song": songService.getOne
+    "playlist": { get: playlistService.getOne, delete: playlistService.deletePlaylist },
+    "song": { get: songService.getOne, delete: songService.deleteSong }
 }
 
 const Details = ({ setIsPlaying, match, history, isPlaying }) => {
     const user = useSelector(state => state.auth)
     const playingSongs = useSelector(state => state.songs)
     const dispatch = useDispatch()
+    const [service, setService] = useState({})
     const [isOwner, setIsOwner] = useState(true)
     const [data, setData] = useState({})
     const [localSongs, setLocalSongs] = useState([])
@@ -37,11 +38,12 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
 
     useEffect(() => {
         const { category, id } = match.params
-        const request = requestMapper[category]
-        if (!request) {
+        const service = requestMapper[category]
+        if (!service) {
             history.push("/404")
         }
-        request(id)
+        setService(() => service)
+        service.get(id)
             .then((res) => {
                 setIsOwner(res.owner === user._id)
                 if (category === "playlist") {
@@ -57,17 +59,17 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
             })
     }, [])
     useEffect(() => {
-        if(isPlaying) {
+        if (isPlaying) {
             start()
-        }if(localSongs.length === 0) {
+        } if (localSongs.length === 0) {
             setIsPlaying(false)
         }
     }, [localSongs])
-    
+
     const setSongsHandler = () => {
         if ((isPlaying === false || playingSongs.id !== match.params.id) && localSongs.length !== 0) {
             start()
-        } else if (isPlaying === true && playingSongs.id === match.params.id  && localSongs.length !== 0) {
+        } else if (isPlaying === true && playingSongs.id === match.params.id && localSongs.length !== 0) {
             setIsPlaying(false)
         }
     }
@@ -151,7 +153,7 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
                 }
             </section>
             {isEdit ? <Edit close={() => setIsEdit(false)} name={data.name} /> : ""}
-            {isDelete ? <Delete close={() => setIsDelete(false)} name={data.name} /> : ""}
+            {isDelete ? <Delete close={() => setIsDelete(false)} name={data.name} deleteRequest={service.delete.bind(undefined, match.params.id)} /> : ""}
         </>
     )
 }

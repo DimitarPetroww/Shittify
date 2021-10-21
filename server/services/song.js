@@ -41,6 +41,13 @@ async function unlikeSong(songId, userId) {
 
     return song.save()
 }
+async function deleteSong(song) {
+    const user = await findUserById(song.owner)
+
+    const index = user.ownedSongs.findIndex(x => x == song._id)
+    user.ownedSongs.splice(index, 1)
+    return Song.deleteOne({_id: song._id})
+}
 
 
 module.exports = {
@@ -48,5 +55,6 @@ module.exports = {
     getSongs,
     getOne,
     likeSong,
-    unlikeSong
+    unlikeSong,
+    deleteSong
 }

@@ -1,6 +1,7 @@
 const formidable = require("formidable")
 const songService = require("../services/song")
 const { cloudinaryUpload } = require("../utils/cloudinaryUpload")
+const { cloudinaryDelete } = require("../utils/cloudinaryDelete")
 const { parseForm } = require("../utils/parseForm")
 
 const router = require("express").Router()
@@ -66,7 +67,19 @@ router.put("/:id/unlike", async (req, res) => {
         res.json({ message: e.message })
     }
 })
+router.delete("/:id", async (req, res) => {
+    try {
+        const song = await songService.getOne(req.params.id)
+        await cloudinaryDelete(song.imageId)
+        await cloudinaryDelete(song.audioId, "video")
+        await songService.deleteSong(song)
 
+        res.json(song)
+    } catch (e) {
+        res.status(400)
+        res.json({ message: e.message })
+    }
+})
 
 
 module.exports = router

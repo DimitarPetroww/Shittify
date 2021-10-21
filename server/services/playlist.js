@@ -52,6 +52,14 @@ async function removeSongFromPlaylist(playlistId, songId) {
 
     return playlist.save()
 }
+async function deletePlaylist(playlist) {
+    const user = await findUserById(playlist.owner)
+
+    const index = user.ownedPlaylists.findIndex(x => x == playlist._id)
+    user.ownedPlaylists.splice(index, 1)
+    return Playlist.deleteOne({_id: playlist._id})
+}
+
 
 module.exports = {
     createPlaylist,
@@ -60,5 +68,6 @@ module.exports = {
     likePlaylist,
     unlikePlaylist,
     addSongToPlaylist,
-    removeSongFromPlaylist
+    removeSongFromPlaylist,
+    deletePlaylist
 }

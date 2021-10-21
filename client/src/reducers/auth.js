@@ -8,6 +8,12 @@ const authReducer = (state = null, action) => {
             return {...state, photoUrl: action.payload}
         case "CHANGE_NAME":
             return {...state, username: action.payload}
+        case "DELETE_SONG_FROM_USER":
+            let songs = [...state.ownedSongs]
+            const index = songs.findIndex(x => x === action.payload)
+            songs.splice(index, 1)
+
+            return { ...state, ownedSongs: songs }
         default:
             return state
     }

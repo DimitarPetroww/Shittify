@@ -50,6 +50,11 @@ const removeSongFromPlaylist = (playlistId, songId) => {
         body: JSON.stringify({songId})
     })
 }
+const deletePlaylist = (playlistId) => {
+    return request(`${endpoints.playlists}/${playlistId}`, {
+        method: "DELETE",
+    })
+}
 export {
     createPlaylist,
     getPlaylists,
@@ -59,5 +64,6 @@ export {
     likePlaylist,
     unlikePlaylist,
     addSongToPlaylist,
-    removeSongFromPlaylist
+    removeSongFromPlaylist,
+    deletePlaylist
 }

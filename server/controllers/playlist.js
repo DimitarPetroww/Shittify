@@ -81,12 +81,25 @@ router.post("/:id/remove-song", async (req, res) => {
     const playlistId = req.params.id
     try {
         const playlist = await playlistService.removeSongFromPlaylist(playlistId, songId)
-        console.log(playlist);
         res.json(playlist)
     }catch(e) {
         res.status(400)
         res.json({ message: e.message })
     }
 })
+router.delete("/:id", async (req, res) => {
+    try {
+        const playlist = await playlistService.getOne(req.params.id)
+        await cloudinaryDelete(playlist.imageId)
+        await cloudinaryDelete(playlist.audioId, "video")
+        await playlistService.deletePlaylist(playlist)
+
+        res.json(playlist)
+    } catch (e) {
+        res.status(400)
+        res.json({ message: e.message })
+    }
+})
+
 
 module.exports = router

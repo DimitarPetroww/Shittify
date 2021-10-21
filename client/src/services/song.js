@@ -32,6 +32,11 @@ const unlikeSong = (id) => {
         method: "PUT",
     })
 }
+const deleteSong = (songId) => {
+    return request(`${endpoints.songs}/${songId}`, {
+        method: "DELETE",
+    })
+}
 export {
     createSong,
     getSongs,
@@ -39,5 +44,6 @@ export {
     getLikedSongs,
     getOne,
     likeSong,
-    unlikeSong
+    unlikeSong,
+    deleteSong
 }

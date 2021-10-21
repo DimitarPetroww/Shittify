@@ -15,6 +15,12 @@ export const updateProfilePic = (photoUrl) => {
         payload: photoUrl
     }
 }
+export const deleteSongFromUser = (songId) => {
+    return {
+        type: "DELETE_SONG_FROM_USER",
+        payload: songId
+    }
+}
 export const rename = (username) => {
     return {
         type: "CHANGE_NAME",
