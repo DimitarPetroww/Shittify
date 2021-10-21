@@ -3,7 +3,7 @@ import { deleteSongFromUser, loader, showAlert } from "../../../actions"
 import { useHistory } from "react-router-dom"
 import "./Delete.css"
 
-const Delete = ({ close, name, deleteRequest }) => {
+const Delete = ({ close, name, deleteRequest, updateUserInfoAction }) => {
     const dispatch = useDispatch()
     const history = useHistory()
 
@@ -11,8 +11,8 @@ const Delete = ({ close, name, deleteRequest }) => {
         dispatch(loader())
 
         deleteRequest()
-            .then(song => {
-                dispatch(deleteSongFromUser(song._id))
+            .then(res => {
+                dispatch(updateUserInfoAction(res._id))
                 dispatch(loader())
                 history.push("/")
             })

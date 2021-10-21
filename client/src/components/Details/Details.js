@@ -13,7 +13,7 @@ import Delete from "./Delete/Delete"
 
 import { useDispatch, useSelector } from "react-redux"
 import { useState, useEffect } from "react"
-import { setSongs, showAlert } from "../../actions"
+import { deleteSongFromUser, setSongs, showAlert } from "../../actions"
 
 import * as playlistService from "../../services/playlist"
 import * as songService from "../../services/song"
@@ -153,7 +153,7 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
                 }
             </section>
             {isEdit ? <Edit close={() => setIsEdit(false)} name={data.name} /> : ""}
-            {isDelete ? <Delete close={() => setIsDelete(false)} name={data.name} deleteRequest={service.delete.bind(undefined, match.params.id)} /> : ""}
+            {isDelete ? <Delete close={() => setIsDelete(false)} name={data.name} deleteRequest={service.delete.bind(undefined, match.params.id)} updateUserInfoAction={match.params.category === "playlist" ? deletePlaylistFromUser : deleteSongFromUser} /> : ""}
         </>
     )
 }

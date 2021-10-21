@@ -21,6 +21,12 @@ export const deleteSongFromUser = (songId) => {
         payload: songId
     }
 }
+export const deletePlaylistFromUser = (playlistId) => {
+    return {
+        type: "DELETE_PLAYLIST_FROM_USER",
+        payload: playlistId
+    }
+}
 export const rename = (username) => {
     return {
         type: "CHANGE_NAME",

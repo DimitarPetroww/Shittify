@@ -1,19 +1,25 @@
 const authReducer = (state = null, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case "SIGN_IN":
             return action.payload
         case "SIGN_OUT":
             return null
         case "SET_PHOTO":
-            return {...state, photoUrl: action.payload}
+            return { ...state, photoUrl: action.payload }
         case "CHANGE_NAME":
-            return {...state, username: action.payload}
+            return { ...state, username: action.payload }
         case "DELETE_SONG_FROM_USER":
             let songs = [...state.ownedSongs]
             const index = songs.findIndex(x => x === action.payload)
             songs.splice(index, 1)
 
             return { ...state, ownedSongs: songs }
+        case "DELETE_PLAYLIST_FROM_USER":
+            let playlists = [...state.ownedPlaylists]
+            const index = playlists.findIndex(x => x === action.payload)
+            playlists.splice(index, 1)
+
+            return { ...state, ownedPlaylists: playlists }
         default:
             return state
     }
