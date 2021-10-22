@@ -55,6 +55,12 @@ const deletePlaylist = (playlistId) => {
         method: "DELETE",
     })
 }
+const changeImage = (playlistId, formData) => {
+    return request(`${endpoints.playlists}/${playlistId}/change-image`, {
+        method: "PATCH",
+        body: formData
+    })
+}
 export {
     createPlaylist,
     getPlaylists,
@@ -65,5 +71,6 @@ export {
     unlikePlaylist,
     addSongToPlaylist,
     removeSongFromPlaylist,
-    deletePlaylist
+    deletePlaylist,
+    changeImage
 }

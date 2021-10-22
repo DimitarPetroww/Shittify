@@ -88,7 +88,7 @@ router.post("/upload", async (req, res) => {
         res.json({ message: error.message })
     }
 })
-router.post("/rename", async (req, res) => {
+router.patch("/rename", async (req, res) => {
     const username = req.body.username
     if (username === "") {
         res.status(400)

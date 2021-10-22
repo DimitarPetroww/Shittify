@@ -10,6 +10,7 @@ import { ReactComponent as EditLink } from "../../svg/edit.svg"
 import SongRow from "./SongRow/SongRow"
 import Edit from "./Edit/Edit"
 import Delete from "./Delete/Delete"
+import { loader } from "../../actions"
 
 import { useDispatch, useSelector } from "react-redux"
 import { useState, useEffect } from "react"
@@ -21,8 +22,8 @@ import AddSongs from "./AddSongs/AddSongs"
 
 
 const requestMapper = {
-    "playlist": { get: playlistService.getOne, delete: playlistService.deletePlaylist },
-    "song": { get: songService.getOne, delete: songService.deleteSong }
+    "playlist": { get: playlistService.getOne, delete: playlistService.deletePlaylist, changeImage: playlistService.changeImage },
+    "song": { get: songService.getOne, delete: songService.deleteSong, changeImage: songService.changeImage }
 }
 
 const Details = ({ setIsPlaying, match, history, isPlaying }) => {
@@ -48,7 +49,6 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
                 setIsOwner(res.owner === user._id)
                 if (category === "playlist") {
                     setLocalSongs(res.songs)
-                    res.artist = res.songs.length > 0 ? [...new Set(res.songs.slice(0, 3).map(x => x.artist))].join(", ") + " and others" : ""
                 } else {
                     setLocalSongs([res])
                 }
@@ -61,7 +61,7 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
     useEffect(() => {
         if (isPlaying) {
             start()
-        } if (localSongs.length === 0) {
+        } if (localSongs && localSongs.length === 0) {
             setIsPlaying(false)
         }
     }, [localSongs])
@@ -91,6 +91,28 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
         setIsPlaying(true)
         dispatch(setSongs({ songs: localSongs, id: match.params.id }))
     }
+    const changeImage = (e) => {
+        if (e.target.files.length !== 0) {
+            dispatch(loader())
+            const file = e.target.files[0]
+            const formData = new FormData()
+            formData.append("file", file)
+
+            service.changeImage(match.params.id, formData)
+                .then(res => {
+                    dispatch(loader())
+                    if (match.params.category === "song") {
+                        setLocalSongs([res])
+                        dispatch(setSongs({ songs: [res], id: match.params.id }))
+                    }
+                    setData(oldState => ({ ...oldState, imageId: res.imageId, image: res.image }))
+                })
+                .catch(e => {
+                    dispatch(loader())
+                    dispatch(showAlert(e.message))
+                })
+        }
+    }
 
 
     return (
@@ -105,7 +127,7 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
                                 <span>Choose an image</span>
                             </div> : ""}
                         </label>
-                        {isOwner ? <input type="file" id="picture" /> : ""}
+                        {isOwner ? <input type="file" id="picture" onChange={changeImage} accept="image/*" /> : ""}
                     </article>
                     <article className="song-data">
                         <h4 className="song-heading">{match.params.category[0].toUpperCase() + match.params.category.slice(1)}</h4>
@@ -129,7 +151,7 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
                             match.params.category === "playlist" ? <>{!data?.usersLiked?.includes(user._id) ? <button className="like-btn" onClick={likePlaylist}><Like /></button> : <button className="unlike-btn" onClick={unlikePlaylist}><Liked /></button>}</> : ""
                         }
                     </article>
-                    {localSongs.length > 0 ?
+                    {localSongs?.length > 0 ?
                         <article className="content-main">
                             <div className="grid thead">
                                 <p className="index">
@@ -143,7 +165,7 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
                                 </p>
                             </div>
                             <div className="tbody">
-                                {localSongs.map((x, i) => <SongRow playedSongId={playingSongs.id} localSongs={localSongs} start={start} key={x._id} song={x} index={i + 1} canDelete={match.params.category === "playlist"} playlistId={data._id} setData={setData} setLocalSongs={setLocalSongs} />)}
+                                {localSongs.map((x, i) => <SongRow key={x._id} playedSongId={playingSongs.id} localSongs={localSongs} start={start} song={x} index={i + 1} canDelete={match.params.category === "playlist"} playlistId={data._id} setData={setData} setLocalSongs={setLocalSongs} />)}
                             </div>
                         </article> : ""}
                 </div>

@@ -38,7 +38,7 @@ const upload = (formData) => {
 }
 const rename = (username) => {
     return request(endpoints.rename, {
-        method: "POST",
+        method: "PATCH",
         headers: {
             "Content-Type": "application/json",
         },

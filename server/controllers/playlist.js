@@ -58,9 +58,9 @@ router.post("/create", async (req, res) => {
             throw new Error("All fields are required")
         }
         const [image, imageId] = await cloudinaryUpload(files.image.path)
-        const song = await playlistService.createPlaylist({ ...fields, image, imageId, owner: req.user._id })
+        const playlist = await playlistService.createPlaylist({ ...fields, image, imageId, owner: req.user._id })
 
-        res.json(song)
+        res.json(playlist)
     } catch (e) {
         res.status(400)
         res.json({ message: e.message })
@@ -98,6 +98,20 @@ router.delete("/:id", async (req, res) => {
     } catch (e) {
         res.status(400)
         res.json({ message: e.message })
+    }
+})
+router.patch("/:id/change-image", async (req, res) => {
+    const form = formidable()
+    try {
+        const playlist = await playlistService.getOne(req.params.id)
+        await cloudinaryDelete(playlist.imageId)
+        const [_, { file }] = await parseForm(req, form)
+        const [fileUrl, publicId] = await cloudinaryUpload(file.path)
+        const temp = await playlistService.changePhoto(playlist, fileUrl, publicId)
+        res.json(temp)
+    } catch (error) {
+        res.status(400)
+        res.json({ message: error.message })
     }
 })
 

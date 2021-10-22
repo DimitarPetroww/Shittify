@@ -49,7 +49,12 @@ async function deleteSong(song) {
     
     return Song.deleteOne({ _id: song._id })
 }
+async function changePhoto(song, photoUrl, publicId) {
+    song.image = photoUrl
+    song.imageId = publicId
 
+    return song.save()
+}
 
 module.exports = {
     createSong,
@@ -57,5 +62,6 @@ module.exports = {
     getOne,
     likeSong,
     unlikeSong,
-    deleteSong
+    deleteSong,
+    changePhoto
 }

@@ -61,7 +61,12 @@ async function deletePlaylist(playlist) {
 
     return Playlist.deleteOne({ _id: playlist._id })
 }
+async function changePhoto(playlist, photoUrl, publicId) {
+    playlist.image = photoUrl
+    playlist.imageId = publicId
 
+    return playlist.save()
+}
 
 module.exports = {
     createPlaylist,
@@ -71,5 +76,6 @@ module.exports = {
     unlikePlaylist,
     addSongToPlaylist,
     removeSongFromPlaylist,
-    deletePlaylist
+    deletePlaylist,
+    changePhoto
 }

@@ -18,7 +18,7 @@ function AddSongs({ containedSongs, playlistId, setLocalSongs, setData }) {
     useEffect(() => {
         songService.getSongs()
             .then((res) => {
-                const notContained = res.filter(x => containedSongs.every(y => y._id !== x._id))
+                const notContained = res.filter(x => containedSongs?.every(y => y._id !== x._id))
                 setSongs(notContained)
                 setFiltered(notContained)
             })

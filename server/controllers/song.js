@@ -80,6 +80,19 @@ router.delete("/:id", async (req, res) => {
         res.json({ message: e.message })
     }
 })
-
+router.patch("/:id/change-image", async (req, res) => {
+    const form = formidable()
+    try {
+        const song = await songService.getOne(req.params.id)
+        await cloudinaryDelete(song.imageId)
+        const [_, { file }] = await parseForm(req, form)
+        const [fileUrl, publicId] = await cloudinaryUpload(file.path)
+        const temp = await songService.changePhoto(song, fileUrl, publicId)
+        res.json(temp)
+    } catch (error) {
+        res.status(400)
+        res.json({ message: error.message })
+    }
+})
 
 module.exports = router

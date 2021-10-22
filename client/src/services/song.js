@@ -37,6 +37,12 @@ const deleteSong = (songId) => {
         method: "DELETE",
     })
 }
+const changeImage = (songId, formData) => {
+    return request(`${endpoints.songs}/${songId}/change-image`, {
+        method: "PATCH",
+        body: formData
+    })
+}
 export {
     createSong,
     getSongs,
@@ -45,5 +51,6 @@ export {
     getOne,
     likeSong,
     unlikeSong,
-    deleteSong
+    deleteSong,
+    changeImage
 }
