@@ -10,7 +10,7 @@ import { ReactComponent as EditLink } from "../../svg/edit.svg"
 import SongRow from "./SongRow/SongRow"
 import Edit from "./Edit/Edit"
 import Delete from "./Delete/Delete"
-import { loader } from "../../actions"
+import { loader, setIndex } from "../../actions"
 
 import { useDispatch, useSelector } from "react-redux"
 import { useState, useEffect } from "react"
@@ -61,7 +61,8 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
     useEffect(() => {
         if (isPlaying) {
             start()
-        } if (localSongs && localSongs.length === 0) {
+        }
+        if (localSongs.length === 0) {
             setIsPlaying(false)
         }
     }, [localSongs])
@@ -89,6 +90,7 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
     }
     const start = () => {
         setIsPlaying(true)
+        dispatch(setIndex(0))
         dispatch(setSongs({ songs: localSongs, id: match.params.id }))
     }
     const changeImage = (e) => {

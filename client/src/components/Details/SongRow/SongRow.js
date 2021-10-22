@@ -12,7 +12,7 @@ const SongRow = ({ song, index, canDelete, playlistId, setData, setLocalSongs, l
     const [duration, setDuration] = useState(0)
 
     const deleteSongHandler = () => {
-        if(playedSongId === song._id) {
+        if (playedSongId === song._id) {
             dispatch(setIndex(index => localSongs.length ? 0 : index))
         }
         playlistService.removeSongFromPlaylist(playlistId, song._id)

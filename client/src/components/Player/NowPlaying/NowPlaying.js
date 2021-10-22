@@ -32,12 +32,12 @@ const NowPlaying = ({ song }) => {
     }
     return (
         <article className="player-now-playing">
-            <img src={song.image} alt="" />
+            <img src={song?.image} alt="" />
             <div className="player-now-playing-info">
-                <h4 className="player-now-playing-info-title">{song.name}</h4>
-                <p className="player-now-playing-info-author">{song.artist}</p>
+                <h4 className="player-now-playing-info-title">{song?.name}</h4>
+                <p className="player-now-playing-info-author">{song?.artist}</p>
             </div>
-            {!song.usersLiked.includes(user._id) ? <div onClick={likeSongHandler}><Like /></div> : <div className="liked" onClick={unlikeSongHandler}><Liked /></div>}
+            {!song?.usersLiked.includes(user._id) ? <div onClick={likeSongHandler}><Like /></div> : <div className="liked" onClick={unlikeSongHandler}><Liked /></div>}
         </article>
     );
 }
