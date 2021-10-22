@@ -13,7 +13,7 @@ import Delete from "./Delete/Delete"
 import { loader, setIndex } from "../../actions"
 
 import { useDispatch, useSelector } from "react-redux"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { deletePlaylistFromUser, deleteSongFromUser, setSongs, showAlert } from "../../actions"
 
 import * as playlistService from "../../services/playlist"
@@ -59,10 +59,10 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
             })
     }, [])
     useEffect(() => {
-        if (isPlaying) {
+        if (isPlaying && playingSongs.id === match.params.id) {
             start()
         }
-        if (localSongs.length === 0) {
+        if (localSongs.length === 0 && playingSongs.id === match.params.id) {
             setIsPlaying(false)
         }
     }, [localSongs])
@@ -90,7 +90,6 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
     }
     const start = () => {
         setIsPlaying(true)
-        dispatch(setIndex(0))
         dispatch(setSongs({ songs: localSongs, id: match.params.id }))
     }
     const changeImage = (e) => {
@@ -167,7 +166,7 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
                                 </p>
                             </div>
                             <div className="tbody">
-                                {localSongs.map((x, i) => <SongRow key={x._id} playedSongId={playingSongs.id} localSongs={localSongs} start={start} song={x} index={i + 1} canDelete={match.params.category === "playlist"} playlistId={data._id} setData={setData} setLocalSongs={setLocalSongs} />)}
+                                {localSongs.map((x, i) => <SongRow key={x._id} localSongs={localSongs} start={start} song={x} index={i + 1} canDelete={match.params.category === "playlist"} playlistId={data._id} setData={setData} setLocalSongs={setLocalSongs} />)}
                             </div>
                         </article> : ""}
                 </div>

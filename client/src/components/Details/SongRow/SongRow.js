@@ -7,13 +7,13 @@ import { ReactComponent as Play } from "../../../svg/play.svg"
 
 import * as playlistService from "../../../services/playlist"
 import "./SongRow.css"
-const SongRow = ({ song, index, canDelete, playlistId, setData, setLocalSongs, localSongs, playedSongId, start }) => {
+const SongRow = ({ song, index, canDelete, playlistId, setData, setLocalSongs, localSongs, start }) => {
     const dispatch = useDispatch()
     const [duration, setDuration] = useState(0)
 
     const deleteSongHandler = () => {
-        if (playedSongId === song._id) {
-            dispatch(setIndex(index => localSongs.length ? 0 : index))
+        if (localSongs.length === 2) {
+            dispatch(setIndex(0))
         }
         playlistService.removeSongFromPlaylist(playlistId, song._id)
             .then(res => {
