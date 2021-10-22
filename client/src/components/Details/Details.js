@@ -36,6 +36,7 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
     const [localSongs, setLocalSongs] = useState([])
     const [isEdit, setIsEdit] = useState(false)
     const [isDelete, setIsDelete] = useState(false)
+    const firstUpdate = useRef(true)
 
     useEffect(() => {
         const { category, id } = match.params
@@ -59,6 +60,10 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
             })
     }, [])
     useEffect(() => {
+        if (firstUpdate.current) {
+            firstUpdate.current = false
+            return
+        }
         if (isPlaying && playingSongs.id === match.params.id) {
             start()
         }
@@ -69,6 +74,7 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
 
     const setSongsHandler = () => {
         if ((isPlaying === false || playingSongs.id !== match.params.id) && localSongs.length !== 0) {
+            dispatch(setIndex(0))
             start()
         } else if (isPlaying === true && playingSongs.id === match.params.id && localSongs.length !== 0) {
             setIsPlaying(false)
