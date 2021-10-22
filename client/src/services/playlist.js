@@ -61,6 +61,12 @@ const changeImage = (playlistId, formData) => {
         body: formData
     })
 }
+const editName = (playlistId, name) => {
+    return request(`${endpoints.playlists}/${playlistId}/edit-name`, {
+        method: "PATCH",
+        body: JSON.stringify({ name })
+    })
+}
 export {
     createPlaylist,
     getPlaylists,
@@ -72,5 +78,6 @@ export {
     addSongToPlaylist,
     removeSongFromPlaylist,
     deletePlaylist,
-    changeImage
+    changeImage,
+    editName
 }

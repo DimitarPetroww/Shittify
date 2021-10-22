@@ -2,7 +2,7 @@ import { request } from "../api";
 import endpoints from "../api/constants";
 
 const getSongs = (query = "") => {
-    if(query !== "") {
+    if (query !== "") {
         return request(`${endpoints.songs}?search=${query}`)
     }
     return request(endpoints.songs)
@@ -43,6 +43,12 @@ const changeImage = (songId, formData) => {
         body: formData
     })
 }
+const editName = (songId, name) => {
+    return request(`${endpoints.songs}/${songId}/edit-name`, {
+        method: "PATCH",
+        body: JSON.stringify({ name })
+    })
+}
 export {
     createSong,
     getSongs,
@@ -52,5 +58,6 @@ export {
     likeSong,
     unlikeSong,
     deleteSong,
-    changeImage
+    changeImage,
+    editName
 }

@@ -55,6 +55,12 @@ async function changePhoto(song, photoUrl, publicId) {
 
     return song.save()
 }
+async function changeSongName(songId, name) {
+    const song = await getOne(songId)
+    song.name = name
+
+    return song.save()
+}
 
 module.exports = {
     createSong,
@@ -63,5 +69,6 @@ module.exports = {
     likeSong,
     unlikeSong,
     deleteSong,
-    changePhoto
+    changePhoto,
+    changeSongName
 }

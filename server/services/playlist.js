@@ -67,6 +67,12 @@ async function changePhoto(playlist, photoUrl, publicId) {
 
     return playlist.save()
 }
+async function changePlaylistName(playlistId, name) {
+    const playlist = await getOne(playlistId)
+    playlist.name = name
+
+    return playlist.save()
+}
 
 module.exports = {
     createPlaylist,
@@ -77,5 +83,6 @@ module.exports = {
     addSongToPlaylist,
     removeSongFromPlaylist,
     deletePlaylist,
-    changePhoto
+    changePhoto,
+    changePlaylistName
 }

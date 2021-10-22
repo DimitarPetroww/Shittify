@@ -94,5 +94,16 @@ router.patch("/:id/change-image", async (req, res) => {
         res.json({ message: error.message })
     }
 })
+router.patch("/:id/edit-name", async (req, res) => {
+    try {
+        const { name } = req.body
+        if (name === "") throw new Error("Song name is required" )
+        const song = await songService.changeSongName(req.params.id, name)
+        res.json(song.name)
+    } catch (error) {
+        res.status(400)
+        res.json({ message: error.message })
+    }
+})
 
 module.exports = router

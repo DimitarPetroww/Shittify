@@ -21,9 +21,9 @@ import * as songService from "../../services/song"
 import AddSongs from "./AddSongs/AddSongs"
 
 
-const requestMapper = {
-    "playlist": { get: playlistService.getOne, delete: playlistService.deletePlaylist, changeImage: playlistService.changeImage },
-    "song": { get: songService.getOne, delete: songService.deleteSong, changeImage: songService.changeImage }
+const serviceMapper = {
+    "playlist": { get: playlistService.getOne, delete: playlistService.deletePlaylist, changeImage: playlistService.changeImage, editName: playlistService.editName },
+    "song": { get: songService.getOne, delete: songService.deleteSong, changeImage: songService.changeImage, editName: songService.editName }
 }
 
 const Details = ({ setIsPlaying, match, history, isPlaying }) => {
@@ -40,7 +40,7 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
 
     useEffect(() => {
         const { category, id } = match.params
-        const service = requestMapper[category]
+        const service = serviceMapper[category]
         if (!service) {
             history.push("/404")
         }

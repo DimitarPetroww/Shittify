@@ -72,7 +72,7 @@ router.post("/:id/add-song", async (req, res) => {
     try {
         const playlist = await playlistService.addSongToPlaylist(playlistId, song)
         res.json(playlist)
-    }catch(e) {
+    } catch (e) {
         res.status(400)
         res.json({ message: e.message })
     }
@@ -83,7 +83,7 @@ router.post("/:id/remove-song", async (req, res) => {
     try {
         const playlist = await playlistService.removeSongFromPlaylist(playlistId, songId)
         res.json(playlist)
-    }catch(e) {
+    } catch (e) {
         res.status(400)
         res.json({ message: e.message })
     }
@@ -109,6 +109,17 @@ router.patch("/:id/change-image", async (req, res) => {
         const [fileUrl, publicId] = await cloudinaryUpload(file.path)
         const temp = await playlistService.changePhoto(playlist, fileUrl, publicId)
         res.json(temp)
+    } catch (error) {
+        res.status(400)
+        res.json({ message: error.message })
+    }
+})
+router.patch("/:id/edit-name", async (req, res) => {
+    try {
+        const { name } = req.body
+        if (name === "") throw new Error("Playlist name is required" )
+        const playlist = await playlistService.changePlaylistName(req.params.id, name)
+        res.json(playlist.name)
     } catch (error) {
         res.status(400)
         res.json({ message: error.message })
