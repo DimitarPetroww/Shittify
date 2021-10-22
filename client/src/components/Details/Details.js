@@ -110,7 +110,6 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
                     dispatch(loader())
                     if (match.params.category === "song") {
                         setLocalSongs([res])
-                        dispatch(setSongs({ songs: [res], id: match.params.id }))
                     }
                     setData(oldState => ({ ...oldState, imageId: res.imageId, image: res.image }))
                 })
@@ -181,7 +180,7 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
                     : ""
                 }
             </section>
-            {isEdit ? <Edit close={() => setIsEdit(false)} name={data.name} /> : ""}
+            {isEdit ? <Edit close={() => setIsEdit(false)} name={data.name} setLocalSongs={setLocalSongs} category={match.params.category} setData={setData} editRequest={service.editName.bind(undefined, match.params.id)} /> : ""}
             {isDelete ? <Delete close={() => setIsDelete(false)} name={data.name} deleteRequest={service.delete.bind(undefined, match.params.id)} updateUserInfoAction={match.params.category === "playlist" ? deletePlaylistFromUser : deleteSongFromUser} /> : ""}
         </>
     )

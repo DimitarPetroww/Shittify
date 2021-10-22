@@ -46,6 +46,9 @@ const changeImage = (songId, formData) => {
 const editName = (songId, name) => {
     return request(`${endpoints.songs}/${songId}/edit-name`, {
         method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        },
         body: JSON.stringify({ name })
     })
 }

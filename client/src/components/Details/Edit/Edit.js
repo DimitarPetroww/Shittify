@@ -2,9 +2,9 @@ import "./Edit.css"
 import { ReactComponent as Close } from "../../../svg/close.svg"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { loader } from "../../../actions"
+import { loader, showAlert } from "../../../actions"
 
-const Edit = ({ close, name }) => {
+const Edit = ({ close, name, editRequest, category, setLocalSongs, setData }) => {
     const [errorClass, setErrorClass] = useState("")
     const dispatch = useDispatch()
 
@@ -13,7 +13,23 @@ const Edit = ({ close, name }) => {
         const { value } = e.target.name
         if (value === "") return setErrorClass("edit-error-input")
         dispatch(loader())
-
+        editRequest(value)
+            .then((name) => {
+                dispatch(loader())
+                if (category === "song") {
+                    setLocalSongs(oldState => {
+                        let song = oldState[0];
+                        song.name = name
+                        return [song]
+                    })
+                }
+                setData(oldState => ({ ...oldState, name }))
+                close()
+            })
+            .catch(e => {
+                dispatch(loader())
+                dispatch(showAlert(e.message))
+            })
     }
     return (
         <section className="edit-wrapper">
