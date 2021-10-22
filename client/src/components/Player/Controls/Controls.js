@@ -7,6 +7,7 @@ import { ReactComponent as Stop } from "../../../svg/stop.svg"
 import { ReactComponent as Play } from "../../..//svg/play.svg"
 
 const Controls = ({
+    canChangeDuration,
     isMuted,
     unmute,
     mute,
@@ -45,7 +46,7 @@ const Controls = ({
                 </ul>
                 <div className="player-controls-progress">
                     <p>{currentTime}</p>
-                    <input ref={progress} className="progress-bar" type="range" defaultValue="0" onChange={onProgressChange} />
+                    <input ref={progress} className="progress-bar" type="range" defaultValue="0" onChange={canChangeDuration ? onProgressChange : ""} />
                     <p>{duration}</p>
                 </div>
             </article>

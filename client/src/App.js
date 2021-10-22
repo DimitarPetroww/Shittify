@@ -73,7 +73,7 @@ function App() {
             </main>
           </div>
         </div>
-        {songs.length > 0 ? < Footer isPlaying={isPlaying} setIsPlaying={setIsPlaying} /> : ""}
+        <Footer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
         {isLoading ? <Loader /> : ""}
         {alert.shown ? <Alert msg={alert.message} /> : ""}
       </>

@@ -86,10 +86,11 @@ const Player = ({ currentSongIndex, setCurrentSongIndex, songs, isPlaying, setIs
 
 
     return (
-        <section className="player">
-            <audio ref={audio} src={songs[currentSongIndex]?.audio} onEnded={(e) => {if(songs.length === 1) return setIsPlaying(false); forwardSong()}} onLoadedMetadata={readAudioMeta}></audio>
-            <NowPlaying song={songs[currentSongIndex]} />
+        <section className={`player ${songs.length === 0 ? "static" : ""}`}>
+            <audio ref={audio} src={songs[currentSongIndex]?.audio} onEnded={(e) => { if (songs.length === 1) return setIsPlaying(false); forwardSong() }} onLoadedMetadata={readAudioMeta}></audio>
+            {songs[currentSongIndex] ? <NowPlaying song={songs[currentSongIndex]} /> : ""}
             <Controls
+                canChangeDuration={!!songs[currentSongIndex]}
                 isMuted={isMuted}
                 mute={muteVolume}
                 unmute={unmuteVolume}

@@ -6,6 +6,15 @@
     padding: 20px;
     box-sizing: border-box;
 }
+.static {
+    padding-left: 120px;
+}
+.static .player-controls {
+    margin: 0 auto;
+}
+.static .progress-bar:hover::-webkit-slider-thumb {
+    display: none;
+}
 @media (max-width: 599px) {
     .player {
         padding: 0;
