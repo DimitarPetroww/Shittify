@@ -1,3 +1,6 @@
+.playlists {
+    margin-bottom: 30px;
+}
 .playlists-header {
     display: flex;
     flex-direction: row;

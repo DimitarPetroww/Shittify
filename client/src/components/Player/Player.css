@@ -20,4 +20,14 @@
         padding: 0;
         justify-content: flex-start;
     }
+    .static {
+        flex-direction: column;
+    }
+    .static .player-controls {
+        width: 80%;
+        margin-top: 10px;
+    }
+    .static .player-audio {
+        width: 40%;
+    }
 }
