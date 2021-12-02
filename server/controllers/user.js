@@ -7,6 +7,7 @@ const userService = require("../services/user")
 const { parseForm } = require("../utils/parseForm")
 const { cloudinaryUpload } = require("../utils/cloudinaryUpload")
 const { cloudinaryDelete } = require("../utils/cloudinaryDelete")
+const isAuthenticated = require("../guards/isAuth")
 
 
 router.get("/", async (req, res) => {
@@ -42,7 +43,7 @@ router.post("/register", async (req, res) => {
         res.json({ message: error.message })
     }
 })
-router.post("/login", async (req, res) => {
+router.post("/login",  async (req, res) => {
     const data = {
         email: req.body.email,
         password: req.body.password,
@@ -70,11 +71,11 @@ router.post("/login", async (req, res) => {
         res.json({ message: error.message })
     }
 })
-router.post("/logout", async (req, res) => {
+router.post("/logout", isAuthenticated(), async (req, res) => {
     res.clearCookie(process.env.COOKIE_NAME)
     res.json({})
 })
-router.post("/upload", async (req, res) => {
+router.post("/upload", isAuthenticated(), async (req, res) => {
     const form = formidable()
     try {
         const user = await userService.findUserById(req.user._id)
@@ -88,7 +89,7 @@ router.post("/upload", async (req, res) => {
         res.json({ message: error.message })
     }
 })
-router.patch("/rename", async (req, res) => {
+router.patch("/rename", isAuthenticated(), async (req, res) => {
     const username = req.body.username
     if (username === "") {
         res.status(400)
@@ -103,7 +104,7 @@ router.patch("/rename", async (req, res) => {
     }
 })
 
-router.get("/my-playlists", async (req, res) => {
+router.get("/my-playlists", isAuthenticated(), async (req, res) => {
     try {
         const playlists = await userService.getMyPlaylists(req.user._id)
         res.json(playlists)
@@ -112,7 +113,7 @@ router.get("/my-playlists", async (req, res) => {
         res.json({ message: error.message })
     }
 })
-router.get("/my-songs", async (req, res) => {
+router.get("/my-songs", isAuthenticated(),  async (req, res) => {
     try {
         const songs = await userService.getMySongs(req.user._id)
         res.json(songs)
@@ -121,7 +122,7 @@ router.get("/my-songs", async (req, res) => {
         res.json({ message: error.message })
     }
 })
-router.get("/liked-songs", async (req, res) => {
+router.get("/liked-songs", isAuthenticated(),  async (req, res) => {
     try {
         const songs = await userService.getLikedSongs(req.user._id)
         res.json(songs)
@@ -130,7 +131,7 @@ router.get("/liked-songs", async (req, res) => {
         res.json({ message: error.message })
     }
 })
-router.get("/liked-playlists", async (req, res) => {
+router.get("/liked-playlists", isAuthenticated(), async (req, res) => {
     try {
         const songs = await userService.getLikedPlaylists(req.user._id)
         res.json(songs)

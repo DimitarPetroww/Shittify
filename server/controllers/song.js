@@ -3,10 +3,11 @@ const songService = require("../services/song")
 const { cloudinaryUpload } = require("../utils/cloudinaryUpload")
 const { cloudinaryDelete } = require("../utils/cloudinaryDelete")
 const { parseForm } = require("../utils/parseForm")
+const isAuthenticated = require("../guards/isAuth")
 
 const router = require("express").Router()
 
-router.get("/", async (req, res) => {
+router.get("/", isAuthenticated(),async (req, res) => {
     const search = req.query.search || ""
     try {
         const songs = await songService.getSongs(search)
@@ -16,7 +17,7 @@ router.get("/", async (req, res) => {
         res.json({ message: e.message })
     }
 })
-router.get("/:id", async (req, res) => {
+router.get("/:id",isAuthenticated(),  async (req, res) => {
     try {
         const song = await songService.getOne(req.params.id)
         res.json(song)
@@ -26,7 +27,7 @@ router.get("/:id", async (req, res) => {
     }
 })
 
-router.post("/create", async (req, res) => {
+router.post("/create", isAuthenticated(), async (req, res) => {
     const form = formidable()
     try {
         const [fields, files] = await parseForm(req, form)
@@ -43,7 +44,7 @@ router.post("/create", async (req, res) => {
         res.json({ message: e.message })
     }
 })
-router.put("/:id/like", async (req, res) => {
+router.put("/:id/like", isAuthenticated(), async (req, res) => {
     const userId = req.user._id
     const songId = req.params.id
 
@@ -55,7 +56,7 @@ router.put("/:id/like", async (req, res) => {
         res.json({ message: e.message })
     }
 })
-router.put("/:id/unlike", async (req, res) => {
+router.put("/:id/unlike", isAuthenticated(), async (req, res) => {
     const userId = req.user._id
     const songId = req.params.id
 
@@ -67,7 +68,7 @@ router.put("/:id/unlike", async (req, res) => {
         res.json({ message: e.message })
     }
 })
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", isAuthenticated(),  async (req, res) => {
     try {
         const song = await songService.getOne(req.params.id)
         await cloudinaryDelete(song.imageId)
@@ -80,7 +81,7 @@ router.delete("/:id", async (req, res) => {
         res.json({ message: e.message })
     }
 })
-router.patch("/:id/change-image", async (req, res) => {
+router.patch("/:id/change-image", isAuthenticated(),  async (req, res) => {
     const form = formidable()
     try {
         const song = await songService.getOne(req.params.id)
@@ -94,7 +95,7 @@ router.patch("/:id/change-image", async (req, res) => {
         res.json({ message: error.message })
     }
 })
-router.patch("/:id/edit-name", async (req, res) => {
+router.patch("/:id/edit-name", isAuthenticated(), async (req, res) => {
     try {
         const { name } = req.body
         if (name === "") throw new Error("Song name is required" )
