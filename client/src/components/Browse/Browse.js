@@ -3,7 +3,7 @@ import { ReactComponent as Audio } from "../../svg/audio.svg"
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { showAlert } from "../../actions";
+import { loader, showAlert } from "../../actions";
 import * as playlistService from "../../services/playlist";
 import * as songService from "../../services/song"
 import "./Browse.css"
@@ -30,11 +30,15 @@ const Wrapper = ({ match, location, history }) => {
 
         const search = new URLSearchParams(location.search).get("search") || ""
         match.params.category.includes("songs") ? setCategory("songs") : setCategory("playlists")
-
+        dispatch(loader())
         request(search)
-            .then(setData)
+            .then((data) => {
+                setData(data)
+                dispatch(loader())
+            })
             .catch((e) => {
                 setData([])
+                dispatch(loader())
                 dispatch(showAlert(e.message))
             })
     }, [match.params.category, location.search])
