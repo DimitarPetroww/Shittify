@@ -14,7 +14,7 @@ import Details from './components/Details/Details';
 import Loader from './components/shared/Loader/Loader';
 import Alert from './components/shared/Alert/Alert';
 
-import { Switch, Route, Redirect } from "react-router-dom"
+import { Switch, Route } from "react-router-dom"
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux"
 
