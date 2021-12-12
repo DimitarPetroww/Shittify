@@ -10,10 +10,10 @@
 * Good UX & UI;
 * Validation and error handling;
 ## Functionality
-### > **Not Authenticated**
+### > _Not Authenticated_
 ---
 * Login/Register User;
-### > **Authenticated**
+### > _Authenticated_
 ---
 * Logout;
 * See all created songs and playlists;
