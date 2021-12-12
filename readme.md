@@ -30,9 +30,9 @@
 * Change profile picture;
 ***
 ## How to run on local enviorment
-* Install MongoDB from here [https://www.mongodb.com/try/download/community](https://www.mongodb.com/try/download/community);
-* Download Shittify on your local machine;
-* Open folder
-* Navigate to "server" folder. Open terminal, type "npm i" and then "npm run dev";
-* Navigate to "client" folder. Open terminal, type "npm i" and then "npm start";
-* Enjoy! Shittify should open on your default browser on http://localhost:3000;
+1. Install MongoDB from here [https://www.mongodb.com/try/download/community](https://www.mongodb.com/try/download/community);
+2. Download Shittify on your local machine;
+3. Open folder
+4. Navigate to "server" folder. Open terminal, type "npm i" and then "npm run dev";
+5. Navigate to "client" folder. Open terminal, type "npm i" and then "npm start";
+6. Enjoy! Shittify should open on your default browser on http://localhost:3000;
