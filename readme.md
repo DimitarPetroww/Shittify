@@ -17,11 +17,13 @@
 ---
 * Logout;
 * See all created songs and playlists;
+* Search song or playlist;
+* See your library;
 * Listen a playlist or a song;
 * Forward/Backward timer of current song and Mute/Unmute, Play/Pause, Skip/Back current song;
 * Create playlist or song;
 * Edit/Delete playlist or song if owner;
-* Add song to playlist if owner;
+* Add song that is not contained on playlist if owner;
 * Delete song from a playlist if owner;
 * Like or remove like from a playlist or song;
 * Edit username;
