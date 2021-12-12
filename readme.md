@@ -18,6 +18,7 @@
 * Logout;
 * See all created songs and playlists;
 * Listen a playlist or a song;
+* Mute/Unmute, Forward/Backward timer, Play/Pause, Skip/Back current song from playlist;
 * Create playlist or song;
 * Edit/Delete playlist or song if owner;
 * Add song to playlist if owner;
