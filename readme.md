@@ -33,4 +33,4 @@
 * Open folder
 * Navigate to "server" folder. Open terminal, type "npm i" and then "npm run dev";
 * Navigate to "client" folder. Open terminal, type "npm i" and then "npm start";
-* Enjoy! Shittify should open on your default browser on localhost://3000;
+* Enjoy! Shittify should open on your default browser on http://localhost:3000;
