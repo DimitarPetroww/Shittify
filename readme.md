@@ -25,3 +25,5 @@
 * Like or remove like from a playlist or song;
 * Edit username;
 * Change profile picture;
+***
+## How to run on local enviorment
