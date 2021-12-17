@@ -171,7 +171,7 @@ const Details = ({ setIsPlaying, match, history, isPlaying }) => {
                                 </p>
                             </div>
                             <div className="tbody">
-                                {localSongs.map((x, i) => <SongRow key={x._id} localSongs={localSongs} start={start} song={x} index={i + 1} canDelete={match.params.category === "playlist"} playlistId={data._id} setData={setData} setLocalSongs={setLocalSongs} />)}
+                                {localSongs.map((x, i) => <SongRow key={x._id} localSongs={localSongs} start={start} song={x} index={i + 1} canDelete={match.params.category === "playlist" && isOwner} playlistId={data._id} setData={setData} setLocalSongs={setLocalSongs} />)}
                             </div>
                         </article> : ""}
                 </div>
