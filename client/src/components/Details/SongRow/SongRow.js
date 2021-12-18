@@ -32,7 +32,7 @@ const SongRow = ({ song, index, canDelete, playlistId, setData, setLocalSongs, l
             <audio src={song.audio} onLoadedMetadata={(e) => {
                 const minutes = Math.floor(e.target.duration / 60)
                 const seconds = Math.floor(e.target.duration % 60)
-                setDuration(`${minutes}:${seconds}`)
+                setDuration(`${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`)
             }}></audio>
             <div className="index song-index">{index}</div>
             <div className="play" onClick={() => { dispatch(setIndex(index - 1)); start() }}><Play /></div>
